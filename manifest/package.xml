@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  Scoped manifest for THIS app only (Stripe_* prefix).
+  This org (go-to-market-ai-dev-ed) hosts other POCs — never widen this to
+  wildcard members (<members>*</members>). Add named <members> here as each
+  phase creates real components, then retrieve with:
+    sf project retrieve start --manifest manifest/package.xml --target-org iop-dev
+-->
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <version>67.0</version>
+</Package>
