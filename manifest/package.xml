@@ -7,5 +7,13 @@
     sf project retrieve start --manifest manifest/package.xml --target-org iop-dev
 -->
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Invite_Only_Onboarding_Portal</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>Homepage</members>
+        <name>CustomTab</name>
+    </types>
     <version>67.0</version>
 </Package>

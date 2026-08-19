@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Homepage</label>
+    <description>React homepage (web/) for the Invite Only Onboarding Portal — dev server for now, swap for the GitHub Pages URL once deployed.</description>
+    <motif>Custom70: Handsaw</motif>
+    <url>http://localhost:5173</url>
+    <frameHeight>1000</frameHeight>
+    <hasSidebar>false</hasSidebar>
+    <urlEncodingKey>UTF-8</urlEncodingKey>
+</CustomTab>
