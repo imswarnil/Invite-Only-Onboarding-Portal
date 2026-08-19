@@ -154,10 +154,11 @@ git push -u origin main
 Reuse standard **Account / Contact / Opportunity / Case / User**.
 
 ### 5.2 Fields on `Invite_Request__c`
-Form fields: `Applicant_Type__c` (Company/Individual → sets RecordType), `Work_Email__c`, `Country__c` (default India), `Annual_Revenue_Band__c` (six INR bands), `First_Name__c`, `Last_Name__c`, `Phone__c`, `Phone_Verified__c`, `Company_Website__c`, `Job_Level__c`, `Job_Function__c`, `Has_Overseas_Entity__c`, `Seeking_Overseas_Expansion__c`, `Sells__c` (Services/Goods/Both), `Notes__c`, `Marketing_Consent__c`.
+Form fields: `Applicant_Type__c` (Company/Individual → sets RecordType), `Work_Email__c`, `Country__c` (default India), `State__c` (Picklist, Indian states/UTs), `City__c`, `Annual_Revenue_Band__c` (six INR bands), `Expected_Revenue_INR__c` (Currency — expected annual volume through Stripe, the headline forecast/measure field), `First_Name__c`, `Last_Name__c`, `Phone__c`, `Phone_Verified__c`, `Company_Website__c`, `Job_Level__c`, `Job_Function__c`, `Has_Overseas_Entity__c`, `Seeking_Overseas_Expansion__c`, `Sells__c` (Services/Goods/Both), `Notes__c`, `Marketing_Consent__c`.
+Record-type-specific identity fields (self-reported at signup, placed on only one of the two layouts): `Company_Registration_Number__c` (Company layout only), `PAN_Number__c` (Individual layout only), `GST_Number__c` (both layouts, optional).
 Research fields: `Registered_Entity_Type__c` (Sole Prop/LLP/Pvt Ltd/None), `Has_IEC__c`, `MCA_CIN__c`, `Blog_Count__c`, `Content_Depth__c`.
 AI-written: `Dossier__c` (Rich Text), `Fit_Score__c` (0–100), `Score_Rationale__c`, `Legitimacy_Verdict__c`, `Expansion_Signal__c`, `Persona__c`.
-Workflow: `Stage__c` (Received→AI Validation→Action Needed→In Review→Approved→Onboarding→Activated→Won; off-ramps Waitlisted/Rejected), `Decision__c`, `Converted_Account__c` (Lookup Account).
+Workflow: `Stage__c` (Received→AI Validation→Action Needed→In Review→Approved→Onboarding→Activated→Won; off-ramps Waitlisted/Rejected), `Sub_Status__c` (Picklist, dependent on `Stage__c` — a few sub-states per stage), `Decision__c`, `Converted_Account__c` (Lookup Account). `Owner` is the standard field (no need to create it) — the Intake Flow (Phase 4) reassigns it to `Review_Queue` (Phase 2) on creation.
 
 ### 5.3 Page layouts & the Lightning record page — the integration
 - **Two page layouts:** `Invite_Request_Company` and `Invite_Request_Individual`, **assigned by record type**. Company shows entity/IEC/website fields; Individual shows a "why individuals aren't eligible → register an entity" info section and hides company-only fields.
@@ -166,6 +167,9 @@ Workflow: `Stage__c` (Received→AI Validation→Action Needed→In Review→App
 - **Sidebar (LWC widgets):** `scoreGauge` (donut of Fit Score), `findingsList` (crawler findings + "Flag to applicant" quick action). Add the **Agentforce** panel (Phase 5).
 - **Related lists:** Crawler Findings, (post-convert) Opportunities, Cases, Provisioned Account.
 - **Quick actions** on the page: *Run Research*, *Send Fix Request*, *Approve & Provision*, *Create Upsell*, *Assign TSE*.
+
+### 5.4 Custom Application
+A Lightning App **`Invite Only Portal`** (App Manager → New Lightning App) bundling the Invite Requests tab + standard Accounts/Contacts/Opportunities/Cases/Reports/Dashboards tabs, assigned to your profile so it shows in the App Launcher. This is also the `CustomApplication` named in the Section 16 manifest.
 
 **Do manually (to learn):** build ONE object + a few fields + both record types + the two layouts **in the org UI**, create one specimen record, then pull it into git:
 ```bash
