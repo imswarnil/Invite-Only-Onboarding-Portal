@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#635BFF</headerColor>
+        <logo>inviteonlyappicon</logo>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
+    </brand>
+    <description>This app is to manage invite only customer who requested to get onboarded on our plateform.</description>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Invite Only Onboarding</label>
+    <navType>Standard</navType>
+    <tabs>InviteOnlyHomepage</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>Inlet_Invite_Only_Portal_UtilityBar</utilityBar>
+    <defaultLandingTab>InviteOnlyHomepage</defaultLandingTab>
+</CustomApplication>

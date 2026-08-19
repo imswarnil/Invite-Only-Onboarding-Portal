@@ -8,11 +8,11 @@
 -->
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>Invite_Only_Onboarding_Portal</members>
+        <members>Invite_Only_Onboarding</members>
         <name>CustomApplication</name>
     </types>
     <types>
-        <members>Homepage</members>
+        <members>InviteOnlyHomepage</members>
         <name>CustomTab</name>
     </types>
     <version>67.0</version>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Invite Only Onboarding Portal homepage (web/, built in React). Points at the local Vite dev server for now — swap for https://stripe.imswarnil.com once Phase 9 (GitHub Pages) is deployed.</description>
+    <frameHeight>2000</frameHeight>
+    <hasSidebar>false</hasSidebar>
+    <label>Home</label>
+    <motif>Custom96: Street Sign</motif>
+    <url>http://localhost:5173</url>
+    <urlEncodingKey>UTF-8</urlEncodingKey>
+</CustomTab>
