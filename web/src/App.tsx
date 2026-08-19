@@ -78,16 +78,13 @@ function App() {
             <div className="panel">
               <h2>Requests by stage</h2>
               <div className="funnel">
-                {stages.map((s, i) => (
+                {stages.map((s) => (
                   <div className="funnel-row" key={s.name}>
                     <span className="funnel-label">{s.name}</span>
                     <div className="funnel-track">
                       <div
                         className="funnel-bar"
-                        style={{
-                          width: `${(s.count / maxStageCount) * 100}%`,
-                          background: `var(--stage-${i + 1})`,
-                        }}
+                        style={{ width: `${(s.count / maxStageCount) * 100}%` }}
                       />
                     </div>
                     <span className="funnel-value">{s.count}</span>
