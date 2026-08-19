@@ -1,13 +1,43 @@
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-inline: 32px;
+  box-sizing: border-box;
+
+  @media (max-width: 1024px) {
+    padding-inline: 20px;
+  }
+}
+
 .site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 32px;
   border-bottom: 1px solid var(--border);
 
+  .header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 18px;
+  }
+
   .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-weight: 600;
     color: var(--text-h);
+  }
+
+  .brand-mark {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    background: var(--accent);
+  }
+
+  nav {
+    display: flex;
+    gap: 28px;
   }
 
   nav a {
@@ -19,37 +49,186 @@
       color: var(--accent);
     }
   }
+
+  @media (max-width: 640px) {
+    nav {
+      display: none;
+    }
+  }
 }
 
-.hello {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 32px 20px;
+.hero {
   text-align: center;
+  padding-block: 96px 80px;
+  background: linear-gradient(180deg, var(--bg-soft) 0%, var(--bg) 100%);
+
+  @media (max-width: 1024px) {
+    padding-block: 56px 48px;
+  }
+
+  h1 {
+    max-width: 760px;
+    margin-inline: auto;
+  }
 }
 
 .eyebrow {
   font-size: 14px;
+  font-weight: 600;
   color: var(--accent);
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
-.lead {
-  font-size: 20px;
+.hero-sub {
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: 18px;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.hero-tag {
+  margin-top: 40px;
+  font-size: 14px;
+  color: var(--text);
+  opacity: 0.75;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(99, 91, 255, 0.28);
+}
+
+.btn-ghost {
+  background: transparent;
   color: var(--text-h);
+  border: 1px solid var(--border);
 }
 
-.sub {
-  max-width: 480px;
-  margin-top: 8px;
+.section {
+  padding-block: 72px;
+  border-top: 1px solid var(--border);
+
+  @media (max-width: 1024px) {
+    padding-block: 48px;
+  }
+}
+
+.section-soft {
+  background: var(--bg-soft);
+}
+
+.section-title {
+  font-size: 32px;
+  text-align: center;
+  margin: 0 0 40px;
+
+  @media (max-width: 1024px) {
+    font-size: 26px;
+    margin-bottom: 28px;
+  }
+}
+
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  text-align: left;
+  padding: 28px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+
+  h3 {
+    font-size: 17px;
+    color: var(--text-h);
+    margin: 0 0 8px;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 150%;
+  }
+}
+
+.card-step {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.stack-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--bg-soft);
+    font-size: 14px;
+    color: var(--text-h);
+  }
 }
 
 .site-footer {
-  padding: 20px;
+  padding-block: 24px;
   border-top: 1px solid var(--border);
   font-size: 13px;
+  text-align: center;
 }
