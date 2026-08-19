@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inlet_Id__c</fullName>
+    <label>Inlet Id</label>
+    <description>Display as iop_acct_{0000} convention when populated</description>
+    <length>40</length>
+    <type>Text</type>
+</CustomField>

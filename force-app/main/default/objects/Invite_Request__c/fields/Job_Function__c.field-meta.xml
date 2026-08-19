@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Job_Function__c</fullName>
+    <label>Job Function</label>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+        <value>
+            <fullName>Finance</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Engineering</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Product</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Operations</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

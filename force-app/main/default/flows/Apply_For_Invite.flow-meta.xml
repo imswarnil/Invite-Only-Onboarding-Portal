@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <choices>
+        <name>Applicant_Type_Company</name>
+        <choiceText>Company</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Company</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Applicant_Type_Individual</name>
+        <choiceText>Individual</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Individual</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Revenue_Band_0</name>
+        <choiceText>0-10L INR</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>0-10L INR</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Revenue_Band_1</name>
+        <choiceText>10L-50L INR</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>10L-50L INR</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Revenue_Band_2</name>
+        <choiceText>50L-1Cr INR</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>50L-1Cr INR</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Revenue_Band_3</name>
+        <choiceText>1Cr-5Cr INR</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>1Cr-5Cr INR</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Revenue_Band_4</name>
+        <choiceText>5Cr-25Cr INR</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>5Cr-25Cr INR</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Revenue_Band_5</name>
+        <choiceText>25Cr and above INR</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>25Cr and above INR</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Job_Level_0</name>
+        <choiceText>Founder/Owner</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Founder/Owner</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Job_Level_1</name>
+        <choiceText>C-Level</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>C-Level</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Job_Level_2</name>
+        <choiceText>VP/Director</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>VP/Director</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Job_Level_3</name>
+        <choiceText>Manager</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Manager</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Job_Level_4</name>
+        <choiceText>Individual Contributor</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Individual Contributor</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Job_Function_0</name>
+        <choiceText>Finance</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Finance</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Job_Function_1</name>
+        <choiceText>Engineering</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Engineering</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Job_Function_2</name>
+        <choiceText>Product</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Product</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Job_Function_3</name>
+        <choiceText>Operations</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Operations</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Job_Function_4</name>
+        <choiceText>Other</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Other</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Sells_0</name>
+        <choiceText>Services</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Services</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Sells_1</name>
+        <choiceText>Goods</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Goods</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Sells_2</name>
+        <choiceText>Both</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Both</stringValue>
+        </value>
+    </choices>
+    <interviewLabel>Apply For Invite {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Apply For Invite</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_Invite_Request</name>
+        <label>Create Invite Request</label>
+        <locationX>176</locationX>
+        <locationY>500</locationY>
+        <connector>
+            <targetReference>Thank_You</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>Get_Record_Type.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Applicant_Type__c</field>
+            <value>
+                <elementReference>Applicant_Type</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>First_Name__c</field>
+            <value>
+                <elementReference>First_Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Last_Name__c</field>
+            <value>
+                <elementReference>Last_Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Work_Email__c</field>
+            <value>
+                <elementReference>Work_Email</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Phone__c</field>
+            <value>
+                <elementReference>Phone</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Country__c</field>
+            <value>
+                <elementReference>Country</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>State__c</field>
+            <value>
+                <elementReference>State</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>City__c</field>
+            <value>
+                <elementReference>City</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Company_Website__c</field>
+            <value>
+                <elementReference>Company_Website</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Company_Registration_Number__c</field>
+            <value>
+                <elementReference>Company_Registration_Number</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PAN_Number__c</field>
+            <value>
+                <elementReference>PAN_Number</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>GST_Number__c</field>
+            <value>
+                <elementReference>GST_Number</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Annual_Revenue_Band__c</field>
+            <value>
+                <elementReference>Annual_Revenue_Band</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Expected_Revenue_INR__c</field>
+            <value>
+                <elementReference>Expected_Revenue_INR</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Job_Level__c</field>
+            <value>
+                <elementReference>Job_Level</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Job_Function__c</field>
+            <value>
+                <elementReference>Job_Function</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Sells__c</field>
+            <value>
+                <elementReference>Sells</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Has_Overseas_Entity__c</field>
+            <value>
+                <elementReference>Has_Overseas_Entity</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Seeking_Overseas_Expansion__c</field>
+            <value>
+                <elementReference>Seeking_Overseas_Expansion</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Notes__c</field>
+            <value>
+                <elementReference>Notes</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Marketing_Consent__c</field>
+            <value>
+                <elementReference>Marketing_Consent</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Stage__c</field>
+            <value>
+                <stringValue>Received</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Sub_Status__c</field>
+            <value>
+                <stringValue>New Submission</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Invite_Request__c</object>
+    </recordCreates>
+    <recordLookups>
+        <name>Get_Record_Type</name>
+        <label>Get Record Type</label>
+        <locationX>176</locationX>
+        <locationY>400</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Invite_Request</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Invite_Request__c</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Applicant_Type</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <screens>
+        <name>Apply_For_Invite</name>
+        <label>Apply for an Invite</label>
+        <locationX>176</locationX>
+        <locationY>200</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Get_Record_Type</targetReference>
+        </connector>
+        <fields>
+            <name>Applicant_Type</name>
+            <choiceReferences>Applicant_Type_Company</choiceReferences>
+            <choiceReferences>Applicant_Type_Individual</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Are you applying as a Company or an Individual?</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+
+        <fields>
+            <name>First_Name</name>
+            <dataType>String</dataType>
+            <fieldText>First Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+
+        <fields>
+            <name>Last_Name</name>
+            <dataType>String</dataType>
+            <fieldText>Last Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+
+        <fields>
+            <name>Work_Email</name>
+            <dataType>String</dataType>
+            <fieldText>Work Email</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+
+        <fields>
+            <name>Phone</name>
+            <dataType>String</dataType>
+            <fieldText>Phone</fieldText>
+            <fieldType>InputField</fieldType>
+        </fields>
+
+        <fields>
+            <name>Country</name>
+            <dataType>String</dataType>
+            <fieldText>Country</fieldText>
+            <fieldType>InputField</fieldType>
+            <defaultValue>
+                <stringValue>India</stringValue>
+            </defaultValue>
+        </fields>
+
+        <fields>
+            <name>State</name>
+            <dataType>String</dataType>
+            <fieldText>State</fieldText>
+            <fieldType>InputField</fieldType>
+        </fields>
+
+        <fields>
+            <name>City</name>
+            <dataType>String</dataType>
+            <fieldText>City</fieldText>
+            <fieldType>InputField</fieldType>
+        </fields>
+
+        <fields>
+            <name>Company_Website</name>
+            <dataType>String</dataType>
+            <fieldText>Company Website</fieldText>
+            <fieldType>InputField</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Applicant_Type</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>Company</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+
+        <fields>
+            <name>Company_Registration_Number</name>
+            <dataType>String</dataType>
+            <fieldText>Company Registration Number</fieldText>
+            <fieldType>InputField</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Applicant_Type</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>Company</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+
+        <fields>
+            <name>PAN_Number</name>
+            <dataType>String</dataType>
+            <fieldText>PAN Number</fieldText>
+            <fieldType>InputField</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Applicant_Type</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>Individual</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+
+        <fields>
+            <name>GST_Number</name>
+            <dataType>String</dataType>
+            <fieldText>GST Number (optional)</fieldText>
+            <fieldType>InputField</fieldType>
+        </fields>
+
+        <fields>
+            <name>Annual_Revenue_Band</name>
+            <choiceReferences>Revenue_Band_0</choiceReferences>
+            <choiceReferences>Revenue_Band_1</choiceReferences>
+            <choiceReferences>Revenue_Band_2</choiceReferences>
+            <choiceReferences>Revenue_Band_3</choiceReferences>
+            <choiceReferences>Revenue_Band_4</choiceReferences>
+            <choiceReferences>Revenue_Band_5</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Annual Revenue Band</fieldText>
+            <fieldType>DropdownBox</fieldType>
+        </fields>
+
+        <fields>
+            <name>Expected_Revenue_INR</name>
+            <dataType>Currency</dataType>
+            <fieldText>Expected Revenue You Plan To Process (INR)</fieldText>
+            <fieldType>InputField</fieldType>
+        </fields>
+
+        <fields>
+            <name>Job_Level</name>
+            <choiceReferences>Job_Level_0</choiceReferences>
+            <choiceReferences>Job_Level_1</choiceReferences>
+            <choiceReferences>Job_Level_2</choiceReferences>
+            <choiceReferences>Job_Level_3</choiceReferences>
+            <choiceReferences>Job_Level_4</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Job Level</fieldText>
+            <fieldType>DropdownBox</fieldType>
+        </fields>
+
+        <fields>
+            <name>Job_Function</name>
+            <choiceReferences>Job_Function_0</choiceReferences>
+            <choiceReferences>Job_Function_1</choiceReferences>
+            <choiceReferences>Job_Function_2</choiceReferences>
+            <choiceReferences>Job_Function_3</choiceReferences>
+            <choiceReferences>Job_Function_4</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Job Function</fieldText>
+            <fieldType>DropdownBox</fieldType>
+        </fields>
+
+        <fields>
+            <name>Sells</name>
+            <choiceReferences>Sells_0</choiceReferences>
+            <choiceReferences>Sells_1</choiceReferences>
+            <choiceReferences>Sells_2</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>You Sell</fieldText>
+            <fieldType>RadioButtons</fieldType>
+        </fields>
+
+        <fields>
+            <name>Has_Overseas_Entity</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Do you have an overseas entity?</fieldText>
+            <fieldType>InputField</fieldType>
+            <defaultValue>
+                <booleanValue>false</booleanValue>
+            </defaultValue>
+        </fields>
+
+        <fields>
+            <name>Seeking_Overseas_Expansion</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Are you seeking overseas expansion?</fieldText>
+            <fieldType>InputField</fieldType>
+            <defaultValue>
+                <booleanValue>false</booleanValue>
+            </defaultValue>
+        </fields>
+
+        <fields>
+            <name>Notes</name>
+            <fieldText>Anything else we should know?</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+        </fields>
+
+        <fields>
+            <name>Marketing_Consent</name>
+            <dataType>Boolean</dataType>
+            <fieldText>I agree to receive marketing communications</fieldText>
+            <fieldType>InputField</fieldType>
+            <defaultValue>
+                <booleanValue>false</booleanValue>
+            </defaultValue>
+        </fields>
+    </screens>
+    <screens>
+        <name>Thank_You</name>
+        <label>Thank You</label>
+        <locationX>176</locationX>
+        <locationY>600</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Confirmation_Text</name>
+            <fieldText>&lt;p&gt;Thanks! We&apos;ve received your application and our team will be in touch.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Apply_For_Invite</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+</Flow>

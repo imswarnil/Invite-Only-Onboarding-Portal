@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sub_Status__c</fullName>
+    <label>Sub Status</label>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Stage__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+        <value>
+            <fullName>New Submission</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Duplicate Check Pending</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Awaiting Crawl</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Crawl In Progress</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Awaiting Score</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Docs Requested</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Fix Requested</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Awaiting Applicant Response</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Assigned to Reviewer</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Escalated to Manager</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Pending Final Call</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Pending Provisioning</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Account Setup</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Keys Issued</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Awaiting First Transaction</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Healthy</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Needs Attention</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Upsell Ready</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Stable</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Low Score</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Missing Entity Registration</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Revisit in 90 Days</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Fraud Suspected</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Ineligible Country</fullName>
+            <default>false</default>
+        </value>
+        <value>
+            <fullName>Duplicate Application</fullName>
+            <default>false</default>
+        </value>
+        </valueSetDefinition>
+    <valueSettings>
+        <controllingFieldValue>Received</controllingFieldValue>
+        <valueName>New Submission</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>Received</controllingFieldValue>
+        <valueName>Duplicate Check Pending</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>AI Validation</controllingFieldValue>
+        <valueName>Awaiting Crawl</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>AI Validation</controllingFieldValue>
+        <valueName>Crawl In Progress</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>AI Validation</controllingFieldValue>
+        <valueName>Awaiting Score</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>Action Needed</controllingFieldValue>
+        <valueName>Docs Requested</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>Action Needed</controllingFieldValue>
+        <valueName>Fix Requested</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>Action Needed</controllingFieldValue>
+        <valueName>Awaiting Applicant Response</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>In Review</controllingFieldValue>
+        <valueName>Assigned to Reviewer</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>In Review</controllingFieldValue>
+        <valueName>Escalated to Manager</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>In Review</controllingFieldValue>
+        <valueName>Pending Final Call</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>Approved</controllingFieldValue>
+        <valueName>Pending Provisioning</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>Onboarding</controllingFieldValue>
+        <valueName>Account Setup</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>Onboarding</controllingFieldValue>
+        <valueName>Keys Issued</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>Onboarding</controllingFieldValue>
+        <valueName>Awaiting First Transaction</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>Activated</controllingFieldValue>
+        <valueName>Healthy</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>Activated</controllingFieldValue>
+        <valueName>Needs Attention</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>Won</controllingFieldValue>
+        <valueName>Upsell Ready</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>Won</controllingFieldValue>
+        <valueName>Stable</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>Waitlisted</controllingFieldValue>
+        <valueName>Low Score</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>Waitlisted</controllingFieldValue>
+        <valueName>Missing Entity Registration</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>Waitlisted</controllingFieldValue>
+        <valueName>Revisit in 90 Days</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>Rejected</controllingFieldValue>
+        <valueName>Fraud Suspected</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>Rejected</controllingFieldValue>
+        <valueName>Ineligible Country</valueName>
+    </valueSettings>
+    <valueSettings>
+        <controllingFieldValue>Rejected</controllingFieldValue>
+        <valueName>Duplicate Application</valueName>
+    </valueSettings>
+    </valueSet>
+</CustomField>

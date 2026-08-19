@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dossier__c</fullName>
+    <label>Dossier</label>
+    <length>32000</length>
+    <type>Html</type>
+    <visibleLines>15</visibleLines>
+</CustomField>
