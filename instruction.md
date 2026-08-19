@@ -4,7 +4,7 @@
 > **Brand shown in UI:** *Invite Only Portal*
 > **Use case:** Stripe-India invite-only onboarding (a **learning POC**).
 > **Org:** `go-to-market-ai-dev-ed` (Developer Edition; Agentforce + Data Cloud enabled). *This org hosts other apps too — we sync **only this app's** metadata.*
-> **Metadata namespace:** everything custom is prefixed **`Stripe_`**.
+> **Metadata naming:** plain names, no prefix (e.g. `Invite_Request__c`). Scoping the shared org comes from the named manifest (Section 16), not a naming prefix.
 > **Front-end:** **full React** (React 19 + Vite) — the public site, the `/invite` form, **and** the markdown-based learning site — all one app, hosted on **GitHub Pages** at **stripe.imswarnil.com**.
 > **Scraping:** **n8n** (the hands). **Reasoning:** Salesforce AI — Prompt Builder + Agentforce (the brain).
 > **Independent educational project — not affiliated with, endorsed by, or connected to Stripe.** This disclaimer appears on every hosted page.
@@ -82,7 +82,7 @@ Invite-Only-Onboarding-Portal/
 ├─ README.md                      ← what it is + disclaimer + deploy steps
 ├─ LICENSE  .gitignore  .forceignore
 ├─ sfdx-project.json
-├─ manifest/package.xml           ← scoped to Stripe_* ONLY (Section 16)
+├─ manifest/package.xml           ← scoped to this app's named components ONLY (Section 16)
 ├─ force-app/main/default/        ← Salesforce metadata for THIS app only
 │   ├─ objects/  recordTypes/  layouts/  flexipages/
 │   ├─ flows/  approvalProcesses/  quickActions/
@@ -145,31 +145,31 @@ git push -u origin main
 
 **Learn.** In Salesforce, the **object** defines *what data exists*; **record types** define *variants of the same object* (here Company vs Individual); **page layouts** (and modern **Dynamic Forms** on the Lightning record page) define *what the user sees and edits*. They integrate like this: **record type → page-layout assignment → the fields/sections shown → the LWC widgets + related lists around them.** Change the record type, and the layout (and even which automation runs) changes.
 
-### 5.1 Custom objects (all `Stripe_`)
-- **`Stripe_Invite_Request__c`** — the application. Record Types **`Company`**, **`Individual`**.
-- **`Stripe_Crawler_Finding__c`** — child (Master-Detail → Invite Request): `Stripe_Title__c`, `Stripe_Detail__c`, `Stripe_Severity__c` (Info/Low/Medium/High), `Stripe_Fixable__c` (Checkbox), `Stripe_Status__c` (Open/Flagged/Resolved).
-- **`Stripe_Provisioned_Account__c`** — child (Lookup → Account): `Stripe_External_Acct_Id__c`, `Stripe_Inlet_Id__c` (Auto Number `iop_acct_{0000}`), `Stripe_Publishable_Key__c`, `Stripe_Secret_Key_Masked__c`, `Stripe_Status__c` (Active/Paused/Cancelled), `Stripe_Products_Live__c` (Multi-select).
-- **`Stripe_Usage_Snapshot__c`** — child (Lookup → Provisioned Account): `Stripe_Month__c`, `Stripe_Volume_INR__c`, `Stripe_Txn_Count__c`, `Stripe_Dispute_Rate__c`, `Stripe_Stripe_Revenue_INR__c`.
+### 5.1 Custom objects
+- **`Invite_Request__c`** — the application. Record Types **`Company`**, **`Individual`**.
+- **`Crawler_Finding__c`** — child (Master-Detail → Invite Request): `Title__c`, `Detail__c`, `Severity__c` (Info/Low/Medium/High), `Fixable__c` (Checkbox), `Status__c` (Open/Flagged/Resolved).
+- **`Provisioned_Account__c`** — child (Lookup → Account): `External_Acct_Id__c`, `Inlet_Id__c` (Auto Number `iop_acct_{0000}`), `Publishable_Key__c`, `Secret_Key_Masked__c`, `Status__c` (Active/Paused/Cancelled), `Products_Live__c` (Multi-select).
+- **`Usage_Snapshot__c`** — child (Lookup → Provisioned Account): `Month__c`, `Volume_INR__c`, `Txn_Count__c`, `Dispute_Rate__c`, `Revenue_INR__c`.
 
 Reuse standard **Account / Contact / Opportunity / Case / User**.
 
-### 5.2 Fields on `Stripe_Invite_Request__c`
-Form fields: `Stripe_Applicant_Type__c` (Company/Individual → sets RecordType), `Stripe_Work_Email__c`, `Stripe_Country__c` (default India), `Stripe_Annual_Revenue_Band__c` (six INR bands), `Stripe_First_Name__c`, `Stripe_Last_Name__c`, `Stripe_Phone__c`, `Stripe_Phone_Verified__c`, `Stripe_Company_Website__c`, `Stripe_Job_Level__c`, `Stripe_Job_Function__c`, `Stripe_Has_Overseas_Entity__c`, `Stripe_Seeking_Overseas_Expansion__c`, `Stripe_Sells__c` (Services/Goods/Both), `Stripe_Notes__c`, `Stripe_Marketing_Consent__c`.
-Research fields: `Stripe_Registered_Entity_Type__c` (Sole Prop/LLP/Pvt Ltd/None), `Stripe_Has_IEC__c`, `Stripe_MCA_CIN__c`, `Stripe_Blog_Count__c`, `Stripe_Content_Depth__c`.
-AI-written: `Stripe_Dossier__c` (Rich Text), `Stripe_Fit_Score__c` (0–100), `Stripe_Score_Rationale__c`, `Stripe_Legitimacy_Verdict__c`, `Stripe_Expansion_Signal__c`, `Stripe_Persona__c`.
-Workflow: `Stripe_Stage__c` (Received→AI Validation→Action Needed→In Review→Approved→Onboarding→Activated→Won; off-ramps Waitlisted/Rejected), `Stripe_Decision__c`, `Stripe_Converted_Account__c` (Lookup Account).
+### 5.2 Fields on `Invite_Request__c`
+Form fields: `Applicant_Type__c` (Company/Individual → sets RecordType), `Work_Email__c`, `Country__c` (default India), `Annual_Revenue_Band__c` (six INR bands), `First_Name__c`, `Last_Name__c`, `Phone__c`, `Phone_Verified__c`, `Company_Website__c`, `Job_Level__c`, `Job_Function__c`, `Has_Overseas_Entity__c`, `Seeking_Overseas_Expansion__c`, `Sells__c` (Services/Goods/Both), `Notes__c`, `Marketing_Consent__c`.
+Research fields: `Registered_Entity_Type__c` (Sole Prop/LLP/Pvt Ltd/None), `Has_IEC__c`, `MCA_CIN__c`, `Blog_Count__c`, `Content_Depth__c`.
+AI-written: `Dossier__c` (Rich Text), `Fit_Score__c` (0–100), `Score_Rationale__c`, `Legitimacy_Verdict__c`, `Expansion_Signal__c`, `Persona__c`.
+Workflow: `Stage__c` (Received→AI Validation→Action Needed→In Review→Approved→Onboarding→Activated→Won; off-ramps Waitlisted/Rejected), `Decision__c`, `Converted_Account__c` (Lookup Account).
 
 ### 5.3 Page layouts & the Lightning record page — the integration
-- **Two page layouts:** `Stripe_Invite_Request_Company` and `Stripe_Invite_Request_Individual`, **assigned by record type**. Company shows entity/IEC/website fields; Individual shows a "why individuals aren't eligible → register an entity" info section and hides company-only fields.
-- **One Lightning record page (FlexiPage)** with **Dynamic Forms** so you place *fields*, not just the whole layout, and add **visibility rules**: e.g., provisioning fields visible only when `Stripe_Stage__c = Approved`; IEC fields visible only when `Stripe_Sells__c` includes Goods.
-- **Path** component bound to `Stripe_Stage__c` (guided stages).
-- **Sidebar (LWC widgets):** `Stripe_scoreGauge` (donut of Fit Score), `Stripe_findingsList` (crawler findings + "Flag to applicant" quick action). Add the **Agentforce** panel (Phase 5).
+- **Two page layouts:** `Invite_Request_Company` and `Invite_Request_Individual`, **assigned by record type**. Company shows entity/IEC/website fields; Individual shows a "why individuals aren't eligible → register an entity" info section and hides company-only fields.
+- **One Lightning record page (FlexiPage)** with **Dynamic Forms** so you place *fields*, not just the whole layout, and add **visibility rules**: e.g., provisioning fields visible only when `Stage__c = Approved`; IEC fields visible only when `Sells__c` includes Goods.
+- **Path** component bound to `Stage__c` (guided stages).
+- **Sidebar (LWC widgets):** `scoreGauge` (donut of Fit Score), `findingsList` (crawler findings + "Flag to applicant" quick action). Add the **Agentforce** panel (Phase 5).
 - **Related lists:** Crawler Findings, (post-convert) Opportunities, Cases, Provisioned Account.
 - **Quick actions** on the page: *Run Research*, *Send Fix Request*, *Approve & Provision*, *Create Upsell*, *Assign TSE*.
 
 **Do manually (to learn):** build ONE object + a few fields + both record types + the two layouts **in the org UI**, create one specimen record, then pull it into git:
 ```bash
-sf project retrieve start --metadata "CustomObject:Stripe_Invite_Request__c" --target-org iop-dev
+sf project retrieve start --metadata "CustomObject:Invite_Request__c" --target-org iop-dev
 git add -A && git commit -m "phase1: invite request object + record types + layouts" && git push
 ```
 **Concepts you now own:** object vs record type vs layout vs Dynamic Form; layout-by-record-type assignment; how the record page composes fields + LWCs + related lists; retrieving a single object.
@@ -177,13 +177,13 @@ git add -A && git commit -m "phase1: invite request object + record types + layo
 ---
 
 ## 6. Phase 2 — Security
-Permission sets over profiles: `Stripe_Reviewer_PS`, `Stripe_CSM_PS`, `Stripe_TSE_PS`, `Stripe_Admin_PS`. Role hierarchy Director → Reviewer/CSM/TSE. Queue `Stripe_Review_Queue`. OWD **Private** on the request; open upward via hierarchy. Build in UI, then `sf project retrieve start -x manifest/package.xml`.
+Permission sets over profiles: `Reviewer_PS`, `CSM_PS`, `TSE_PS`, `Admin_PS`. Role hierarchy Director → Reviewer/CSM/TSE. Queue `Review_Queue`. OWD **Private** on the request; open upward via hierarchy. Build in UI, then `sf project retrieve start -x manifest/package.xml`.
 **Concepts you now own:** permission sets, role hierarchy = record visibility, OWD, queues.
 
 ---
 
 ## 7. Phase 3 — Prompt Builder (dossier + score)
-Create Flex prompt template **`Stripe_Dossier_And_Score`** that takes the record + a `CrawlSummary` input and returns strict JSON (dossier, fit_score, criteria[], legitimacy, expansion_signal, persona, content_depth, findings[]). Weight **international-expansion 35**, legitimacy 25, revenue 15, content 10, contact 5, risk 10. **Rule:** Individual OR no registered entity → cap score ≤ 35 + finding "register an entity / form a US LLC via Stripe Atlas." Keep the prompt text in `integration/prompts/dossier_and_score.md`. Iterate in Prompt Builder's preview against your specimen.
+Create Flex prompt template **`Dossier_And_Score`** that takes the record + a `CrawlSummary` input and returns strict JSON (dossier, fit_score, criteria[], legitimacy, expansion_signal, persona, content_depth, findings[]). Weight **international-expansion 35**, legitimacy 25, revenue 15, content 10, contact 5, risk 10. **Rule:** Individual OR no registered entity → cap score ≤ 35 + finding "register an entity / form a US LLC via Stripe Atlas." Keep the prompt text in `integration/prompts/dossier_and_score.md`. Iterate in Prompt Builder's preview against your specimen.
 **Concepts you now own:** prompt templates, merge fields, grounding, structured-JSON output.
 
 ---
@@ -195,31 +195,31 @@ Flows: **Intake** (record-trigger: stage=Received, set record type, queue — *n
 ---
 
 ## 9. Phase 5 — Agentforce
-**`Stripe_Invite_Concierge`** (internal): topics Assess/Explain, Communicate, Decide; actions map to the Flows/prompts above; instruction "recommend, don't auto-decide; always show rationale; never invent facts." **`Stripe_Applicant_Assistant`** (external, on `/invite`/portal): status, what-to-fix, eligibility — grounded on the applicant's record. Level up: give the agent a "crawl" action that calls n8n.
+**`Invite_Concierge`** (internal): topics Assess/Explain, Communicate, Decide; actions map to the Flows/prompts above; instruction "recommend, don't auto-decide; always show rationale; never invent facts." **`Applicant_Assistant`** (external, on `/invite`/portal): status, what-to-fix, eligibility — grounded on the applicant's record. Level up: give the agent a "crawl" action that calls n8n.
 **Concepts you now own:** topics, actions, instructions, agent-as-tool-caller, employee vs service agents.
 
 ---
 
 ## 10. Phase 6 — Data Cloud
-Ground agents/prompts on a **Data Library** of past decisions. Health engine: stream `Stripe_Usage_Snapshot__c` → **Calculated Insights** (3-mo trend) → **Segments** At-Risk / Upsell-Ready → trigger cancellation-review task or Upsell Opportunity.
+Ground agents/prompts on a **Data Library** of past decisions. Health engine: stream `Usage_Snapshot__c` → **Calculated Insights** (3-mo trend) → **Segments** At-Risk / Upsell-Ready → trigger cancellation-review task or Upsell Opportunity.
 **Concepts you now own:** unification, RAG grounding, insights, segments-as-triggers.
 
 ---
 
 ## 11. Phase 7 — n8n scraping (hands) + Demo Mode
-Self-host n8n (`docker run -p 5678:5678 n8nio/n8n`). Workflow `stripe_invite_research`: webhook `{requestId, website}` → Firecrawl scrape (blog count/depth, USD pricing, address, policy pages, tech stack) → MX/registry checks → compress to one `CrawlSummary` → return to Salesforce. **Secrets in Named/External Credentials + n8n vault, never git.** **Demo Mode:** `Stripe_Demo_Mode__c` short-circuits to ~12 seeded sample records (`scripts/seed-demo.mjs`) so the whole app demos with zero live calls — build this *before* wiring live crawling.
+Self-host n8n (`docker run -p 5678:5678 n8nio/n8n`). Workflow `stripe_invite_research`: webhook `{requestId, website}` → Firecrawl scrape (blog count/depth, USD pricing, address, policy pages, tech stack) → MX/registry checks → compress to one `CrawlSummary` → return to Salesforce. **Secrets in Named/External Credentials + n8n vault, never git.** **Demo Mode:** `Demo_Mode__c` short-circuits to ~12 seeded sample records (`scripts/seed-demo.mjs`) so the whole app demos with zero live calls — build this *before* wiring live crawling.
 **Concepts you now own:** external orchestration, crawl→summarize→ground, secrets management, demo-mode to protect credits.
 
 ---
 
 ## 12. Phase 8 — Full React app (homepage, `/invite`, portal, learning)
 
-**Full React, honestly scoped.** React 19 + Vite is your **public** layer: marketing homepage, the Stripe-styled `/invite` form, the applicant portal, and the `/learn` learning site. **It integrates with Salesforce over the wire, not by rendering Salesforce pages:** the form POSTs to n8n (or Web-to-Lead) which creates `Stripe_Invite_Request__c`; the portal reads limited status via a small proxy/Connect endpoint. **The reviewer UI stays native Salesforce** (the page layouts + Dynamic Forms + LWC widgets + Agentforce from Phases 1/5) — you *can't* make the in-org reviewer screen "full React"; that layer is LWC. So: **React owns everything the customer/learner touches; Salesforce's own UI owns the reviewer.** If you ever want a bespoke React reviewer console, it would call Salesforce REST — but you'd lose native approvals/Agentforce, so keep the reviewer native.
+**Full React, honestly scoped.** React 19 + Vite is your **public** layer: marketing homepage, the Stripe-styled `/invite` form, the applicant portal, and the `/learn` learning site. **It integrates with Salesforce over the wire, not by rendering Salesforce pages:** the form POSTs to n8n (or Web-to-Lead) which creates `Invite_Request__c`; the portal reads limited status via a small proxy/Connect endpoint. **The reviewer UI stays native Salesforce** (the page layouts + Dynamic Forms + LWC widgets + Agentforce from Phases 1/5) — you *can't* make the in-org reviewer screen "full React"; that layer is LWC. So: **React owns everything the customer/learner touches; Salesforce's own UI owns the reviewer.** If you ever want a bespoke React reviewer console, it would call Salesforce REST — but you'd lose native approvals/Agentforce, so keep the reviewer native.
 
 Routes (one app):
 - `/` homepage — project story, SLDS-ish neutral theme, indexed.
 - `/invite` — multi-step form mirroring the real Stripe India fields, Stripe-styled (`#635BFF`, `#0A2540`, `#F6F9FC`), **noindex** (mimics Stripe's look). Footer disclaimer.
-- `/portal` — status lookup + embedded `Stripe_Applicant_Assistant`.
+- `/portal` — status lookup + embedded `Applicant_Assistant`.
 - `/learn` — the markdown learning site (Section 14).
 
 **Vibe-coding recipe** (hand to Claude Code): Vite + React 19 + TS, plain CSS tokens, `react-router`, a single `useReducer` for the form, `<StepEmail/> <StepRevenue/> <StepContact/> <StepReview/>`, submit → `POST VITE_INTAKE_WEBHOOK`, disclaimer footer everywhere. Small typed components; review every diff.
@@ -308,12 +308,12 @@ sf project retrieve start --manifest manifest/package.xml --target-org iop-dev
 Example (trimmed):
 ```xml
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-  <types><members>Stripe_Invite_Request__c</members>
-         <members>Stripe_Crawler_Finding__c</members>
-         <members>Stripe_Provisioned_Account__c</members>
-         <members>Stripe_Usage_Snapshot__c</members><name>CustomObject</name></types>
-  <types><members>Stripe_Reviewer_PS</members><members>Stripe_Admin_PS</members><name>PermissionSet</name></types>
-  <types><members>Stripe_Invite_Only_Portal</members><name>CustomApplication</name></types>
+  <types><members>Invite_Request__c</members>
+         <members>Crawler_Finding__c</members>
+         <members>Provisioned_Account__c</members>
+         <members>Usage_Snapshot__c</members><name>CustomObject</name></types>
+  <types><members>Reviewer_PS</members><members>Admin_PS</members><name>PermissionSet</name></types>
+  <types><members>Invite_Only_Portal</members><name>CustomApplication</name></types>
   <version>62.0</version>
 </Package>
 ```
@@ -321,7 +321,8 @@ Example (trimmed):
 **B. `.forceignore`** — belt-and-suspenders so a stray retrieve can't capture other apps or org-wide files:
 ```
 **/profiles/**
-# ignore anything not prefixed Stripe_ inside these dirs (be explicit as you grow)
+# keep this app's object/field/flow API names listed in manifest/package.xml explicit —
+# without a naming prefix, the manifest IS the boundary, so never widen it to a wildcard
 ```
 **Reflex:** in a shared org, **retrieve by explicit manifest**, never "grab everything." Wildcards pull the whole org.
 **Concepts you now own:** manifest-scoped retrieve, `.forceignore`, keeping a shared org clean in git.
@@ -335,7 +336,7 @@ Example (trimmed):
 sf org login web --alias iop-dev --set-default        # connect org
 sf org display --target-org iop-dev --verbose --json  # get auth URL for CI
 sf project retrieve start -x manifest/package.xml      # pull ONLY our app
-sf project retrieve start -m "CustomObject:Stripe_Invite_Request__c"
+sf project retrieve start -m "CustomObject:Invite_Request__c"
 sf project deploy start --source-dir force-app         # push metadata
 sf project deploy validate --source-dir force-app      # dry-run
 sf apex run --file scripts/seed.apex                   # seed demo data
@@ -360,6 +361,6 @@ pnpm build                                             # → web/dist (Pages)
 
 **Glossary:** *Prompt Template* (reusable grounded prompt) · *Flex template* (callable from Flow/Apex/Agent) · *Grounding* (feeding real data to the model) · *Agent* = topics + actions + instructions · *Atlas* (agent reasoning) · *Calculated Insight/Segment* (Data Cloud analytics + triggers) · *LWC* (native in-org UI) · *Named/External Credential* (secret storage) · *SFDX auth URL* (headless CI login) · *Dynamic Forms* (field-level record-page logic).
 
-**Rules of the road (repeat to Claude Code):** phase by phase; **do it manually in the org first, then retrieve**; teach each phase (Learn → Build → Try → Level up → Reflex + "Concepts you now own"). Native-first: Prompt Builder + Agentforce + Data Cloud think; **n8n only fetches**. Paid calls behind buttons + **Demo Mode**. Prefix everything **`Stripe_`**. Retrieve by scoped manifest only. Secrets in credentials/GitHub Secrets, never git. React for public + learning; LWC for the reviewer. Document every phase (screenshot + log entry) and commit. Optimize for **me getting smarter**, not just a working org.
+**Rules of the road (repeat to Claude Code):** phase by phase; **do it manually in the org first, then retrieve**; teach each phase (Learn → Build → Try → Level up → Reflex + "Concepts you now own"). Native-first: Prompt Builder + Agentforce + Data Cloud think; **n8n only fetches**. Paid calls behind buttons + **Demo Mode**. Plain names, no prefix. Retrieve by scoped manifest only. Secrets in credentials/GitHub Secrets, never git. React for public + learning; LWC for the reviewer. Document every phase (screenshot + log entry) and commit. Optimize for **me getting smarter**, not just a working org.
 
 *Independent educational project. Not affiliated with, endorsed by, or connected to Stripe. Uses public information about Stripe India's invite-only program to make the scenario realistic. Hosted at stripe.imswarnil.com for learning; `/invite` is a styled demo, not Stripe's real form.*

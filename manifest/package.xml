@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!--
-  Scoped manifest for THIS app only (Stripe_* prefix).
+  Scoped manifest for THIS app only — named components only, no prefix.
   This org (go-to-market-ai-dev-ed) hosts other POCs — never widen this to
   wildcard members (<members>*</members>). Add named <members> here as each
   phase creates real components, then retrieve with:

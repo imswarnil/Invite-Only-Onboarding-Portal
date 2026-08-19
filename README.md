@@ -15,7 +15,7 @@ write results back. **Brain vs hands.**
 
 ## Structure
 
-- `force-app/` — Salesforce metadata for this app only (`Stripe_` prefix), scoped via
+- `force-app/` — Salesforce metadata for this app only (plain names, no prefix), scoped via
   `manifest/package.xml` — see [`instruction.md`](./instruction.md) §16. This org hosts other
   POCs; never retrieve with wildcards.
 - `web/` — full React 19 + Vite app: marketing homepage, `/invite` form, applicant portal, and
