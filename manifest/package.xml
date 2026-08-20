@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <!--
   Scoped manifest for THIS app only — named components only, no prefix.
   This org (go-to-market-ai-dev-ed) hosts other POCs — never widen this to
@@ -14,6 +14,11 @@
     <types>
         <members>InviteOnlyHomepage</members>
         <name>CustomTab</name>
+    </types>
+    <types>
+        <members>New_Opportunity</members>
+        <members>New_Case</members>
+        <name>QuickAction</name>
     </types>
     <version>67.0</version>
 </Package>
