@@ -1,22 +1,67 @@
 import './App.css'
 
-const kpis: { label: string; value: string; delta?: string; direction?: 'up' | 'down' }[] = [
-  { label: 'Total invite requests', value: '128', delta: '+8 this week', direction: 'up' },
-  { label: 'Pending review', value: '24' },
-  { label: 'Approved this month', value: '41', delta: '+6 vs last month', direction: 'up' },
-  { label: 'Active accounts', value: '97' },
+// Pulled from the org via:
+//   sf data query --query "SELECT Id, First_Name__c, Last_Name__c, Work_Email__c,
+//     Applicant_Type__c, Country__c, Stage__c, Fit_Score__c, LastModifiedDate
+//     FROM Invite_Request__c ORDER BY LastModifiedDate DESC" --target-org iop-dev
+// Snapshot taken 2026-08-20 — a point-in-time pull, not a live fetch. A live version
+// would need a proxy per instruction.md's React↔Salesforce boundary (react.md §3):
+// the browser never calls the Salesforce API directly.
+const inviteRequests = [
+  {
+    name: 'Swarnil Singhai',
+    email: 'contact@imswarnil.com',
+    type: 'Individual',
+    country: 'India',
+    stage: 'Received',
+    score: null as number | null,
+    lastModified: '2026-08-20T00:32:29.000+0000',
+  },
+  {
+    name: 'Test User',
+    email: 'admin@namastesalesforce.com',
+    type: 'Individual',
+    country: 'India',
+    stage: 'Received',
+    score: null as number | null,
+    lastModified: '2026-08-19T23:58:26.000+0000',
+  },
 ]
 
-const stages = [
-  { name: 'Received', count: 128 },
-  { name: 'AI Validation', count: 96 },
-  { name: 'Action Needed', count: 40 },
-  { name: 'In Review', count: 58 },
-  { name: 'Approved', count: 41 },
-  { name: 'Onboarding', count: 33 },
-  { name: 'Activated', count: 29 },
-  { name: 'Won', count: 21 },
+const kpis: { label: string; value: string; delta?: string; direction?: 'up' | 'down' }[] = [
+  { label: 'Total invite requests', value: String(inviteRequests.length) },
+  { label: 'Individual applicants', value: String(inviteRequests.filter((r) => r.type === 'Individual').length) },
+  { label: 'Company applicants', value: String(inviteRequests.filter((r) => r.type === 'Company').length) },
+  {
+    label: 'Avg fit score',
+    value: inviteRequests.some((r) => r.score !== null)
+      ? String(
+          Math.round(
+            inviteRequests.reduce((sum, r) => sum + (r.score ?? 0), 0) /
+              inviteRequests.filter((r) => r.score !== null).length,
+          ),
+        )
+      : 'Not yet scored',
+  },
 ]
+
+const stageOrder = [
+  'Received',
+  'AI Validation',
+  'Action Needed',
+  'In Review',
+  'Approved',
+  'Onboarding',
+  'Activated',
+  'Won',
+  'Waitlisted',
+  'Rejected',
+]
+
+const stages = stageOrder.map((name) => ({
+  name,
+  count: inviteRequests.filter((r) => r.stage === name).length,
+}))
 
 const quickActions = ['Run Research', 'Send Fix Request', 'Approve & Provision', 'Create Upsell', 'Assign TSE']
 
@@ -29,15 +74,6 @@ const stageTheme: Record<string, string> = {
   Waitlisted: 'slds-theme_warning',
   Rejected: 'slds-theme_error',
 }
-
-// Sample rows only — real records will replace this once the React app fetches Invite_Request__c over the wire.
-const inviteRequests = [
-  { name: 'Aarav Mehta', email: 'aarav@meshtatraders.in', type: 'Individual', country: 'India', stage: 'Received', score: 52, updated: '2d ago' },
-  { name: 'Priya Nair Textiles', email: 'priya@nairtextiles.in', type: 'Company', country: 'India', stage: 'AI Validation', score: 61, updated: '4h ago' },
-  { name: 'Kunal Traders', email: 'kunal@kunaltraders.in', type: 'Company', country: 'India', stage: 'Approved', score: 84, updated: '1d ago' },
-  { name: 'Meera Exports', email: 'meera@meeraexports.in', type: 'Company', country: 'India', stage: 'Action Needed', score: 45, updated: '1d ago' },
-  { name: 'Rohan D.', email: 'rohan.d@gmail.com', type: 'Individual', country: 'India', stage: 'In Review', score: 78, updated: '2h ago' },
-]
 
 const navItems = ['Dashboard', 'Invite Requests', 'Accounts', 'Reports', 'Settings']
 
@@ -74,7 +110,7 @@ function App() {
                 <div className="slds-media__body">
                   <div className="slds-page-header__name">
                     <div className="slds-page-header__name-title">
-                      <h1>
+                      <h1 className="slds-page-header__title slds-truncate">
                         <span>Invite Only Onboarding</span>
                       </h1>
                     </div>
@@ -86,7 +122,9 @@ function App() {
             <div className="slds-page-header__col-actions">
               <div className="slds-page-header__controls">
                 <div className="slds-page-header__control topbar-right">
-                  <span className="slds-badge">Demo data</span>
+                  <span className="slds-badge" title="Snapshot pulled via sf data query, not a live fetch">
+                    Data as of Aug 20
+                  </span>
                   <span className="avatar">RS</span>
                 </div>
               </div>
@@ -229,10 +267,17 @@ function App() {
                         <span className={`slds-badge ${stageTheme[r.stage] ?? ''}`}>{r.stage}</span>
                       </td>
                       <td className="num">
-                        <div className="slds-truncate">{r.score}</div>
+                        <div className="slds-truncate">{r.score ?? '—'}</div>
                       </td>
                       <td>
-                        <div className="slds-truncate">{r.updated}</div>
+                        <div className="slds-truncate">
+                          {new Date(r.lastModified).toLocaleString(undefined, {
+                            month: 'short',
+                            day: 'numeric',
+                            hour: 'numeric',
+                            minute: '2-digit',
+                          })}
+                        </div>
                       </td>
                     </tr>
                   ))}
