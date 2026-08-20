@@ -1,0 +1,49 @@
+---
+layout: default
+title: Learn
+permalink: /learn/
+---
+
+{% assign lessons = site.learning | sort: "order" %} {% assign sections =
+lessons | group_by: "section" %} {% assign first_lesson = lessons | first %}
+
+<div class="learn-shell">
+  <aside class="learn-sidebar">
+    <nav class="learn-toc" aria-label="Lessons">
+      {% for section in sections %}
+      <div class="learn-toc-section">
+        <p class="learn-toc-heading">{{ section.name }}</p>
+        <ul>
+          {% for lesson in section.items %}
+          <li>
+            <a href="{{ lesson.url | relative_url }}">
+              {% include lesson-thumb.html %} {{ lesson.title }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </nav>
+  </aside>
+
+  <main class="learn-main">
+    <p class="lesson-eyebrow">Build log</p>
+    <div class="lesson-content">
+      <h1>How this got built, phase by phase</h1>
+      <p>
+        Each lesson is a dated entry from the actual build: what I set out to
+        do, what broke, how I fixed it. They're written as it happened,
+        including the parts that didn't work on the first try &mdash; that's
+        most of the value.
+      </p>
+      {% if first_lesson %}
+      <p>
+        <a class="btn btn-primary" href="{{ first_lesson.url | relative_url }}"
+          >Start with &ldquo;{{ first_lesson.title }}&rdquo; &rarr;</a
+        >
+      </p>
+      {% endif %}
+    </div>
+  </main>
+</div>

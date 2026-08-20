@@ -1,0 +1,36 @@
+title: Invite Only Portal
+description: >-
+  A hands-on learning project: an invite-only onboarding back office modeled on Stripe India's
+  real application flow, built to learn Salesforce's AI stack (Prompt Builder, Flow, Agentforce,
+  Data Cloud) end to end.
+url: "https://stripe.imswarnil.com"
+github_repo: "imswarnil/Invite-Only-Onboarding-Portal"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+collections:
+  learning:
+    output: true
+    permalink: /learn/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: learning
+    values:
+      layout: lesson
+
+plugins:
+  - jekyll-sitemap
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - README.md
+
+sass:
+  style: compressed

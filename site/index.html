@@ -1,0 +1,111 @@
+---
+layout: default
+title: Home
+---
+
+<div class="container">
+  <section class="hero">
+    <p class="hero-eyebrow">A learning POC, built in the open</p>
+    <h1>
+      An invite-only onboarding back office,<br />built to learn Salesforce's AI
+      stack
+    </h1>
+    <p>
+      Modeled on Stripe India's real application flow: a person applies, an AI +
+      web crawler researches and scores them, a reviewer decides, approved
+      businesses get provisioned and supported &mdash; and the whole build is
+      documented as it happens.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{{ '/learn/' | relative_url }}"
+        >Read the build log</a
+      >
+      <a class="btn btn-secondary" href="{{ '/invite/' | relative_url }}"
+        >Apply for an invite</a
+      >
+    </div>
+    <div class="hero-illustration">
+      <img
+        src="{{ '/assets/images/brain-hands.svg' | relative_url }}"
+        alt="n8n fetches the web and hands clean text to Salesforce, which reasons and writes results back"
+        width="720"
+        height="220"
+      />
+    </div>
+  </section>
+
+  <section class="mental-model">
+    <h2>Brain vs. hands</h2>
+    <p
+      style="
+        text-align: center;
+        color: var(--ink-soft);
+        max-width: 620px;
+        margin: 0 auto;
+      "
+    >
+      Salesforce AI reasons over data it is <em>given</em>; it does not fetch
+      the web. <strong>n8n</strong> fetches (scrapes) &rarr; hands clean text to
+      Salesforce &rarr; <strong>Prompt Builder</strong> /
+      <strong>Agentforce</strong> reason and write results back.
+    </p>
+  </section>
+
+  <section class="feature-grid">
+    <div class="feature-card">
+      <img
+        class="feature-card-icon"
+        src="{{ '/assets/images/icon-brain.svg' | relative_url }}"
+        alt=""
+      />
+      <h3>Salesforce AI stack</h3>
+      <p>
+        Prompt Builder scores each applicant; Agentforce agents converse with
+        reviewers and applicants; Data Cloud grounds it all on unified data.
+      </p>
+    </div>
+    <div class="feature-card">
+      <img
+        class="feature-card-icon"
+        src="{{ '/assets/images/icon-hands.svg' | relative_url }}"
+        alt=""
+      />
+      <h3>n8n crawling</h3>
+      <p>
+        The only thing that touches the open web. It scrapes, compresses to a
+        summary, and hands it to Salesforce &mdash; never the other way around.
+      </p>
+    </div>
+    <div class="feature-card">
+      <img
+        class="feature-card-icon"
+        src="{{ '/assets/images/icon-widget.svg' | relative_url }}"
+        alt=""
+      />
+      <h3>Native Salesforce reviewer UI</h3>
+      <p>
+        The reviewer's screen is real Lightning Web Components &mdash; page
+        layouts, Dynamic Forms, and custom widgets, not a bolted-on external
+        app.
+      </p>
+    </div>
+    <div class="feature-card">
+      <img
+        class="feature-card-icon"
+        src="{{ '/assets/images/icon-book.svg' | relative_url }}"
+        alt=""
+      />
+      <h3>Docs as code</h3>
+      <p>
+        Every phase gets a lesson: what I set out to do, what broke, how I fixed
+        it. Drop a markdown file, commit, it's live.
+      </p>
+    </div>
+  </section>
+
+  <p class="disclaimer">
+    Independent educational project &mdash; not affiliated with, endorsed by, or
+    connected to Stripe. This is a learning exercise, hosted publicly so the
+    journey is documented.
+  </p>
+</div>

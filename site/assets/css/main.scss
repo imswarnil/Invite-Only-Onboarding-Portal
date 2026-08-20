@@ -1,0 +1,458 @@
+---
+---
+:root {
+  --accent: #635bff;
+  --accent-dark: #4b45c6;
+  --ink: #0a2540;
+  --ink-soft: #425466;
+  --surface: #f6f9fc;
+  --border: #e3e8ee;
+  --code-bg: #0a2540;
+  --code-fg: #e3e8ee;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: #ffffff;
+  line-height: 1.55;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 2rem;
+  border-bottom: 1px solid var(--border);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.site-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.site-brand-mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--accent);
+  display: inline-block;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.site-nav a {
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.site-nav a:hover {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin-top: 3rem;
+}
+
+/* --- GitHub star button --- */
+.gh-star-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: #fff;
+}
+
+.gh-star-button:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+.gh-star-button svg {
+  width: 14px;
+  height: 14px;
+  fill: var(--ink-soft);
+}
+
+.gh-star-count {
+  color: var(--ink-soft);
+  font-weight: 700;
+}
+
+/* --- Hero / homepage --- */
+.hero {
+  padding: 4rem 0 3rem;
+  text-align: center;
+}
+
+.hero-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin: 0 0 0.75rem;
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  color: var(--ink);
+}
+
+.hero p {
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  max-width: 640px;
+  margin: 0 auto 1.75rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--accent-dark);
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+.hero-illustration {
+  max-width: 720px;
+  margin: 2.5rem auto 0;
+}
+
+/* --- Mental model section --- */
+.mental-model {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.mental-model h2 {
+  text-align: center;
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+}
+
+/* --- Feature grid --- */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 2.5rem 0;
+}
+
+.feature-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.feature-card-icon {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 0.75rem;
+}
+
+.feature-card h3 {
+  font-size: 1rem;
+  margin: 0 0 0.4rem;
+  color: var(--ink);
+}
+
+.feature-card p {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* --- Disclaimer --- */
+.disclaimer {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* --- /learn layout --- */
+.learn-shell {
+  display: flex;
+  gap: 3rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.learn-sidebar {
+  flex: 0 0 230px;
+}
+
+.learn-toc-section {
+  margin-bottom: 1.75rem;
+}
+
+.learn-toc-heading {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  margin: 0 0 0.5rem;
+}
+
+.learn-toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.learn-toc li {
+  margin: 0.1rem 0;
+}
+
+.learn-toc a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+}
+
+.learn-toc a:hover {
+  background: var(--surface);
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.learn-toc a.is-active {
+  background: rgba(99, 91, 255, 0.1);
+  color: var(--accent-dark);
+  font-weight: 600;
+}
+
+.toc-thumb {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.learn-main {
+  flex: 1;
+  min-width: 0;
+  max-width: 720px;
+}
+
+.lesson-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin: 0 0 0.5rem;
+}
+
+.lesson-content h1 {
+  font-size: 2rem;
+  margin: 0 0 1.25rem;
+}
+
+.lesson-content h2 {
+  font-size: 1.4rem;
+  margin: 2.25rem 0 0.75rem;
+}
+
+.lesson-content h3 {
+  font-size: 1.1rem;
+  margin: 1.75rem 0 0.5rem;
+}
+
+.lesson-content p {
+  color: var(--ink-soft);
+}
+
+.lesson-content code {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+  font-size: 0.9em;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+.lesson-content pre {
+  background: var(--code-bg);
+  color: var(--code-fg);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+}
+
+.lesson-content pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+.lesson-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.lesson-content th,
+.lesson-content td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.lesson-content th {
+  background: var(--surface);
+}
+
+.lesson-content blockquote {
+  border-left: 3px solid var(--accent);
+  margin: 0 0 1.25rem;
+  padding: 0.1rem 0 0.1rem 1rem;
+  color: var(--ink-soft);
+}
+
+.lesson-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.pager-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  max-width: 45%;
+}
+
+.pager-link:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+.pager-next {
+  text-align: right;
+  margin-left: auto;
+}
+
+.pager-label {
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+}
+
+.pager-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+}
+
+@media (max-width: 800px) {
+  .learn-shell {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .learn-sidebar {
+    flex: none;
+  }
+}
+
+/* --- /invite info page --- */
+.invite-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2.5rem;
+  max-width: 560px;
+  margin: 3rem auto;
+  text-align: center;
+}

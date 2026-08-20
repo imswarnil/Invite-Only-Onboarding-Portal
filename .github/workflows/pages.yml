@@ -4,9 +4,9 @@ on:
   push:
     branches: [main]
     paths:
-      - 'web/**'
-      - 'learning/**'
-      - '.github/workflows/pages.yml'
+      - "site/**"
+      - "learning/**"
+      - ".github/workflows/pages.yml"
   workflow_dispatch:
 
 permissions:
@@ -24,32 +24,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
+      - uses: ruby/setup-ruby@v1
         with:
-          version: 10
+          ruby-version: "3.3"
+          bundler-cache: true
+          working-directory: site
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-          cache-dependency-path: web/pnpm-lock.yaml
-
-      - name: Install dependencies
-        working-directory: web
-        run: pnpm install --frozen-lockfile
+      - name: Sync lessons from learning/ into the Jekyll collection
+        run: cp learning/*.md site/_learning/
 
       - name: Build
-        working-directory: web
-        run: pnpm build
-
-      - name: SPA fallback for GitHub Pages (BrowserRouter deep links)
-        run: cp web/dist/index.html web/dist/404.html
+        working-directory: site
+        run: bundle exec jekyll build
 
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: web/dist
+          path: site/_site
 
   deploy:
     needs: build

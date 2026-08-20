@@ -1,0 +1,10 @@
+source "https://rubygems.org"
+
+gem "jekyll", "~> 4.3"
+gem "jekyll-sitemap"
+
+# Ruby 3.4 removed these from the default gems, jekyll still needs them.
+gem "webrick"
+gem "csv"
+gem "base64"
+gem "logger"
