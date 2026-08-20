@@ -162,6 +162,50 @@ public with sharing class InviteHomeController {
     return summary;
   }
 
+  public class AccountInviteSummary {
+    @AuraEnabled
+    public Integer provisionedAccountCount;
+    @AuraEnabled
+    public Decimal totalVolumeInr;
+    @AuraEnabled
+    public String sourceInviteRequestName;
+    @AuraEnabled
+    public Id sourceInviteRequestId;
+  }
+
+  @AuraEnabled(cacheable=true)
+  public static AccountInviteSummary getAccountInviteSummary(Id accountId) {
+    AccountInviteSummary summary = new AccountInviteSummary();
+    summary.provisionedAccountCount = 0;
+    summary.totalVolumeInr = 0;
+
+    List<Provisioned_Account__c> provisioned = [
+      SELECT Id, (SELECT Volume_INR__c FROM Usage_Snapshots__r)
+      FROM Provisioned_Account__c
+      WHERE Account__c = :accountId
+    ];
+    summary.provisionedAccountCount = provisioned.size();
+    for (Provisioned_Account__c pa : provisioned) {
+      for (Usage_Snapshot__c usage : pa.Usage_Snapshots__r) {
+        summary.totalVolumeInr += usage.Volume_INR__c == null
+          ? 0
+          : usage.Volume_INR__c;
+      }
+    }
+
+    List<Invite_Request__c> source = [
+      SELECT Id, Name
+      FROM Invite_Request__c
+      WHERE Converted_Account__c = :accountId
+      LIMIT 1
+    ];
+    if (!source.isEmpty()) {
+      summary.sourceInviteRequestId = source[0].Id;
+      summary.sourceInviteRequestName = source[0].Name;
+    }
+    return summary;
+  }
+
   @AuraEnabled(cacheable=true)
   public static List<HistoryEntry> getFieldHistory(Id recordId) {
     List<HistoryEntry> entries = new List<HistoryEntry>();

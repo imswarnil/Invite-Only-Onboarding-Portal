@@ -6,7 +6,7 @@
         <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
     </brand>
-    <defaultLandingTab>InviteOnlyHomepage</defaultLandingTab>
+    <defaultLandingTab>Invite_Only_Home_App_Page</defaultLandingTab>
     <description
   >This app is to manage invite only customer who requested to get onboarded on our plateform.</description>
     <formFactors>Small</formFactors>
@@ -17,8 +17,11 @@
     <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
     <label>Invite Only Onboarding</label>
     <navType>Standard</navType>
-    <tabs>InviteOnlyHomepage</tabs>
+    <tabs>Invite_Only_Home_App_Page</tabs>
     <tabs>Invite_Request__c</tabs>
+    <tabs>Provisioned_Account__c</tabs>
+    <tabs>Usage_Snapshot__c</tabs>
+    <tabs>standard-Account</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Inlet_Invite_Only_Portal_UtilityBar</utilityBar>
 </CustomApplication>

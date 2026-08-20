@@ -1,0 +1,25 @@
+.account-invite-summary {
+  padding: 1rem 1.25rem;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35rem 0;
+  font-size: 0.85rem;
+  color: #444c53;
+}
+
+.summary-value {
+  font-weight: 700;
+  color: #0a2540;
+}
+
+.source-link {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: #635bff;
+  text-decoration: underline;
+  text-align: left;
+}

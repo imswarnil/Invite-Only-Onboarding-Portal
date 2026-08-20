@@ -1,33 +1,48 @@
 .invite-homepage {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem 2rem;
   background: #f6f9fc;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.homepage-stats {
+.homepage-section {
+  width: 100%;
+}
+
+.homepage-stats-section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
 }
 
-.homepage-grid {
+.homepage-main-section {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
   gap: 1rem;
   align-items: start;
 }
 
-.homepage-col-wide,
-.homepage-col-narrow {
+.homepage-col {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-@media (max-width: 900px) {
-  .homepage-grid {
+.homepage-list-section {
+  width: 100%;
+}
+
+@media (max-width: 1100px) {
+  .homepage-main-section {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .homepage-main-section {
     grid-template-columns: 1fr;
   }
 }

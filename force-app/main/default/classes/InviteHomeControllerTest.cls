@@ -118,6 +118,44 @@ private class InviteHomeControllerTest {
   }
 
   @isTest
+  static void testGetAccountInviteSummary() {
+    Account acct = [SELECT Id FROM Account LIMIT 1];
+    Provisioned_Account__c pa = [
+      SELECT Id
+      FROM Provisioned_Account__c
+      WHERE Account__c = :acct.Id
+      LIMIT 1
+    ];
+    insert new Usage_Snapshot__c(
+      Provisioned_Account__c = pa.Id,
+      Volume_INR__c = 1000
+    );
+
+    Invite_Request__c req = [
+      SELECT Id
+      FROM Invite_Request__c
+      WHERE Applicant_Type__c = 'Company'
+      LIMIT 1
+    ];
+    req.Converted_Account__c = acct.Id;
+    update req;
+
+    Test.startTest();
+    InviteHomeController.AccountInviteSummary summary = InviteHomeController.getAccountInviteSummary(
+      acct.Id
+    );
+    Test.stopTest();
+
+    System.assertEquals(
+      3,
+      summary.provisionedAccountCount,
+      'Three seeded provisioned accounts for this Account'
+    );
+    System.assertEquals(1000, summary.totalVolumeInr);
+    System.assertEquals(req.Id, summary.sourceInviteRequestId);
+  }
+
+  @isTest
   static void testGetFieldHistory() {
     // Field History Tracking records are written by an async process that does not run
     // during Apex test execution, so this can't assert non-empty results here even though

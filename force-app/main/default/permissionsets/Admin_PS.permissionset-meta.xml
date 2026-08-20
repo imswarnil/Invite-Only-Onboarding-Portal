@@ -9,6 +9,15 @@
         <enabled>true</enabled>
     </classAccesses>
     <objectPermissions>
+        <object>Account</object>
+        <allowCreate>true</allowCreate>
+        <allowRead>true</allowRead>
+        <allowEdit>true</allowEdit>
+        <allowDelete>true</allowDelete>
+        <viewAllRecords>true</viewAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
+    </objectPermissions>
+    <objectPermissions>
         <object>Invite_Request__c</object>
         <allowCreate>true</allowCreate>
         <allowRead>true</allowRead>
@@ -311,12 +320,20 @@
         <tab>Usage_Snapshot__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+    <tabSettings>
+        <tab>Invite_Only_Home_App_Page</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
     <recordTypeVisibilities>
         <recordType>Invite_Request__c.Company</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Invite_Request__c.Individual</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Account.Invite_Only_Customer</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
 </PermissionSet>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Invite_Only_Customer</fullName>
+    <label>Invite Only Customer</label>
+    <active>true</active>
+    <description
+  >Accounts provisioned by the Invite Only Onboarding Portal's Provision_On_Approval flow. Distinct record type from other apps' Account data sharing this org (see Account.Record_POC__c).</description>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values><fullName>Prospect</fullName><default>false</default></values>
+        <values><fullName>Customer - Direct</fullName><default
+      >false</default></values>
+        <values><fullName>Customer - Channel</fullName><default
+      >false</default></values>
+        <values><fullName>Channel Partner / Reseller</fullName><default
+      >false</default></values>
+        <values><fullName>Installation Partner</fullName><default
+      >false</default></values>
+        <values><fullName>Technology Partner</fullName><default
+      >false</default></values>
+        <values><fullName>Other</fullName><default>false</default></values>
+        <values><fullName>Invite Only</fullName><default>true</default></values>
+    </picklistValues>
+</RecordType>

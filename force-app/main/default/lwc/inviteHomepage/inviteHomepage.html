@@ -1,11 +1,13 @@
 <template>
   <div class="invite-homepage">
-    <c-home-header
-      title="Invite Only Onboarding"
-      subtitle="Reviewer workspace"
-    ></c-home-header>
+    <section class="homepage-section homepage-header-section">
+      <c-home-header
+        title="Invite Only Onboarding"
+        subtitle="Reviewer workspace"
+      ></c-home-header>
+    </section>
 
-    <div class="homepage-stats">
+    <section class="homepage-section homepage-stats-section">
       <c-stat-tile
         label="Total Invite Requests"
         value={totalRequests}
@@ -16,17 +18,33 @@
         value={averageFitScore}
         accent="navy"
       ></c-stat-tile>
-    </div>
+      <c-stat-tile
+        label="Provisioned Accounts"
+        value={provisionedTotal}
+        accent="green"
+      ></c-stat-tile>
+      <c-stat-tile
+        label="Needs Attention"
+        value={needsAttentionCount}
+        sublabel="Action Needed + Waitlisted"
+        accent="orange"
+      ></c-stat-tile>
+    </section>
 
-    <div class="homepage-grid">
-      <div class="homepage-col-wide">
+    <section class="homepage-section homepage-main-section">
+      <div class="homepage-col homepage-col-primary">
         <c-stage-funnel></c-stage-funnel>
-        <c-recent-invites-list></c-recent-invites-list>
       </div>
-      <div class="homepage-col-narrow">
+      <div class="homepage-col homepage-col-secondary">
         <c-applicant-type-split></c-applicant-type-split>
+      </div>
+      <div class="homepage-col homepage-col-secondary">
         <c-provisioned-accounts-summary></c-provisioned-accounts-summary>
       </div>
-    </div>
+    </section>
+
+    <section class="homepage-section homepage-list-section">
+      <c-recent-invites-list></c-recent-invites-list>
+    </section>
   </div>
 </template>
