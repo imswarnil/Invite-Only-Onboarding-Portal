@@ -128,8 +128,11 @@ function App() {
           Invite Only Portal
         </div>
         <nav className="app-nav">
-          {navItems.map((item, i) => (
-            <a key={item} className={i === 0 ? 'active' : undefined} href="#">
+          <Link to="/" className="active">
+            Dashboard
+          </Link>
+          {navItems.slice(1).map((item) => (
+            <a key={item} href="#">
               {item}
             </a>
           ))}
