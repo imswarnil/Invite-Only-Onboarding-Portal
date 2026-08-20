@@ -19,7 +19,7 @@
   >true</enableExperienceBundleBasedSnaOverrideEnabled>
     <enableGuestChatter>true</enableGuestChatter>
     <enableGuestFileAccess>true</enableGuestFileAccess>
-    <enableGuestMemberVisibility>true</enableGuestMemberVisibility>
+    <enableGuestMemberVisibility>false</enableGuestMemberVisibility>
     <enableImageOptimizationCDN>false</enableImageOptimizationCDN>
     <enableInvitation>false</enableInvitation>
     <enableKnowledgeable>false</enableKnowledgeable>
