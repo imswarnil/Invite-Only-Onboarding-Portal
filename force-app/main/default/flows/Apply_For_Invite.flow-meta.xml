@@ -410,6 +410,7 @@
             <dataType>String</dataType>
             <fieldText>Phone</fieldText>
             <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
         </fields>
 
         <fields>
@@ -417,6 +418,7 @@
             <dataType>String</dataType>
             <fieldText>Country</fieldText>
             <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
             <defaultValue>
                 <stringValue>India</stringValue>
             </defaultValue>
@@ -427,6 +429,7 @@
             <dataType>String</dataType>
             <fieldText>State</fieldText>
             <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
         </fields>
 
         <fields>
@@ -434,6 +437,7 @@
             <dataType>String</dataType>
             <fieldText>City</fieldText>
             <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
         </fields>
 
         <fields>
@@ -441,6 +445,7 @@
             <dataType>String</dataType>
             <fieldText>Company Website</fieldText>
             <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -458,6 +463,7 @@
             <dataType>String</dataType>
             <fieldText>Company Registration Number</fieldText>
             <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -475,6 +481,7 @@
             <dataType>String</dataType>
             <fieldText>PAN Number</fieldText>
             <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -492,6 +499,7 @@
             <dataType>String</dataType>
             <fieldText>GST Number (optional)</fieldText>
             <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
         </fields>
 
         <fields>
@@ -505,6 +513,7 @@
             <dataType>String</dataType>
             <fieldText>Annual Revenue Band</fieldText>
             <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
         </fields>
 
         <fields>
@@ -512,6 +521,7 @@
             <dataType>Currency</dataType>
             <fieldText>Expected Revenue You Plan To Process (INR)</fieldText>
             <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
         </fields>
 
         <fields>
@@ -524,6 +534,7 @@
             <dataType>String</dataType>
             <fieldText>Job Level</fieldText>
             <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
         </fields>
 
         <fields>
@@ -536,6 +547,7 @@
             <dataType>String</dataType>
             <fieldText>Job Function</fieldText>
             <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
         </fields>
 
         <fields>
@@ -546,6 +558,7 @@
             <dataType>String</dataType>
             <fieldText>You Sell</fieldText>
             <fieldType>RadioButtons</fieldType>
+            <isRequired>false</isRequired>
         </fields>
 
         <fields>
@@ -572,6 +585,7 @@
             <name>Notes</name>
             <fieldText>Anything else we should know?</fieldText>
             <fieldType>LargeTextArea</fieldType>
+            <isRequired>false</isRequired>
         </fields>
 
         <fields>
