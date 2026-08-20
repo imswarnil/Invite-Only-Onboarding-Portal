@@ -41,6 +41,10 @@ const statusLabel: Record<string, string> = {
 
 const stack = ['React 19', 'Vite', 'TypeScript', 'Salesforce', 'Prompt Builder', 'Agentforce', 'Data Cloud', 'n8n', 'GitHub Pages']
 
+const doneCount = progress.filter((p) => p.status === 'done').length
+const buildingCount = progress.filter((p) => p.status === 'building').length
+const plannedCount = progress.filter((p) => p.status === 'planned').length
+
 function Home() {
   return (
     <>
@@ -64,23 +68,49 @@ function Home() {
 
       <main>
         <section className="home-hero">
-          <div className="home-container">
-            <p className="home-eyebrow">⚛️ React · ☁️ Salesforce · 🕸️ n8n — a learning project</p>
-            <h1>Invite Only Onboarding Portal</h1>
-            <p className="home-hero-sub">
-              A hands-on build of Stripe India&rsquo;s invite-only onboarding flow: Salesforce AI (Prompt
-              Builder, Flow, Agentforce, Data Cloud) reasons over data an n8n crawler hands it, a React
-              front end serves the public side, and every phase is written up as I go.
-            </p>
-            <div className="home-hero-actions">
-              <Link className="home-btn home-btn-primary" to="/learn">
-                Start the walkthrough →
-              </Link>
-              <Link className="home-btn home-btn-ghost" to="/app">
-                See the live demo
-              </Link>
+          <div className="home-container home-hero-grid">
+            <div>
+              <p className="home-eyebrow">⚛️ React · ☁️ Salesforce · 🕸️ n8n — a learning project</p>
+              <h1>Invite Only Onboarding Portal</h1>
+              <p className="home-hero-sub">
+                A hands-on build of Stripe India&rsquo;s invite-only onboarding flow: Salesforce AI
+                (Prompt Builder, Flow, Agentforce, Data Cloud) reasons over data an n8n crawler hands
+                it, a React front end serves the public side, and every phase is written up as I go.
+              </p>
+              <div className="home-hero-actions">
+                <Link className="home-btn home-btn-primary" to="/learn">
+                  Start the walkthrough →
+                </Link>
+                <Link className="home-btn home-btn-ghost" to="/app">
+                  See the live demo
+                </Link>
+              </div>
+              <p className="home-hero-tag">Hello World — I&rsquo;m learning React in Salesforce.</p>
             </div>
-            <p className="home-hero-tag">Hello World — I&rsquo;m learning React in Salesforce.</p>
+
+            <aside className="home-hero-card">
+              <p className="home-hero-card-label">Where it stands</p>
+              <div className="home-hero-stat-row">
+                <div className="home-hero-stat">
+                  <span className="home-hero-stat-num">{doneCount}</span>
+                  <span className="home-hero-stat-label">Built</span>
+                </div>
+                <div className="home-hero-stat">
+                  <span className="home-hero-stat-num">{buildingCount}</span>
+                  <span className="home-hero-stat-label">In progress</span>
+                </div>
+                <div className="home-hero-stat">
+                  <span className="home-hero-stat-num">{plannedCount}</span>
+                  <span className="home-hero-stat-label">Planned</span>
+                </div>
+              </div>
+              <p className="home-hero-card-label">Built with</p>
+              <ul className="home-hero-stack-mini">
+                {stack.slice(0, 6).map((s) => (
+                  <li key={s}>{s}</li>
+                ))}
+              </ul>
+            </aside>
           </div>
         </section>
 

@@ -4,6 +4,10 @@
     <description
   >Full access to the Invite Only Onboarding Portal's custom objects, fields, tabs, and record types. Assign to anyone who needs to administer or fully test this app.</description>
     <hasActivationRequired>false</hasActivationRequired>
+    <classAccesses>
+        <apexClass>InviteHomeController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <objectPermissions>
         <object>Invite_Request__c</object>
         <allowCreate>true</allowCreate>
