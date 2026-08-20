@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import './App.css'
-import RecordModal, { type RecordFormValues } from './RecordModal'
+import './Dashboard.css'
+import RecordModal, { type RecordFormValues } from '../RecordModal'
 
 interface InviteRequest {
   id: string
@@ -22,6 +22,10 @@ interface InviteRequest {
 // Snapshot taken 2026-08-20 — a point-in-time pull, not a live fetch. Edits and new
 // records made below only update this in-browser state; nothing writes back to
 // Salesforce yet — that needs a proxy per the React↔Salesforce boundary in react.md §3.
+//
+// This page is a demo of the internal reviewer dashboard — it's what the
+// Invite_Only_Onboarding app's Home tab embeds inside Salesforce. It's not the
+// public homepage (that's Home.tsx at "/"); it's linked from there as a live demo.
 const initialRequests: InviteRequest[] = [
   {
     id: 'a06g700000Grq97AAB',
@@ -83,7 +87,7 @@ const blankForm: RecordFormValues = {
   stage: 'Received',
 }
 
-function App() {
+function Dashboard() {
   const [records, setRecords] = useState<InviteRequest[]>(initialRequests)
   const [typeFilter, setTypeFilter] = useState<(typeof typeFilters)[number]>('All')
   const [stageFilter, setStageFilter] = useState('All')
@@ -128,7 +132,7 @@ function App() {
           Invite Only Portal
         </div>
         <nav className="app-nav">
-          <Link to="/" className="active">
+          <Link to="/app" className="active">
             Dashboard
           </Link>
           {navItems.slice(1).map((item) => (
@@ -137,7 +141,10 @@ function App() {
             </a>
           ))}
         </nav>
-        <p className="app-sidebar-footer">Hello World — I&rsquo;m learning React in Salesforce.</p>
+        <p className="app-sidebar-footer">Demo dashboard — not connected to Salesforce (local state only).</p>
+        <Link to="/" className="app-sidebar-learn-link">
+          ← Project overview
+        </Link>
         <Link to="/learn" className="app-sidebar-learn-link">
           Read the build log →
         </Link>
@@ -442,4 +449,4 @@ function App() {
   )
 }
 
-export default App
+export default Dashboard
