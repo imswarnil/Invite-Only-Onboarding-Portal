@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <formulas>
+        <name>Account_Name_Formula</name>
+        <dataType>String</dataType>
+        <expression
+    >{!$Record.First_Name__c} &amp; &quot; &quot; &amp; {!$Record.Last_Name__c}</expression>
+    </formulas>
+    <interviewLabel
+  >Provision On Approval {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Provision On Approval</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Account</name>
+        <label>Create Account</label>
+        <locationX>176</locationX>
+        <locationY>200</locationY>
+        <connector>
+            <targetReference>Link_Back_To_Invite_Request</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>Account_Name_Formula</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Type</field>
+            <value>
+                <stringValue>Invite Only</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Record_POC__c</field>
+            <value>
+                <stringValue>Stripe Invite Only Onboarding POC</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Website</field>
+            <value>
+                <elementReference>$Record.Company_Website__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordUpdates>
+        <name>Link_Back_To_Invite_Request</name>
+        <label>Link Back To Invite Request</label>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
+        <inputAssignments>
+            <field>Converted_Account__c</field>
+            <value>
+                <elementReference>Create_Account.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Stage__c</field>
+            <value>
+                <stringValue>Onboarding</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Create_Account</targetReference>
+        </connector>
+        <object>Invite_Request__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+        <filterFormula
+    >AND(ISCHANGED({!$Record.Decision__c}), ISPICKVAL({!$Record.Decision__c}, &quot;Approved&quot;), ISBLANK({!$Record.Converted_Account__c}))</filterFormula>
+    </start>
+    <status>Active</status>
+</Flow>
