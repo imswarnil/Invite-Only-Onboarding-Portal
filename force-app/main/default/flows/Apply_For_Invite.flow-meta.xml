@@ -361,15 +361,15 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <screens>
-        <name>Apply_For_Invite</name>
-        <label>Apply for an Invite</label>
+        <name>Step_1_Who_You_Are</name>
+        <label>Who You Are</label>
         <locationX>176</locationX>
         <locationY>200</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <connector>
-            <targetReference>Get_Record_Type</targetReference>
+            <targetReference>Step_2_Your_Business</targetReference>
         </connector>
         <fields>
             <name>Applicant_Type</name>
@@ -412,7 +412,19 @@
             <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
         </fields>
+    </screens>
 
+    <screens>
+        <name>Step_2_Your_Business</name>
+        <label>Your Business</label>
+        <locationX>176</locationX>
+        <locationY>300</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Step_3_Revenue</targetReference>
+        </connector>
         <fields>
             <name>Country</name>
             <dataType>String</dataType>
@@ -503,28 +515,6 @@
         </fields>
 
         <fields>
-            <name>Annual_Revenue_Band</name>
-            <choiceReferences>Revenue_Band_0</choiceReferences>
-            <choiceReferences>Revenue_Band_1</choiceReferences>
-            <choiceReferences>Revenue_Band_2</choiceReferences>
-            <choiceReferences>Revenue_Band_3</choiceReferences>
-            <choiceReferences>Revenue_Band_4</choiceReferences>
-            <choiceReferences>Revenue_Band_5</choiceReferences>
-            <dataType>String</dataType>
-            <fieldText>Annual Revenue Band</fieldText>
-            <fieldType>DropdownBox</fieldType>
-            <isRequired>false</isRequired>
-        </fields>
-
-        <fields>
-            <name>Expected_Revenue_INR</name>
-            <dataType>Currency</dataType>
-            <fieldText>Expected Revenue You Plan To Process (INR)</fieldText>
-            <fieldType>InputField</fieldType>
-            <isRequired>false</isRequired>
-        </fields>
-
-        <fields>
             <name>Job_Level</name>
             <choiceReferences>Job_Level_0</choiceReferences>
             <choiceReferences>Job_Level_1</choiceReferences>
@@ -549,7 +539,19 @@
             <fieldType>DropdownBox</fieldType>
             <isRequired>false</isRequired>
         </fields>
+    </screens>
 
+    <screens>
+        <name>Step_3_Revenue</name>
+        <label>Revenue &amp; Expansion</label>
+        <locationX>176</locationX>
+        <locationY>340</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Step_4_Anything_Else</targetReference>
+        </connector>
         <fields>
             <name>Sells</name>
             <choiceReferences>Sells_0</choiceReferences>
@@ -558,6 +560,28 @@
             <dataType>String</dataType>
             <fieldText>You Sell</fieldText>
             <fieldType>RadioButtons</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+
+        <fields>
+            <name>Annual_Revenue_Band</name>
+            <choiceReferences>Revenue_Band_0</choiceReferences>
+            <choiceReferences>Revenue_Band_1</choiceReferences>
+            <choiceReferences>Revenue_Band_2</choiceReferences>
+            <choiceReferences>Revenue_Band_3</choiceReferences>
+            <choiceReferences>Revenue_Band_4</choiceReferences>
+            <choiceReferences>Revenue_Band_5</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Annual Revenue Band</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+
+        <fields>
+            <name>Expected_Revenue_INR</name>
+            <dataType>Currency</dataType>
+            <fieldText>Expected Revenue You Plan To Process (INR)</fieldText>
+            <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
         </fields>
 
@@ -580,7 +604,19 @@
                 <booleanValue>false</booleanValue>
             </defaultValue>
         </fields>
+    </screens>
 
+    <screens>
+        <name>Step_4_Anything_Else</name>
+        <label>Anything Else</label>
+        <locationX>176</locationX>
+        <locationY>360</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Get_Record_Type</targetReference>
+        </connector>
         <fields>
             <name>Notes</name>
             <fieldText>Anything else we should know?</fieldText>
@@ -598,6 +634,7 @@
             </defaultValue>
         </fields>
     </screens>
+
     <screens>
         <name>Thank_You</name>
         <label>Thank You</label>
@@ -605,18 +642,19 @@
         <locationY>600</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
+        <allowPause>true</allowPause>
         <fields>
             <name>Confirmation_Text</name>
             <fieldText>&lt;p&gt;Thanks! We&apos;ve received your application and our team will be in touch.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
     </screens>
+
     <start>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Apply_For_Invite</targetReference>
+            <targetReference>Step_1_Who_You_Are</targetReference>
         </connector>
     </start>
     <status>Active</status>
