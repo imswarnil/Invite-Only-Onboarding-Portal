@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import './App.css'
 import RecordModal, { type RecordFormValues } from './RecordModal'
 
@@ -134,6 +135,9 @@ function App() {
           ))}
         </nav>
         <p className="app-sidebar-footer">Hello World — I&rsquo;m learning React in Salesforce.</p>
+        <Link to="/learn" className="app-sidebar-learn-link">
+          Read the build log →
+        </Link>
       </aside>
 
       <div className="app-main">

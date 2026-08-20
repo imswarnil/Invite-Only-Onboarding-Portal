@@ -81,6 +81,19 @@
   margin: 0;
 }
 
+.app-sidebar-learn-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #635bff;
+  text-decoration: none;
+}
+
+.app-sidebar-learn-link:hover {
+  text-decoration: underline;
+}
+
 .app-main {
   flex: 1;
   min-width: 0;

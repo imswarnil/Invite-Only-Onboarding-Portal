@@ -1,0 +1,282 @@
+/* Stripe-palette theme for the /learn site: #635BFF (accent), #0A2540 (ink), #F6F9FC (surface) */
+
+.learn-shell {
+  --learn-accent: #635bff;
+  --learn-accent-dark: #4b45c6;
+  --learn-ink: #0a2540;
+  --learn-ink-soft: #425466;
+  --learn-surface: #f6f9fc;
+  --learn-border: #e3e8ee;
+  --learn-code-bg: #0a2540;
+  --learn-code-fg: #e3e8ee;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  color: var(--learn-ink);
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.learn-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid var(--learn-border);
+}
+
+.learn-brand {
+  font-weight: 700;
+  color: var(--learn-ink);
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.learn-brand:hover {
+  color: var(--learn-accent);
+}
+
+.learn-header-label {
+  color: var(--learn-ink-soft);
+  font-size: 0.9rem;
+}
+
+.learn-body {
+  flex: 1;
+  display: flex;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  gap: 3rem;
+  padding: 2rem;
+}
+
+.learn-sidebar {
+  flex: 0 0 220px;
+}
+
+.learn-toc-section {
+  margin-bottom: 1.75rem;
+}
+
+.learn-toc-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--learn-ink-soft);
+  margin: 0 0 0.5rem;
+}
+
+.learn-toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.learn-toc li {
+  margin: 0.15rem 0;
+}
+
+.learn-toc a {
+  display: block;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  color: var(--learn-ink-soft);
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.learn-toc a:hover {
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+}
+
+.learn-toc a.is-active {
+  background: rgba(99, 91, 255, 0.1);
+  color: var(--learn-accent-dark);
+  font-weight: 600;
+}
+
+.learn-main {
+  flex: 1;
+  min-width: 0;
+  max-width: 720px;
+}
+
+.learn-lesson-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--learn-accent);
+  margin: 0 0 0.5rem;
+}
+
+.learn-lesson-prose {
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.learn-lesson-prose h1 {
+  font-size: 2rem;
+  color: var(--learn-ink);
+  margin: 0 0 1.25rem;
+  line-height: 1.25;
+}
+
+.learn-lesson-prose h2 {
+  font-size: 1.4rem;
+  color: var(--learn-ink);
+  margin: 2.25rem 0 0.75rem;
+}
+
+.learn-lesson-prose h3 {
+  font-size: 1.1rem;
+  color: var(--learn-ink);
+  margin: 1.75rem 0 0.5rem;
+}
+
+.learn-lesson-prose p {
+  margin: 0 0 1.1rem;
+  color: var(--learn-ink-soft);
+}
+
+.learn-lesson-prose strong {
+  color: var(--learn-ink);
+}
+
+.learn-lesson-prose a {
+  color: var(--learn-accent);
+}
+
+.learn-lesson-prose ul,
+.learn-lesson-prose ol {
+  margin: 0 0 1.1rem;
+  padding-left: 1.4rem;
+  color: var(--learn-ink-soft);
+}
+
+.learn-lesson-prose li {
+  margin-bottom: 0.4rem;
+}
+
+.learn-lesson-prose code {
+  background: var(--learn-surface);
+  border: 1px solid var(--learn-border);
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+  font-size: 0.9em;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  color: var(--learn-ink);
+}
+
+.learn-lesson-prose pre {
+  background: var(--learn-code-bg);
+  color: var(--learn-code-fg);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  margin: 0 0 1.25rem;
+}
+
+.learn-lesson-prose pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+.learn-lesson-prose blockquote {
+  border-left: 3px solid var(--learn-accent);
+  margin: 0 0 1.25rem;
+  padding: 0.1rem 0 0.1rem 1rem;
+  color: var(--learn-ink-soft);
+}
+
+.learn-lesson-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1.25rem;
+  font-size: 0.95rem;
+}
+
+.learn-lesson-prose th,
+.learn-lesson-prose td {
+  border: 1px solid var(--learn-border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.learn-lesson-prose th {
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+}
+
+.learn-lesson-prose hr {
+  border: none;
+  border-top: 1px solid var(--learn-border);
+  margin: 2rem 0;
+}
+
+.learn-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--learn-border);
+}
+
+.learn-pager-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--learn-border);
+  max-width: 45%;
+}
+
+.learn-pager-link:hover {
+  border-color: var(--learn-accent);
+}
+
+.learn-pager-next {
+  text-align: right;
+  margin-left: auto;
+}
+
+.learn-pager-label {
+  font-size: 0.75rem;
+  color: var(--learn-ink-soft);
+}
+
+.learn-pager-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--learn-accent-dark);
+}
+
+.learn-footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--learn-ink-soft);
+  border-top: 1px solid var(--learn-border);
+}
+
+@media (max-width: 800px) {
+  .learn-body {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .learn-sidebar {
+    flex: none;
+  }
+}
