@@ -1,0 +1,25 @@
+<template>
+  <div class="slds-box slds-box_x-small provisioned-summary">
+    <h3 class="slds-text-heading_small slds-m-bottom_small">
+      Provisioned Accounts
+    </h3>
+    <template if:true={errorMessage}>
+      <p class="slds-text-color_error slds-text-body_small">{errorMessage}</p>
+    </template>
+    <div class="summary-row">
+      <span class="summary-dot dot-active"></span>
+      <span class="summary-label">Active</span>
+      <span class="summary-count">{activeCount}</span>
+    </div>
+    <div class="summary-row">
+      <span class="summary-dot dot-paused"></span>
+      <span class="summary-label">Paused</span>
+      <span class="summary-count">{pausedCount}</span>
+    </div>
+    <div class="summary-row">
+      <span class="summary-dot dot-cancelled"></span>
+      <span class="summary-label">Cancelled</span>
+      <span class="summary-count">{cancelledCount}</span>
+    </div>
+  </div>
+</template>

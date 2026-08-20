@@ -1,0 +1,9 @@
+<template>
+  <div class={tileClass}>
+    <p class="stat-tile-label">{label}</p>
+    <p class="stat-tile-value">{value}</p>
+    <template if:true={sublabel}>
+      <p class="stat-tile-sublabel">{sublabel}</p>
+    </template>
+  </div>
+</template>

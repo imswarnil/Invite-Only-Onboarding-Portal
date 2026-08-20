@@ -1,0 +1,16 @@
+.recent-invites {
+  padding: 1rem 1.25rem;
+}
+
+.invite-row {
+  cursor: pointer;
+}
+
+.invite-row:hover {
+  background: #f6f9fc;
+}
+
+.row-link {
+  color: #635bff;
+  font-weight: 600;
+}

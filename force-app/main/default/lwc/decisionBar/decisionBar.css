@@ -1,0 +1,14 @@
+.decision-bar {
+  padding: 1rem 1.25rem;
+}
+
+.decision-current {
+  font-size: 0.85rem;
+  color: #444c53;
+  margin: 0 0 0.75rem;
+}
+
+.decision-buttons {
+  display: flex;
+  gap: 0.5rem;
+}

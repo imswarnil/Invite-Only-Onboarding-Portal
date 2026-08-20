@@ -1,0 +1,32 @@
+<template>
+  <div class="invite-homepage">
+    <c-home-header
+      title="Invite Only Onboarding"
+      subtitle="Reviewer workspace"
+    ></c-home-header>
+
+    <div class="homepage-stats">
+      <c-stat-tile
+        label="Total Invite Requests"
+        value={totalRequests}
+        accent="purple"
+      ></c-stat-tile>
+      <c-stat-tile
+        label="Avg Fit Score"
+        value={averageFitScore}
+        accent="navy"
+      ></c-stat-tile>
+    </div>
+
+    <div class="homepage-grid">
+      <div class="homepage-col-wide">
+        <c-stage-funnel></c-stage-funnel>
+        <c-recent-invites-list></c-recent-invites-list>
+      </div>
+      <div class="homepage-col-narrow">
+        <c-applicant-type-split></c-applicant-type-split>
+        <c-provisioned-accounts-summary></c-provisioned-accounts-summary>
+      </div>
+    </div>
+  </div>
+</template>

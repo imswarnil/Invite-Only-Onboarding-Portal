@@ -1,0 +1,29 @@
+.home-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(120deg, #0a2540 0%, #14213d 100%);
+  border-radius: 10px;
+  color: #ffffff;
+}
+
+.home-header-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #635bff;
+  flex-shrink: 0;
+}
+
+.home-header h1 {
+  font-size: 1.3rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.home-header p {
+  margin: 0.15rem 0 0;
+  font-size: 0.85rem;
+  color: #c9d4e0;
+}

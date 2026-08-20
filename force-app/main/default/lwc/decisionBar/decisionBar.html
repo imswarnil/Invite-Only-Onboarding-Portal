@@ -1,0 +1,33 @@
+<template>
+  <div class="slds-box slds-box_x-small decision-bar">
+    <p class="decision-current">
+      Current decision: <strong>{currentDecision}</strong>
+    </p>
+    <div class="decision-buttons">
+      <button
+        type="button"
+        class="slds-button slds-button_success"
+        disabled={isDisabled}
+        onclick={handleApprove}
+      >
+        Approve
+      </button>
+      <button
+        type="button"
+        class="slds-button slds-button_neutral"
+        disabled={isDisabled}
+        onclick={handleWaitlist}
+      >
+        Waitlist
+      </button>
+      <button
+        type="button"
+        class="slds-button slds-button_destructive"
+        disabled={isDisabled}
+        onclick={handleReject}
+      >
+        Reject
+      </button>
+    </div>
+  </div>
+</template>

@@ -44,6 +44,26 @@ public with sharing class InviteHomeController {
     public String changedByName;
   }
 
+  public class OverviewStats {
+    @AuraEnabled
+    public Integer totalRequests;
+    @AuraEnabled
+    public Decimal averageFitScore;
+  }
+
+  @AuraEnabled(cacheable=true)
+  public static OverviewStats getOverviewStats() {
+    OverviewStats stats = new OverviewStats();
+    List<AggregateResult> results = [
+      SELECT COUNT(Id) total, AVG(Fit_Score__c) avgScore
+      FROM Invite_Request__c
+    ];
+    stats.totalRequests = (Integer) results[0].get('total');
+    Object avg = results[0].get('avgScore');
+    stats.averageFitScore = avg == null ? null : ((Decimal) avg).setScale(0);
+    return stats;
+  }
+
   @AuraEnabled(cacheable=true)
   public static List<StageCount> getStageCounts() {
     Map<String, Integer> counts = new Map<String, Integer>();

@@ -1,0 +1,40 @@
+.stage-funnel {
+  padding: 1rem 1.25rem;
+}
+
+.funnel-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 32px;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.funnel-label {
+  font-size: 0.75rem;
+  color: #444c53;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.funnel-track {
+  background: #f3f3f3;
+  border-radius: 999px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.funnel-bar {
+  background: #635bff;
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.funnel-value {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: right;
+  color: #0a2540;
+}

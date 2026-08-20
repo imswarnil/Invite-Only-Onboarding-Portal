@@ -1,0 +1,21 @@
+<template>
+  <div class="slds-box slds-box_x-small split-widget">
+    <h3 class="slds-text-heading_small slds-m-bottom_small">Applicant Type</h3>
+    <template if:true={errorMessage}>
+      <p class="slds-text-color_error slds-text-body_small">{errorMessage}</p>
+    </template>
+    <div class="split-bar">
+      <div class="split-segment split-individual" style={individualStyle}></div>
+      <div class="split-segment split-company" style={companyStyle}></div>
+    </div>
+    <ul class="split-legend">
+      <li>
+        <span class="split-swatch split-individual"></span>Individual
+        {individualCount}
+      </li>
+      <li>
+        <span class="split-swatch split-company"></span>Company {companyCount}
+      </li>
+    </ul>
+  </div>
+</template>

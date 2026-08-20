@@ -1,0 +1,46 @@
+.stat-tile {
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-top: 3px solid #635bff;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.stat-tile-navy {
+  border-top-color: #0a2540;
+}
+
+.stat-tile-green {
+  border-top-color: #04844b;
+}
+
+.stat-tile-orange {
+  border-top-color: #fe9339;
+}
+
+.stat-tile-red {
+  border-top-color: #ea001e;
+}
+
+.stat-tile-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #706e6b;
+  margin: 0 0 0.4rem;
+}
+
+.stat-tile-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0a2540;
+  margin: 0;
+}
+
+.stat-tile-sublabel {
+  font-size: 0.72rem;
+  color: #706e6b;
+  margin: 0.2rem 0 0;
+}

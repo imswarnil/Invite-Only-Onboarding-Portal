@@ -1,0 +1,43 @@
+.split-widget {
+  padding: 1rem 1.25rem;
+}
+
+.split-bar {
+  display: flex;
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #f3f3f3;
+  margin-bottom: 0.75rem;
+}
+
+.split-segment {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.split-individual {
+  background: #635bff;
+}
+
+.split-company {
+  background: #0a2540;
+}
+
+.split-legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.25rem;
+  font-size: 0.8rem;
+  color: #444c53;
+}
+
+.split-swatch {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  margin-right: 0.35rem;
+}

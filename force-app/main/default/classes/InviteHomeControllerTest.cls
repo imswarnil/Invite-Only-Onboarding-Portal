@@ -42,6 +42,15 @@ private class InviteHomeControllerTest {
   }
 
   @isTest
+  static void testGetOverviewStats() {
+    Test.startTest();
+    InviteHomeController.OverviewStats stats = InviteHomeController.getOverviewStats();
+    Test.stopTest();
+
+    System.assertEquals(2, stats.totalRequests);
+  }
+
+  @isTest
   static void testGetStageCounts() {
     Test.startTest();
     List<InviteHomeController.StageCount> results = InviteHomeController.getStageCounts();

@@ -1,0 +1,37 @@
+<template>
+  <div class="slds-box slds-box_x-small invite-timeline">
+    <h3 class="slds-text-heading_small slds-m-bottom_small">Timeline</h3>
+    <template if:true={errorMessage}>
+      <p class="slds-text-color_error slds-text-body_small">{errorMessage}</p>
+    </template>
+    <template if:false={hasEntries}>
+      <p class="slds-text-color_weak slds-text-body_small">
+        No tracked changes yet.
+      </p>
+    </template>
+    <ul class="timeline-list">
+      <template for:each={entries} for:item="entry">
+        <li key={entry.key} class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-body">
+            <p class="timeline-field">{entry.fieldLabel}</p>
+            <p class="timeline-change">
+              {entry.oldValue} &rarr; {entry.newValue}
+            </p>
+            <p class="timeline-meta">
+              <lightning-formatted-date-time
+                value={entry.changedDate}
+                year="numeric"
+                month="short"
+                day="numeric"
+                hour="2-digit"
+                minute="2-digit"
+              ></lightning-formatted-date-time>
+              &middot; {entry.changedByName}
+            </p>
+          </div>
+        </li>
+      </template>
+    </ul>
+  </div>
+</template>
