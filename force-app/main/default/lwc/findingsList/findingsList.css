@@ -1,0 +1,49 @@
+.findings-list {
+  padding: 0.75rem 1rem 1rem;
+}
+
+.finding-row {
+  padding: 0.5rem 0;
+  border-top: 1px solid #e5e5e5;
+}
+
+.finding-row:first-of-type {
+  border-top: none;
+}
+
+.finding-row-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.finding-status {
+  font-size: 0.72rem;
+  color: #706e6b;
+}
+
+.finding-title {
+  font-size: 0.85rem;
+  margin: 0 0 0.4rem;
+}
+
+.finding-badge-info {
+  background: #e5f0f8;
+  color: #014486;
+}
+
+.finding-badge-low {
+  background: #eaf4e6;
+  color: #04844b;
+}
+
+.finding-badge-medium {
+  background: #fef0da;
+  color: #b95000;
+}
+
+.finding-badge-high {
+  background: #fbe4e2;
+  color: #ba0517;
+}

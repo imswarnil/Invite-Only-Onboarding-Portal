@@ -1,0 +1,35 @@
+<template>
+  <div class="slds-box slds-box_x-small findings-list">
+    <h3 class="slds-text-heading_small slds-m-bottom_small">
+      Crawler Findings
+    </h3>
+
+    <template if:true={errorMessage}>
+      <p class="slds-text-color_error slds-text-body_small">{errorMessage}</p>
+    </template>
+
+    <template if:false={hasFindings}>
+      <p class="slds-text-color_weak slds-text-body_small">No findings yet.</p>
+    </template>
+
+    <template for:each={rows} for:item="row">
+      <div class="finding-row" key={row.id}>
+        <div class="finding-row-top">
+          <span class={row.severityClass}>{row.severity}</span>
+          <span class="finding-status">{row.status}</span>
+        </div>
+        <p class="finding-title">{row.title}</p>
+        <template if:true={row.canFlag}>
+          <button
+            type="button"
+            class="slds-button slds-button_neutral slds-button_stretch"
+            data-id={row.id}
+            onclick={handleFlag}
+          >
+            Flag to Applicant
+          </button>
+        </template>
+      </div>
+    </template>
+  </div>
+</template>

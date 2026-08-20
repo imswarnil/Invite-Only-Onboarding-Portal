@@ -1,0 +1,23 @@
+<template>
+  <div class="slds-box slds-box_x-small slds-text-align_center score-gauge">
+    <svg viewBox="0 0 100 100" class="gauge-svg">
+      <circle cx="50" cy="50" r="40" class="gauge-track"></circle>
+      <circle
+        cx="50"
+        cy="50"
+        r="40"
+        class="gauge-arc"
+        style={ringStyle}
+        stroke-dasharray={dashArray}
+      ></circle>
+      <text x="50" y="46" text-anchor="middle" class="gauge-number">
+        {displayScore}
+      </text>
+      <text x="50" y="62" text-anchor="middle" class="gauge-suffix">/ 100</text>
+    </svg>
+    <p class="gauge-label" style={ringStyle}>{bandLabel}</p>
+    <template if:true={verdict}>
+      <p class="gauge-verdict">{verdict}</p>
+    </template>
+  </div>
+</template>
