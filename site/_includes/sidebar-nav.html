@@ -1,0 +1,34 @@
+{%- comment -%} Shared app-shell sidebar: Project Overview (home) + every Learn
+in Public lesson, grouped by section. Used by both the homepage and lesson pages
+so navigation is identical everywhere. Usage: {% include sidebar-nav.html %} {%-
+endcomment -%} {% assign lessons = site.learning | sort: "order" %} {% assign
+sections = lessons | group_by: "section" %}
+<a
+  href="{{ '/' | relative_url }}"
+  class="learn-toc-home {% if page.url == '/' %}is-active{% endif %}"
+>
+  {% include icon.html name="home" size=16 %}<span>Project Overview</span>
+</a>
+{% for section in sections %}
+<div class="learn-toc-section">
+  <p class="learn-toc-heading">
+    {% include lesson-thumb.html section=section.name %}{{ section.name }}
+  </p>
+  <ul>
+    {% for lesson in section.items %}
+    <li>
+      <a
+        href="{{ lesson.url | relative_url }}"
+        class="{% if lesson.url == page.url %}is-active{% endif %}"
+      >
+        <span class="learn-toc-link-label">
+          {% include lesson-thumb.html section=section.name %}{{ lesson.title }}
+        </span>
+        {% if lesson.url == page.url %}{% include icon.html name="caret-right"
+        size=13 class="toc-active-mark" %}{% endif %}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endfor %}

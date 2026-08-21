@@ -24,14 +24,15 @@
 
       <div class="footer-col">
         <p class="footer-heading">Learn in Public</p>
-        <a href="{{ '/learn/' | relative_url }}"
+        {% assign first_lesson = site.learning | sort: "order" | first %}
+        <a href="{{ first_lesson.url | relative_url }}"
           >{% include icon.html name="learn" size=15 %}<span
             >All lessons</span
           ></a
         >
-        <a href="{{ '/invite/' | relative_url }}"
-          >{% include icon.html name="signup" size=15 %}<span
-            >Apply for an invite</span
+        <a href="{{ '/' | relative_url }}"
+          >{% include icon.html name="compass" size=15 %}<span
+            >Project overview</span
           ></a
         >
       </div>

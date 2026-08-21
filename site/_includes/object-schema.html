@@ -1,0 +1,47 @@
+{%- comment -%} Interactive object reference table, driven by a file under
+_data/objects. Usage: {% include object-schema.html object="invite_request" %}
+{%- endcomment -%} {% assign obj = site.data.objects[include.object] %}
+<div class="object-schema" data-field-count="{{ obj.fields.size }}">
+  <div class="object-schema-header">
+    <code class="object-schema-name">{{ obj.name }}</code>
+    <span class="object-schema-label">{{ obj.label }}</span>
+    <span class="object-schema-count">{{ obj.fields.size }} fields</span>
+  </div>
+  <p class="object-schema-desc">{{ obj.description }}</p>
+  <div class="object-schema-filter-wrap">
+    {% include icon.html name="search" size=14 %}
+    <input
+      type="text"
+      class="object-schema-filter"
+      placeholder="Filter fields by name, type, or description…"
+      aria-label="Filter {{ obj.name }} fields"
+    />
+  </div>
+  <div class="object-schema-table-wrap">
+    <table class="object-schema-table">
+      <thead>
+        <tr>
+          <th data-sort="name">Field</th>
+          <th data-sort="type">Type</th>
+          <th data-sort="description">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for f in obj.fields %}
+        <tr
+          data-search="{{ f.name | downcase }} {{ f.type | downcase }} {{ f.description | strip_html | downcase }}"
+        >
+          <td>
+            <code>{{ f.name }}</code>
+            {% if f.required %}<span class="field-required-badge">Required</span
+            >{% endif %}
+          </td>
+          <td>{{ f.type }}</td>
+          <td>{{ f.description }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p class="object-schema-empty is-hidden">No fields match that filter.</p>
+  </div>
+</div>

@@ -10,8 +10,7 @@ minus: 1 %} {% assign next_index = current_index | plus: 1 %} {% if
 current_index > 0 %}{% assign prev_lesson = lessons[prev_index] %}{% endif %} {%
 assign lessons_size = lessons | size %} {% assign last_index = lessons_size |
 minus: 1 %} {% if current_index < last_index %}{% assign next_lesson =
-lessons[next_index] %}{% endif %} {% assign sections = lessons | group_by:
-"section" %}
+lessons[next_index] %}{% endif %}
 
 <div class="doc-shell">
   <button
@@ -28,30 +27,7 @@ lessons[next_index] %}{% endif %} {% assign sections = lessons | group_by:
       <p class="learn-toc-progress">
         Lesson {{ current_index | plus: 1 }} of {{ lessons_size }}
       </p>
-      {% for section in sections %}
-      <div class="learn-toc-section">
-        <p class="learn-toc-heading">
-          {% include lesson-thumb.html section=section.name %}{{ section.name }}
-        </p>
-        <ul>
-          {% for lesson in section.items %}
-          <li>
-            <a
-              href="{{ lesson.url | relative_url }}"
-              class="{% if lesson.url == page.url %}is-active{% endif %}"
-            >
-              <span class="learn-toc-link-label">
-                {% include lesson-thumb.html section=section.name %}{{
-                lesson.title }}
-              </span>
-              {% if lesson.url == page.url %}{% include icon.html
-              name="caret-right" size=13 class="toc-active-mark" %}{% endif %}
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endfor %}
+      {% include sidebar-nav.html %}
     </nav>
   </aside>
 

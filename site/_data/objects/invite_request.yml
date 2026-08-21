@@ -1,0 +1,79 @@
+name: Invite_Request__c
+label: Invite Request
+description: >-
+  The core application record. Company and Individual record types share this one object;
+  the record type drives which page layout (and which of the fields below) a reviewer sees.
+fields:
+  - name: Applicant_Type__c
+    type: Picklist
+    description: '"Individual" or "Company" — also sets the record type, which drives the layout.'
+    required: true
+  - name: First_Name__c
+    type: Text(80)
+    description: Applicant's first name.
+    required: true
+  - name: Last_Name__c
+    type: Text(80)
+    description: Applicant's last name.
+    required: true
+  - name: Work_Email__c
+    type: Email
+    description: Primary contact and applicant identifier.
+    required: true
+  - name: Phone__c
+    type: Phone
+    description: Optional contact number.
+  - name: Country__c
+    type: Text(80)
+    description: 'Defaults to "India" if left blank.'
+  - name: State__c
+    type: Text(80)
+    description: State/province, free text.
+  - name: City__c
+    type: Text(80)
+    description: City, free text.
+  - name: Company_Website__c
+    type: URL
+    description: Company-record-type only — used by the n8n crawler as its starting point.
+  - name: Company_Registration_Number__c
+    type: Text(40)
+    description: Company-record-type only — MCA/CIN-style registration number.
+  - name: PAN_Number__c
+    type: Text(20)
+    description: Company-record-type only — India PAN.
+  - name: GST_Number__c
+    type: Text(20)
+    description: Company-record-type only — India GST identification number.
+  - name: Annual_Revenue_Band__c
+    type: Picklist
+    description: Self-reported revenue bracket, used as a scoring input.
+  - name: Expected_Revenue_INR__c
+    type: Currency
+    description: Self-reported expected annual revenue.
+  - name: Job_Level__c
+    type: Picklist
+    description: Applicant's seniority — Founder/Owner, C-Level, VP/Director, Manager, IC.
+  - name: Job_Function__c
+    type: Picklist
+    description: Applicant's function — Finance, Engineering, Product, Operations, Other.
+  - name: Has_Overseas_Entity__c
+    type: Checkbox
+    description: Self-reported — used as a fit signal.
+  - name: Seeking_Overseas_Expansion__c
+    type: Checkbox
+    description: Self-reported — used as a fit signal.
+  - name: Sells__c
+    type: Picklist
+    description: '"Services", "Goods", or "Both."'
+  - name: Notes__c
+    type: Long Text Area
+    description: Free-form applicant notes.
+  - name: Marketing_Consent__c
+    type: Checkbox
+    description: Opt-in for program emails — never assumed true.
+  - name: Stage__c
+    type: Picklist
+    description: Drives the pipeline (Received → Reviewing → Approved/Rejected → Provisioned).
+  - name: Sub_Status__c
+    type: Picklist (dependent)
+    description: Dependent picklist on Stage__c — valid values change based on the selected stage.

@@ -9,9 +9,10 @@ permalink: /invite/
   <h1 style="font-size: 1.6rem; margin: 0 0 0.5rem">Tell us about you</h1>
   <p style="color: var(--ink-soft); margin: 0 0 1.5rem">
     No account or sign-up needed. This submits straight to a Guest User REST
-    endpoint on the Salesforce org behind this project &mdash; see
-    <a href="{{ '/learn/' | relative_url }}">the build log</a> for how the Guest
-    access, CORS, and CSP trust for this were put together.
+    endpoint on the Salesforce org behind this project &mdash; see {% assign
+    first_lesson = site.learning | sort: "order" | first %}
+    <a href="{{ first_lesson.url | relative_url }}">Learn in Public</a> for how
+    the Guest access, CORS, and CSP trust for this were put together.
   </p>
 
   <div id="formMessage" class="form-message is-hidden"></div>

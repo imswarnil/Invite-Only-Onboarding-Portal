@@ -23,6 +23,11 @@ showed up once real data started flowing through.
   valid values change depending on which `Stage__c` is selected) — that's a `controllingField` +
   `valueSettings` relationship in the field's own metadata, not a separate setting somewhere else.
 
+Here's the actual field list on `Invite_Request__c` — filter or sort it like you would the real
+Object Manager page in Setup:
+
+{% include object-schema.html object="invite_request" %}
+
 ## Gotcha #1: deploying metadata grants nobody access — not even System Administrator
 
 Creating a custom object/field through **Setup's point-and-click UI** quietly grants the admin

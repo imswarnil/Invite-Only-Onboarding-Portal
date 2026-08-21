@@ -17,7 +17,7 @@ was rebuilt on Jekyll, so this lesson has been rewritten to match what's actuall
 ## The pipeline, end to end
 
 ```
-_learning/01-the-learning-site.md   ← you write this (frontmatter + markdown)
+_learning/how-this-site-works.md      ← you write this (frontmatter + markdown)
         │  Jekyll's build step sees a new file in the `learning` collection
 _config.yml (collections.learning)  ← declares the collection + its permalink pattern
         │  produces, per file

@@ -11,6 +11,52 @@
     });
   }
 
+  // --- Interactive object-schema tables (filter + sort) ---
+  document.querySelectorAll(".object-schema").forEach(function (schema) {
+    var filterInput = schema.querySelector(".object-schema-filter");
+    var table = schema.querySelector(".object-schema-table");
+    var rows = Array.prototype.slice.call(table.querySelectorAll("tbody tr"));
+    var emptyMessage = schema.querySelector(".object-schema-empty");
+
+    if (filterInput) {
+      filterInput.addEventListener("input", function () {
+        var query = filterInput.value.trim().toLowerCase();
+        var visibleCount = 0;
+        rows.forEach(function (row) {
+          var match =
+            !query || row.getAttribute("data-search").indexOf(query) !== -1;
+          row.classList.toggle("is-hidden", !match);
+          if (match) visibleCount++;
+        });
+        if (emptyMessage)
+          emptyMessage.classList.toggle("is-hidden", visibleCount > 0);
+      });
+    }
+
+    table.querySelectorAll("th[data-sort]").forEach(function (th, colIndex) {
+      var ascending = true;
+      th.addEventListener("click", function () {
+        var sorted = rows.slice().sort(function (a, b) {
+          var aText = a.children[colIndex].textContent.trim().toLowerCase();
+          var bText = b.children[colIndex].textContent.trim().toLowerCase();
+          if (aText < bText) return ascending ? -1 : 1;
+          if (aText > bText) return ascending ? 1 : -1;
+          return 0;
+        });
+        var tbody = table.querySelector("tbody");
+        sorted.forEach(function (row) {
+          tbody.appendChild(row);
+        });
+        rows = sorted;
+        table.querySelectorAll("th[data-sort]").forEach(function (otherTh) {
+          otherTh.classList.remove("is-sorted-asc", "is-sorted-desc");
+        });
+        th.classList.add(ascending ? "is-sorted-asc" : "is-sorted-desc");
+        ascending = !ascending;
+      });
+    });
+  });
+
   // --- Site search ---
   var searchWrap = document.querySelector(".site-search");
   if (searchWrap) {
