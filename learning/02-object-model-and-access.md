@@ -1,6 +1,6 @@
 ---
 section: "Foundations"
-order: 2
+order: 3
 title: "The data model, and the permissions gotchas that came with it"
 ---
 
@@ -19,7 +19,7 @@ showed up once real data started flowing through.
   makes a future roll-up summary like "open findings count" possible).
 - **`Provisioned_Account__c`**, **`Usage_Snapshot__c`** — Lookup children, for the post-approval
   side of the pipeline (Phase 4+).
-- **`Stage__c`** drives the pipeline; **`Sub_Status__c`** is a *dependent* picklist on it (its
+- **`Stage__c`** drives the pipeline; **`Sub_Status__c`** is a _dependent_ picklist on it (its
   valid values change depending on which `Stage__c` is selected) — that's a `controllingField` +
   `valueSettings` relationship in the field's own metadata, not a separate setting somewhere else.
 
@@ -57,7 +57,7 @@ object. It's a hard platform rule, not a preference.
 
 So why is this safe for a public form? Because Salesforce separately enforces **Secure Guest
 User Record Access** — a mandatory, non-optional platform behavior since 2021 — which prevents a
-Guest User from reading back records it creates via the standard UI/API, *regardless* of the
+Guest User from reading back records it creates via the standard UI/API, _regardless_ of the
 object permission bits being technically "on." The permission grant and the actual runtime
 behavior are two different layers; the field says Read is allowed, the platform still blocks a
 stranger from listing every other applicant's data. As defense-in-depth on top of that mandatory

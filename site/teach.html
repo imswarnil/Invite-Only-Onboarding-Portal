@@ -1,0 +1,151 @@
+---
+layout: default
+title: Teach
+description: >-
+  The structured, sectioned version of everything learned building this project — Salesforce
+  data modeling, permissions, Agentforce, Prompt Builder, Data Cloud, n8n automation, and a
+  Stripe-styled front end — taught end to end.
+permalink: /teach/
+---
+
+{% assign sections = site.teach_sections | sort: "order" %} {% assign lessons =
+site.teach %} {% assign first_section = sections | first %} {% assign
+first_lesson = lessons | where: "section", first_section.name | sort: "order" |
+first %}
+
+<div class="container-fluid">
+  <section class="teach-hero">
+    <div class="teach-hero-copy">
+      <p class="hero-eyebrow">A free curriculum, not a diary</p>
+      <h1>Everything I learned building this, taught back to you</h1>
+      <p>
+        <strong>Learn</strong> is my raw build log — dated, messy, "here's what
+        broke." <strong>Teach</strong> is the same knowledge reorganized into a
+        clean course: pick a section, read the concept, see how it was applied.
+        {{ sections.size }} sections, {{ lessons.size }} lessons, one continuous
+        story from creating an org to shipping a themed front end.
+      </p>
+      <div class="hero-actions">
+        {% if first_lesson %}
+        <a class="btn btn-primary" href="{{ first_lesson.url | relative_url }}">
+          {% include icon.html name="rocket" size=16 %}<span
+            >Start the curriculum</span
+          >
+        </a>
+        {% endif %}
+        <a class="btn btn-secondary" href="{{ '/learn/' | relative_url }}">
+          {% include icon.html name="learn" size=16 %}<span
+            >Read the build log instead</span
+          >
+        </a>
+      </div>
+    </div>
+    <div class="teach-hero-art">
+      <img
+        src="{{ '/assets/images/window-ui.svg' | relative_url }}"
+        alt="A browser window mockup of the reviewer console: an applicant list on the left, an AI score and Agentforce chat panel on the right"
+        width="640"
+        height="420"
+      />
+    </div>
+  </section>
+
+  <section class="teach-stats">
+    <div class="teach-stat">
+      <span class="teach-stat-num">{{ sections.size }}</span
+      ><span>Sections</span>
+    </div>
+    <div class="teach-stat">
+      <span class="teach-stat-num">{{ lessons.size }}</span><span>Lessons</span>
+    </div>
+    <div class="teach-stat">
+      <span class="teach-stat-num">4</span
+      ><span>Salesforce clouds touched</span>
+    </div>
+    <div class="teach-stat">
+      <span class="teach-stat-num">1</span
+      ><span>External automation tool (n8n)</span>
+    </div>
+  </section>
+
+  <section class="teach-sections-index">
+    <h2>The curriculum, in order</h2>
+    <p class="section-lede">
+      Follow it top to bottom, or jump to whatever you're stuck on.
+    </p>
+    <div class="teach-section-grid">
+      {% for section in sections %} {% assign section_lessons = lessons | where:
+      "section", section.name %}
+      <a class="teach-section-card" href="{{ section.url | relative_url }}">
+        <div class="teach-section-card-icon">
+          {% include icon.html name=section.icon size=24 %}
+        </div>
+        <span class="teach-section-card-num">{{ forloop.index }}</span>
+        <h3>{{ section.title }}</h3>
+        <p>{{ section.description }}</p>
+        <span class="teach-section-card-count"
+          >{{ section_lessons.size }} lesson{% if section_lessons.size != 1
+          %}s{% endif %}</span
+        >
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="mental-model">
+    <h2>What you'll actually be able to do</h2>
+    <div class="concept-tags">
+      <span class="concept-tag"
+        >{% include icon.html name="org" size=14 %}Stand up an
+        Agentforce-enabled org</span
+      >
+      <span class="concept-tag"
+        >{% include icon.html name="data" size=14 %}Model custom objects, record
+        types &amp; relationships</span
+      >
+      <span class="concept-tag"
+        >{% include icon.html name="shield" size=14 %}Reason about FLS, sharing
+        &amp; Guest User security</span
+      >
+      <span class="concept-tag"
+        >{% include icon.html name="gear" size=14 %}Configure actions, layouts
+        &amp; layout assignments</span
+      >
+      <span class="concept-tag"
+        >{% include icon.html name="theme" size=14 %}Theme a Stripe-styled front
+        end in Jekyll</span
+      >
+      <span class="concept-tag"
+        >{% include icon.html name="flow" size=14 %}Wire n8n as the "hands" for
+        an AI "brain"</span
+      >
+      <span class="concept-tag"
+        >{% include icon.html name="chat" size=14 %}Prompt Builder scoring &amp;
+        Agentforce agents</span
+      >
+      <span class="concept-tag"
+        >{% include icon.html name="swap" size=14 %}Ground AI answers with Data
+        Cloud</span
+      >
+    </div>
+  </section>
+
+  <section class="hire-banner">
+    <div class="hire-banner-icon">
+      {% include icon.html name="briefcase" size=26 %}
+    </div>
+    <div>
+      <h2>Building this taught me how GTM and Salesforce actually connect</h2>
+      <p>
+        If you're hiring for a GTM engineering role — someone who can model the
+        funnel in Salesforce, wire up AI agents, and ship the front end that
+        shows it off — that's this project, end to end.
+      </p>
+    </div>
+    <a class="btn btn-primary" href="{{ '/about/' | relative_url }}">
+      {% include icon.html name="resume" size=16 %}<span
+        >See my resume &amp; other work</span
+      >
+    </a>
+  </section>
+</div>

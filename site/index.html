@@ -5,7 +5,7 @@ title: Home
 
 <div class="container">
   <section class="hero">
-    <p class="hero-eyebrow">A learning POC, built in the open</p>
+    <p class="hero-eyebrow">Project overview &middot; built in the open</p>
     <h1>
       An invite-only onboarding back office,<br />built to learn Salesforce's AI
       stack
@@ -18,10 +18,19 @@ title: Home
     </p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="{{ '/learn/' | relative_url }}"
-        >Read the build log</a
+        >{% include icon.html name="learn" size=16 %}<span
+          >Read the build log</span
+        ></a
+      >
+      <a class="btn btn-secondary" href="{{ '/teach/' | relative_url }}"
+        >{% include icon.html name="teach" size=16 %}<span
+          >Take the curriculum</span
+        ></a
       >
       <a class="btn btn-secondary" href="{{ '/invite/' | relative_url }}"
-        >Apply for an invite</a
+        >{% include icon.html name="signup" size=16 %}<span
+          >Apply for an invite</span
+        ></a
       >
     </div>
     <div class="hero-illustration">
@@ -31,6 +40,55 @@ title: Home
         width="720"
         height="220"
       />
+    </div>
+  </section>
+
+  <section class="why-built">
+    <h2>Why I built this</h2>
+    <p>
+      I wanted to learn Salesforce's AI stack the way I'd actually use it on the
+      job &mdash; not through isolated Trailhead modules, but by shipping one
+      real, opinionated product end to end. Modeling it on Stripe India's public
+      invite-only flow gave the build real constraints (a form, a review step,
+      provisioning, retention) instead of a toy CRUD app. Every gotcha
+      documented in
+      <a href="{{ '/learn/' | relative_url }}">the build log</a> is something I
+      hit for real, on this project, in this org.
+    </p>
+  </section>
+
+  <section class="tool-strip">
+    <p class="tool-strip-label">Tools in this build</p>
+    <div class="tool-strip-icons">
+      <span class="tool-strip-item"
+        >{% include icon.html name="org" size=20 %}<span>Salesforce</span></span
+      >
+      <span class="tool-strip-item"
+        >{% include icon.html name="chat" size=20 %}<span
+          >Prompt Builder</span
+        ></span
+      >
+      <span class="tool-strip-item"
+        >{% include icon.html name="agent" size=20 %}<span
+          >Agentforce</span
+        ></span
+      >
+      <span class="tool-strip-item"
+        >{% include icon.html name="swap" size=20 %}<span
+          >Data Cloud</span
+        ></span
+      >
+      <span class="tool-strip-item"
+        >{% include icon.html name="flow" size=20 %}<span>n8n</span></span
+      >
+      <span class="tool-strip-item"
+        >{% include icon.html name="theme" size=20 %}<span>Jekyll</span></span
+      >
+      <span class="tool-strip-item"
+        >{% include icon.html name="code" size=20 %}<span
+          >GitHub Pages</span
+        ></span
+      >
     </div>
   </section>
 
@@ -53,11 +111,9 @@ title: Home
 
   <section class="feature-grid">
     <div class="feature-card">
-      <img
-        class="feature-card-icon"
-        src="{{ '/assets/images/icon-brain.svg' | relative_url }}"
-        alt=""
-      />
+      <div class="feature-card-icon-wrap">
+        {% include icon.html name="chat" size=22 %}
+      </div>
       <h3>Salesforce AI stack</h3>
       <p>
         Prompt Builder scores each applicant; Agentforce agents converse with
@@ -65,11 +121,9 @@ title: Home
       </p>
     </div>
     <div class="feature-card">
-      <img
-        class="feature-card-icon"
-        src="{{ '/assets/images/icon-hands.svg' | relative_url }}"
-        alt=""
-      />
+      <div class="feature-card-icon-wrap">
+        {% include icon.html name="flow" size=22 %}
+      </div>
       <h3>n8n crawling</h3>
       <p>
         The only thing that touches the open web. It scrapes, compresses to a
@@ -77,11 +131,9 @@ title: Home
       </p>
     </div>
     <div class="feature-card">
-      <img
-        class="feature-card-icon"
-        src="{{ '/assets/images/icon-widget.svg' | relative_url }}"
-        alt=""
-      />
+      <div class="feature-card-icon-wrap">
+        {% include icon.html name="gear" size=22 %}
+      </div>
       <h3>Native Salesforce reviewer UI</h3>
       <p>
         The reviewer's screen is real Lightning Web Components &mdash; page
@@ -90,11 +142,9 @@ title: Home
       </p>
     </div>
     <div class="feature-card">
-      <img
-        class="feature-card-icon"
-        src="{{ '/assets/images/icon-book.svg' | relative_url }}"
-        alt=""
-      />
+      <div class="feature-card-icon-wrap">
+        {% include icon.html name="article" size=22 %}
+      </div>
       <h3>Docs as code</h3>
       <p>
         Every phase gets a lesson: what I set out to do, what broke, how I fixed
@@ -103,9 +153,63 @@ title: Home
     </div>
   </section>
 
-  <p class="disclaimer">
-    Independent educational project &mdash; not affiliated with, endorsed by, or
-    connected to Stripe. This is a learning exercise, hosted publicly so the
-    journey is documented.
-  </p>
+  <section class="public-build">
+    <h2>How I'm building &amp; writing this in public</h2>
+    <div class="public-build-grid">
+      <a class="public-build-card" href="{{ '/learn/' | relative_url }}">
+        <div class="feature-card-icon-wrap">
+          {% include icon.html name="learn" size=22 %}
+        </div>
+        <h3>Learn &mdash; the build log</h3>
+        <p>
+          Dated entries written as the work happens: what I set out to do, what
+          broke, how I fixed it. Raw, chronological, mistakes included.
+        </p>
+        <span class="public-build-link"
+          >Read the log {% include icon.html name="caret-right" size=14 %}</span
+        >
+      </a>
+      <a class="public-build-card" href="{{ '/teach/' | relative_url }}">
+        <div class="feature-card-icon-wrap">
+          {% include icon.html name="teach" size=22 %}
+        </div>
+        <h3>Teach &mdash; the curriculum</h3>
+        <p>
+          The same knowledge, reorganized: once a topic is settled, it gets
+          rewritten as a clean, structured lesson so someone else can learn it
+          without living through the mess.
+        </p>
+        <span class="public-build-link"
+          >Start the curriculum {% include icon.html name="caret-right" size=14
+          %}</span
+        >
+      </a>
+    </div>
+    <p class="public-build-note">
+      Everything &mdash; code, config, and every lesson on this site &mdash; is
+      committed straight to a public GitHub repo and deployed by GitHub Pages on
+      every push. Nothing is polished before it ships; it's corrected in the
+      open instead.
+    </p>
+  </section>
+
+  <section class="hire-banner hire-banner-standalone">
+    <div class="hire-banner-icon">
+      {% include icon.html name="briefcase" size=24 %}
+    </div>
+    <div>
+      <h2>Looking for a GTM engineer?</h2>
+      <p>
+        Everything on this site &mdash; the data model, the AI layer, the front
+        end &mdash; is one person's proof of work.
+      </p>
+    </div>
+    <a class="btn btn-primary" href="{{ '/about/' | relative_url }}">
+      {% include icon.html name="resume" size=16 %}<span
+        >About &amp; resume</span
+      >
+    </a>
+  </section>
+
+  <p class="disclaimer">{{ site.disclaimer }}</p>
 </div>

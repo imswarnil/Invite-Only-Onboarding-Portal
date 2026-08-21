@@ -1,105 +1,90 @@
 ---
 section: "Foundations"
-order: 1
+order: 2
 title: "How this learning site works"
 ---
 
 # How this learning site works
 
-You're reading this lesson _inside the React app_ — same Vite build as the homepage, same
-deploy, same domain. This page explains the pipeline that turns a plain `.md` file into a routed,
-styled, sidebar-navigable page, so the mechanism is as legible as the content.
+You're reading this lesson on a plain Jekyll static site — no React, no client-side bundler, no
+markdown parser shipped to the browser. This page explains the actual pipeline that turns a
+`.md` file into a routed, sidebar-navigable, paginated page, so the mechanism is as legible as the
+content.
+
+_(This lesson originally described a React + Vite + MDX prototype of this site. The public site
+was rebuilt on Jekyll, so this lesson has been rewritten to match what's actually running today.)_
 
 ## The pipeline, end to end
 
 ```
-learning/01-the-learning-site.md      ← you write this (frontmatter + markdown)
-        │  Vite build sees the import
-web/vite.config.ts                    ← @mdx-js/rollup compiles .md → a React component
-        │  produces
-{ default: Component, frontmatter }   ← the rendered page + its metadata, as one module
+_learning/01-the-learning-site.md   ← you write this (frontmatter + markdown)
+        │  Jekyll's build step sees a new file in the `learning` collection
+_config.yml (collections.learning)  ← declares the collection + its permalink pattern
+        │  produces, per file
+a rendered HTML page + page.* data  ← frontmatter becomes Liquid variables, markdown becomes HTML
         │  collected by
-import.meta.glob('.../learning/*.md') ← one call finds every lesson, no manual registry
+site.learning                        ← one array, every lesson, no manual registry
         │  sorted + rendered by
-web/src/routes/Learn.tsx              ← sidebar (grouped by section) + content + pager
+_layouts/lesson.html                 ← sidebar (grouped by section) + content + pager
 ```
-
-**Why MDX instead of just "parse markdown at runtime":** a library like `react-markdown` parses
-markdown _in the browser_, every page load. MDX instead **compiles markdown to a React component
-at build time** — by the time this ships to GitHub Pages, this lesson is already a plain
-JavaScript function, no markdown parser shipped to your visitors at all. The trade-off you're
-accepting: content changes require a rebuild (`pnpm build`), not just a file edit — fine for a
-docs site, wrong for user-generated content.
 
 ## Frontmatter becomes data, not text
 
 Every lesson starts with a YAML block:
 
-```md
+```yaml
 ---
 section: "Foundations"
-order: 1
+order: 2
 title: "How this learning site works"
 ---
 ```
 
-`remark-frontmatter` strips that block out of the rendered markdown (so it doesn't print as
-literal text on the page); `remark-mdx-frontmatter` turns it into a named export instead:
-
-```ts
-import Lesson, { frontmatter } from "../../../learning/01-the-learning-site.md";
-// frontmatter === { section: "Foundations", order: 1, title: "..." }
-```
-
-That's the whole trick behind the sidebar and pagination: **the frontmatter is just JavaScript
-data once compiled**, so building a table of contents is sorting an array, not parsing markdown
-a second time.
+Jekyll strips that block out of the rendered page (so it never prints as literal text) and exposes
+it as Liquid variables: `page.section`, `page.order`, `page.title` on the page itself, and
+`lesson.section` / `lesson.order` / `lesson.title` when another page loops over `site.learning`.
+That's the whole trick behind the sidebar and pagination: **building a table of contents is
+sorting an array by a field**, not parsing markdown a second time.
 
 ## Finding every lesson without a manifest file
 
-```ts
-const modules = import.meta.glob("../../../learning/*.md", { eager: true });
+```liquid
+{% raw %}{% assign lessons = site.learning | sort: "order" %}
+{% assign sections = lessons | group_by: "section" %}{% endraw %}
 ```
 
-`import.meta.glob` is a **Vite-only** feature (not standard JS) — it's a build-time macro that
-expands to a static list of imports for every file matching the pattern. `{ eager: true }` means
-"import all of them immediately" (vs. lazy, one dynamic `import()` per file, better once the
-lesson count gets large). The result is an object keyed by file path, each value the module
-(`{ default, frontmatter }`) — from there, `Learn.tsx` just does `Object.values(modules)`, sorts
-by `frontmatter.section` then `frontmatter.order`, and renders.
+`site.learning` is populated automatically because `_learning/` is a **collection** declared once
+in `_config.yml`:
 
-**Adding a lesson is: write the `.md` file, commit.** No route to register, no sidebar entry to
-hand-add — that's the entire point of frontmatter-driven navigation.
-
-## One thing that broke the first time: the file lives outside `web/`
-
-`learning/` sits at the repo root, one level _above_ `web/` (this Vite project's actual root).
-Vite's dev server refuses to serve files outside its project root by default — a deliberate
-security guard so a dev server can't be tricked into leaking arbitrary files from your machine.
-The fix is one explicit opt-in in `vite.config.ts`:
-
-```ts
-server: {
-  fs: {
-    allow: [".."];
-  }
-}
+```yaml
+collections:
+  learning:
+    output: true
+    permalink: /learn/:name/
 ```
 
-This only affects `pnpm dev` (the local dev server's file-serving path). `pnpm build` reads files
-straight off disk via Node, no HTTP layer involved, so it was never affected — a good example of a
-restriction that only exists at one specific layer of the toolchain, not "everywhere."
+**Adding a lesson is: write the `.md` file with frontmatter, commit, push.** GitHub Pages rebuilds
+the whole site on every push — no route to register, no sidebar entry to hand-add. That's the
+entire point of frontmatter-driven navigation, in Jekyll exactly as much as it would be in any
+other static-site generator.
 
-## Sidebar + pagination, conceptually
+## Sidebar + pagination, from one sorted list
 
-- **Sidebar** = `modules` grouped by `frontmatter.section`, each group's lessons sorted by
-  `frontmatter.order`, rendered as `<Link>`s from `react-router-dom` (client-side navigation —
-  clicking a lesson doesn't reload the page or refetch the JS bundle).
-- **Pagination** = the _same_ sorted flat list; "next" is `sorted[currentIndex + 1]`, "prev" is
-  `sorted[currentIndex - 1]`. No separate ordering system to keep in sync with the sidebar —
-  there's exactly one sort, used twice.
+- **Sidebar** = `site.learning` grouped by `section` (`group_by`), each group's lessons already
+  sorted by `order`, rendered as plain `<a>` tags — a full page navigation, not a client-side
+  router, since there's no JavaScript framework running.
+- **Pagination** = the _same_ sorted flat list; "next" is `lessons[current_index + 1]`, "previous"
+  is `lessons[current_index - 1]`. One sort, used twice — the sidebar and the pager can never
+  disagree about ordering.
 
-**Concepts you now own:** compile-time vs. runtime markdown rendering, frontmatter as data (not
-prose), `import.meta.glob` as a Vite-specific static-import macro, dev-server file-access
-restrictions vs. build-time file access, and why one sorted list can drive two different UI
-pieces (sidebar + pager) without duplicating logic.
+## Where a phosphor icon comes from
+
+Each section heading and lesson thumbnail renders a small inline SVG via
+`{% raw %}{% include icon.html name="..." %}{% endraw %}` — a self-hosted, MIT-licensed Phosphor
+icon, inlined directly into the page rather than loaded from a CDN. No extra network request per
+icon, no icon font, no flash of unstyled content while a font file loads.
+
+**Concepts you now own:** Jekyll collections as "a folder becomes a route," frontmatter as
+queryable data (not prose), `sort` + `group_by` as the entire mechanism behind a table of
+contents, and why a documentation-shaped site doesn't need a JavaScript framework to feel
+navigable.

@@ -1,6 +1,9 @@
 ---
 layout: default
 title: Learn
+description: >-
+  The raw build log of an invite-only onboarding back office built to learn Salesforce's AI
+  stack, n8n automation, and a Stripe-styled front end — in public, mistakes included.
 permalink: /learn/
 ---
 
@@ -8,42 +11,256 @@ permalink: /learn/
 lessons | group_by: "section" %} {% assign first_lesson = lessons | first %}
 
 <div class="learn-shell">
+  <button
+    type="button"
+    class="toc-toggle"
+    aria-expanded="false"
+    aria-controls="learn-toc"
+  >
+    {% include icon.html name="menu" size=16 %}<span>Lessons</span>
+  </button>
+
   <aside class="learn-sidebar">
-    <nav class="learn-toc" aria-label="Lessons">
+    <nav class="learn-toc" id="learn-toc" aria-label="Lessons">
       {% for section in sections %}
       <div class="learn-toc-section">
-        <p class="learn-toc-heading">{{ section.name }}</p>
+        <p class="learn-toc-heading">
+          {% include lesson-thumb.html section=section.name %}{{ section.name }}
+        </p>
         <ul>
           {% for lesson in section.items %}
           <li>
             <a href="{{ lesson.url | relative_url }}">
-              {% include lesson-thumb.html %} {{ lesson.title }}
+              <span class="learn-toc-link-label">
+                {% include lesson-thumb.html section=section.name %}{{
+                lesson.title }}
+              </span>
             </a>
           </li>
           {% endfor %}
         </ul>
       </div>
       {% endfor %}
+      <a class="learn-toc-cta" href="{{ '/teach/' | relative_url }}">
+        {% include icon.html name="teach" size=16 %}
+        <span>Prefer the structured course? Go to <strong>Teach</strong></span>
+      </a>
     </nav>
   </aside>
 
   <main class="learn-main">
-    <p class="lesson-eyebrow">Build log</p>
+    <p class="lesson-eyebrow">Build log &middot; learning in public</p>
     <div class="lesson-content">
       <h1>How this got built, phase by phase</h1>
       <p>
-        Each lesson is a dated entry from the actual build: what I set out to
-        do, what broke, how I fixed it. They're written as it happened,
-        including the parts that didn't work on the first try &mdash; that's
-        most of the value.
+        This is the raw log: dated entries from the actual build, written as it
+        happened — including the parts that didn't work on the first try. That's
+        most of the value. If you want the tidy, reorganized version of the same
+        knowledge,
+        <a href="{{ '/teach/' | relative_url }}">go to Teach</a> instead.
       </p>
+
       {% if first_lesson %}
       <p>
-        <a class="btn btn-primary" href="{{ first_lesson.url | relative_url }}"
-          >Start with &ldquo;{{ first_lesson.title }}&rdquo; &rarr;</a
-        >
+        <a class="btn btn-primary" href="{{ first_lesson.url | relative_url }}">
+          {% include icon.html name="rocket" size=15 %}<span
+            >Start with &ldquo;{{ first_lesson.title }}&rdquo;</span
+          >
+        </a>
       </p>
       {% endif %}
+
+      <h2>What this app actually is</h2>
+      <p>
+        An invite-only onboarding back office, modeled on Stripe India's real
+        invite flow: a person applies &rarr; an AI plus a web crawler researches
+        and scores them &rarr; a human reviewer decides &rarr; approved
+        businesses get provisioned and supported &rarr; the invited cohort's
+        performance gets tracked over time (cancel vs. upsell). It's not a real
+        product — it's a realistic-enough scenario to force every Salesforce
+        concept a real onboarding system would actually need.
+      </p>
+
+      <h2>The problem it's solving (for me, as the builder)</h2>
+      <p>
+        Reading Salesforce docs teaches vocabulary. It doesn't teach the fifteen
+        small decisions — record type vs. object, Master-Detail vs. Lookup,
+        permission set vs. profile edit — that only show up once you're modeling
+        something with real constraints. Building one coherent app end to end,
+        and writing down every gotcha the moment it happened, was the fastest
+        way I found to actually retain the platform instead of just recognizing
+        the terms.
+      </p>
+
+      <h2>The journey, start to finish</h2>
+      <ol class="journey-timeline">
+        <li class="is-done">
+          {% include icon.html name="signup" size=18 %}
+          <div>
+            <strong>Sign up &amp; stand up the org</strong
+            ><span>Free Developer Edition org, Agentforce enabled.</span>
+          </div>
+        </li>
+        <li class="is-done">
+          {% include icon.html name="data" size=18 %}
+          <div>
+            <strong>Data modeling</strong
+            ><span
+              >Custom objects, record types, Master-Detail vs. Lookup.</span
+            >
+          </div>
+        </li>
+        <li class="is-done">
+          {% include icon.html name="shield" size=18 %}
+          <div>
+            <strong>Permissions &amp; security</strong
+            ><span>Permission sets, FLS gotchas, Guest User access.</span>
+          </div>
+        </li>
+        <li class="is-done">
+          {% include icon.html name="gear" size=18 %}
+          <div>
+            <strong>Actions &amp; layouts</strong
+            ><span
+              >Action bars, quick actions, the layout-assignment trap.</span
+            >
+          </div>
+        </li>
+        <li class="is-done">
+          {% include icon.html name="theme" size=18 %}
+          <div>
+            <strong>Front-end &amp; Stripe-styled theme</strong
+            ><span>This Jekyll site: tokens, type, components.</span>
+          </div>
+        </li>
+        <li class="is-done">
+          {% include icon.html name="flow" size=18 %}
+          <div>
+            <strong>Connecting n8n</strong
+            ><span
+              >The "hands" that fetch the web for Salesforce's "brain."</span
+            >
+          </div>
+        </li>
+        <li class="is-next">
+          {% include icon.html name="chat" size=18 %}
+          <div>
+            <strong>Prompt Builder &amp; Agentforce</strong
+            ><span
+              >Scoring applicants, a conversational reviewer agent. Up
+              next.</span
+            >
+          </div>
+        </li>
+        <li class="is-next">
+          {% include icon.html name="swap" size=18 %}
+          <div>
+            <strong>Data Cloud</strong
+            ><span
+              >Unifying the applicant's data for the AI layer to ground on.
+              Planned.</span
+            >
+          </div>
+        </li>
+      </ol>
+
+      <h2>Salesforce concepts I've learned building this</h2>
+      <div class="concept-tags">
+        <span class="concept-tag"
+          >{% include icon.html name="data" size=13 %}Custom objects &amp;
+          record types</span
+        >
+        <span class="concept-tag"
+          >{% include icon.html name="swap" size=13 %}Master-Detail vs.
+          Lookup</span
+        >
+        <span class="concept-tag"
+          >{% include icon.html name="gear" size=13 %}Dependent picklists</span
+        >
+        <span class="concept-tag"
+          >{% include icon.html name="shield" size=13 %}Permission sets &amp;
+          FLS</span
+        >
+        <span class="concept-tag"
+          >{% include icon.html name="shield" size=13 %}Secure Guest User Record
+          Access</span
+        >
+        <span class="concept-tag"
+          >{% include icon.html name="gear" size=13 %}platformActionList &amp;
+          Quick Actions</span
+        >
+        <span class="concept-tag"
+          >{% include icon.html name="gear" size=13 %}Layout assignments</span
+        >
+        <span class="concept-tag"
+          >{% include icon.html name="flow" size=13 %}Flow (multi-screen)</span
+        >
+        <span class="concept-tag"
+          >{% include icon.html name="org" size=13 %}Experience Cloud &amp;
+          Guest Users</span
+        >
+        <span class="concept-tag"
+          >{% include icon.html name="chat" size=13 %}Prompt Builder
+          <em>(in progress)</em></span
+        >
+        <span class="concept-tag"
+          >{% include icon.html name="agent" size=13 %}Agentforce
+          <em>(in progress)</em></span
+        >
+        <span class="concept-tag"
+          >{% include icon.html name="swap" size=13 %}Data Cloud
+          <em>(planned)</em></span
+        >
+      </div>
+
+      <h2>Tools in the stack</h2>
+      <div class="tool-grid">
+        <div class="tool-chip">
+          <strong>Salesforce</strong
+          ><span>Objects, Flow, Agentforce, Prompt Builder, Data Cloud</span>
+        </div>
+        <div class="tool-chip">
+          <strong>n8n</strong
+          ><span>Web crawling &amp; automation — the "hands"</span>
+        </div>
+        <div class="tool-chip">
+          <strong>Jekyll</strong
+          ><span>This public site — collections, layouts, Liquid</span>
+        </div>
+        <div class="tool-chip">
+          <strong>GitHub Pages</strong
+          ><span>Free static hosting, deploys on every push</span>
+        </div>
+      </div>
+
+      <h2>Impact — why write this instead of just building it quietly</h2>
+      <p>
+        A working demo proves you can follow instructions. A build log with the
+        failures left in proves you can debug a platform you don't fully know
+        yet — which is a much closer approximation of an actual job. Writing
+        lesson-by-lesson also forced a habit worth keeping regardless of
+        Salesforce: if you can't explain why something broke and how you found
+        the fix, you probably didn't really learn it.
+      </p>
     </div>
+
+    <section class="hire-banner hire-banner-inline">
+      <div class="hire-banner-icon">
+        {% include icon.html name="briefcase" size=24 %}
+      </div>
+      <div>
+        <h2>Hiring a GTM engineer?</h2>
+        <p>
+          This project is the portfolio: Salesforce data modeling, AI agents,
+          automation, and the front end to show it off, built by one person,
+          documented the whole way.
+        </p>
+      </div>
+      <a class="btn btn-primary" href="{{ '/about/' | relative_url }}">
+        {% include icon.html name="resume" size=16 %}<span
+          >Resume &amp; other projects</span
+        >
+      </a>
+    </section>
   </main>
 </div>

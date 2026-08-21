@@ -1,11 +1,99 @@
 <header class="site-header">
-  <a href="{{ '/' | relative_url }}" class="site-brand">
-    <span class="site-brand-mark" aria-hidden="true"></span>
-    Invite Only Portal
-  </a>
-  <nav class="site-nav">
-    <a href="{{ '/learn/' | relative_url }}">Learn</a>
-    <a href="{{ '/invite/' | relative_url }}">Apply</a>
-    {% include github-star.html %}
+  <div class="nav-fluid">
+    <a href="{{ '/' | relative_url }}" class="site-brand">
+      <span class="site-brand-mark" aria-hidden="true"></span>
+      <span class="site-brand-text">Invite Only Portal</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a
+        href="{{ '/' | relative_url }}"
+        class="{% if page.url == '/' %}is-active{% endif %}"
+      >
+        {% include icon.html name="home" class="nav-icon" size=17 %}<span
+          >Home</span
+        >
+      </a>
+      <a
+        href="{{ '/learn/' | relative_url }}"
+        class="{% if page.url contains '/learn/' %}is-active{% endif %}"
+      >
+        {% include icon.html name="learn" class="nav-icon" size=17 %}<span
+          >Learn</span
+        >
+      </a>
+      <a
+        href="{{ '/teach/' | relative_url }}"
+        class="{% if page.url contains '/teach/' %}is-active{% endif %}"
+      >
+        {% include icon.html name="teach" class="nav-icon" size=17 %}<span
+          >Teach</span
+        >
+      </a>
+      <a
+        href="{{ '/invite/' | relative_url }}"
+        class="{% if page.url contains '/invite/' %}is-active{% endif %}"
+      >
+        {% include icon.html name="signup" class="nav-icon" size=17 %}<span
+          >Apply</span
+        >
+      </a>
+      <a
+        href="{{ '/about/' | relative_url }}"
+        class="{% if page.url contains '/about/' %}is-active{% endif %}"
+      >
+        {% include icon.html name="info" class="nav-icon" size=17 %}<span
+          >About</span
+        >
+      </a>
+    </nav>
+
+    <div class="site-nav-actions">
+      <a class="btn-hire" href="{{ '/about/' | relative_url }}">
+        {% include icon.html name="briefcase" size=15 %}<span>Hire me</span>
+      </a>
+      {% include github-star.html %}
+      <button
+        type="button"
+        class="theme-toggle"
+        aria-label="Toggle dark mode"
+        aria-pressed="false"
+      >
+        {% include icon.html name="sun" class="theme-toggle-light" size=18 %} {%
+        include icon.html name="moon" class="theme-toggle-dark" size=18 %}
+      </button>
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        aria-label="Toggle menu"
+      >
+        {% include icon.html name="menu" class="nav-toggle-open" size=22 %} {%
+        include icon.html name="close" class="nav-toggle-close" size=22 %}
+      </button>
+    </div>
+  </div>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="{{ '/' | relative_url }}"
+      >{% include icon.html name="home" size=18 %}<span>Home</span></a
+    >
+    <a href="{{ '/learn/' | relative_url }}"
+      >{% include icon.html name="learn" size=18 %}<span>Learn</span></a
+    >
+    <a href="{{ '/teach/' | relative_url }}"
+      >{% include icon.html name="teach" size=18 %}<span>Teach</span></a
+    >
+    <a href="{{ '/invite/' | relative_url }}"
+      >{% include icon.html name="signup" size=18 %}<span
+        >Apply for an invite</span
+      ></a
+    >
+    <a href="{{ '/about/' | relative_url }}"
+      >{% include icon.html name="info" size=18 %}<span
+        >About &amp; hire me</span
+      ></a
+    >
   </nav>
 </header>

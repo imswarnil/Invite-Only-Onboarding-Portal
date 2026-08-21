@@ -1,0 +1,149 @@
+---
+layout: default
+title: About & Hire Me
+description: >-
+  Why this project exists, what it demonstrates, and how to get in touch about GTM engineering
+  roles.
+permalink: /about/
+---
+
+<div class="container about-page">
+  <section class="hero about-hero">
+    <p class="hero-eyebrow">About this project &amp; the person who built it</p>
+    <h1>
+      I build the systems between "someone's interested" and "someone's a
+      customer"
+    </h1>
+    <p>
+      This site is a working sample of that: a full invite-to-onboarding
+      pipeline modeled in Salesforce, an automation layer that researches
+      applicants, and the front end you're reading right now — built solo, end
+      to end, and documented lesson by lesson.
+    </p>
+    <div class="hero-actions">
+      <a
+        class="btn btn-primary"
+        href="{{ site.hire_me_url }}"
+        target="_blank"
+        rel="noopener"
+      >
+        {% include icon.html name="resume" size=16 %}<span
+          >Resume &amp; other projects</span
+        >
+      </a>
+      <a class="btn btn-secondary" href="{{ '/learn/' | relative_url }}">
+        {% include icon.html name="learn" size=16 %}<span
+          >See the build log</span
+        >
+      </a>
+    </div>
+  </section>
+
+  <section class="mental-model">
+    <h2>Why "GTM engineer"</h2>
+    <p
+      style="
+        text-align: center;
+        color: var(--ink-soft);
+        max-width: 680px;
+        margin: 0 auto;
+      "
+    >
+      GTM engineering sits between revenue teams and the systems that run them:
+      modeling the funnel correctly, wiring the automation that moves a record
+      through it, and increasingly, putting AI where it actually helps (scoring,
+      drafting, answering) rather than where it's just impressive. This project
+      touches all three on purpose.
+    </p>
+  </section>
+
+  <section class="feature-grid about-skill-grid">
+    <div class="feature-card">
+      <div class="feature-card-icon-wrap">
+        {% include icon.html name="data" size=28 %}
+      </div>
+      <h3>CRM data modeling</h3>
+      <p>
+        Custom objects, record types, relationships chosen deliberately by their
+        deletion and ownership story — not defaults.
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-icon-wrap">
+        {% include icon.html name="shield" size=28 %}
+      </div>
+      <h3>Security &amp; access</h3>
+      <p>
+        Permission sets, field-level security, and public-form Guest User access
+        done the platform-correct way.
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-icon-wrap">
+        {% include icon.html name="flow" size=28 %}
+      </div>
+      <h3>Automation</h3>
+      <p>
+        Flow for multi-step processes; n8n for anything that has to touch the
+        open web.
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-icon-wrap">
+        {% include icon.html name="chat" size=28 %}
+      </div>
+      <h3>Applied AI</h3>
+      <p>
+        Prompt Builder for grounded scoring, Agentforce for conversational,
+        action-taking agents — used where each actually fits.
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-icon-wrap">
+        {% include icon.html name="theme" size=28 %}
+      </div>
+      <h3>Front-end &amp; branding</h3>
+      <p>
+        This entire site: design tokens, a type scale, and a Stripe-styled
+        component system, hand-built in Jekyll.
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-icon-wrap">
+        {% include icon.html name="article" size=28 %}
+      </div>
+      <h3>Docs as code</h3>
+      <p>
+        Every phase written up as it happened — the
+        <a href="{{ '/learn/' | relative_url }}">build log</a> and the
+        restructured <a href="{{ '/teach/' | relative_url }}">curriculum</a> are
+        both this same habit.
+      </p>
+    </div>
+  </section>
+
+  <section class="hire-banner hire-banner-standalone">
+    <div class="hire-banner-icon">
+      {% include icon.html name="briefcase" size=26 %}
+    </div>
+    <div>
+      <h2>Open to GTM engineering &amp; RevOps roles</h2>
+      <p>
+        Full resume, work history, and other projects live on my main site. This
+        project is the proof of work; that's the paper trail.
+      </p>
+    </div>
+    <a
+      class="btn btn-primary"
+      href="{{ site.hire_me_url }}"
+      target="_blank"
+      rel="noopener"
+    >
+      {% include icon.html name="external" size=16 %}<span
+        >imswarnil.com/about</span
+      >
+    </a>
+  </section>
+
+  <p class="disclaimer">{{ site.disclaimer }}</p>
+</div>

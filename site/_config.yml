@@ -4,24 +4,50 @@ description: >-
   real application flow, built to learn Salesforce's AI stack (Prompt Builder, Flow, Agentforce,
   Data Cloud) end to end.
 url: "https://stripe.imswarnil.com"
+lang: en
 github_repo: "imswarnil/Invite-Only-Onboarding-Portal"
+author: "Swarnil Singhai"
+twitter_card: summary_large_image
+hire_me_url: "https://imswarnil.com/about"
+disclaimer: >-
+  Independent educational project built by one person to learn the Salesforce AI stack. It is not
+  affiliated with, endorsed by, or connected to Stripe, Salesforce, Agentforce, n8n, or any other
+  company named on this site. Product names are used only to describe what was studied and
+  rebuilt for practice — nothing here is production software or an official integration.
 
 markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: rouge
+  auto_ids: true
 
 collections:
   learning:
     output: true
     permalink: /learn/:name/
+  teach:
+    output: true
+    permalink: /teach/lessons/:name/
+  teach_sections:
+    output: true
+    permalink: /teach/:name/
 
 defaults:
   - scope:
       path: ""
       type: learning
     values:
-      layout: lesson
+      layout: doc
+  - scope:
+      path: ""
+      type: teach
+    values:
+      layout: doc
+  - scope:
+      path: ""
+      type: teach_sections
+    values:
+      layout: teach-section
 
 plugins:
   - jekyll-sitemap

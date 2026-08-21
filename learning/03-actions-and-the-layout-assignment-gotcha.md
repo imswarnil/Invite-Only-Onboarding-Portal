@@ -1,6 +1,6 @@
 ---
 section: "Foundations"
-order: 3
+order: 4
 title: "Trimming the record's action bar, and the layout-assignment gotcha"
 ---
 

@@ -1,4 +1,9 @@
-<svg class="toc-thumb" viewBox="0 0 20 20" aria-hidden="true">
-  <circle cx="10" cy="10" r="9" fill="#635BFF" fill-opacity="0.12"></circle>
-  <circle cx="10" cy="10" r="3" fill="#635BFF"></circle>
-</svg>
+{%- comment -%} Maps a lesson's `section` frontmatter to a Phosphor icon. {%-
+endcomment -%} {% case include.section %} {% when "Overview" %}{% include
+icon.html name="compass" class="toc-thumb" size=17 %} {% when "Getting Started"
+%}{% include icon.html name="signup" class="toc-thumb" size=17 %} {% when
+"Foundations" %}{% include icon.html name="data" class="toc-thumb" size=17 %} {%
+when "Front-End & Branding" %}{% include icon.html name="theme"
+class="toc-thumb" size=17 %} {% when "Automation" %}{% include icon.html
+name="flow" class="toc-thumb" size=17 %} {% else %}{% include icon.html
+name="article" class="toc-thumb" size=17 %} {% endcase %}
