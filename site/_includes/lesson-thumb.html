@@ -1,9 +1,12 @@
 {%- comment -%} Maps a lesson's `section` frontmatter to a Phosphor icon. {%-
 endcomment -%} {% case include.section %} {% when "Overview" %}{% include
 icon.html name="compass" class="toc-thumb" size=17 %} {% when "Getting Started"
-%}{% include icon.html name="signup" class="toc-thumb" size=17 %} {% when
-"Foundations" %}{% include icon.html name="data" class="toc-thumb" size=17 %} {%
-when "Front-End & Branding" %}{% include icon.html name="theme"
-class="toc-thumb" size=17 %} {% when "Automation" %}{% include icon.html
-name="flow" class="toc-thumb" size=17 %} {% else %}{% include icon.html
-name="article" class="toc-thumb" size=17 %} {% endcase %}
+%}{% include icon.html name="signup" class="toc-thumb" size=17 %} {% when "Data
+Modeling & Security" %}{% include icon.html name="shield" class="toc-thumb"
+size=17 %} {% when "Process & UI" %}{% include icon.html name="gear"
+class="toc-thumb" size=17 %} {% when "Front-End & Branding" %}{% include
+icon.html name="theme" class="toc-thumb" size=17 %} {% when "Automation" %}{%
+include icon.html name="flow" class="toc-thumb" size=17 %} {% when "AI Layer"
+%}{% include icon.html name="chat" class="toc-thumb" size=17 %} {% when "Data
+Cloud" %}{% include icon.html name="swap" class="toc-thumb" size=17 %} {% else
+%}{% include icon.html name="article" class="toc-thumb" size=17 %} {% endcase %}

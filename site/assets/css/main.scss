@@ -367,7 +367,7 @@ html[data-theme="dark"] .theme-toggle-light {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  grid-template-columns: 1.6fr 1fr 1fr;
   gap: 2rem;
   padding-bottom: 2rem;
 }
@@ -1774,4 +1774,255 @@ html[data-theme="dark"] .theme-toggle-light {
 
 .about-skill-grid {
   border-top: 1px solid var(--border);
+}
+
+/* ==========================================================================
+   Homepage: two-column shell (main + sticky rail)
+   ========================================================================== */
+
+.home-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 3rem) 3rem;
+  align-items: start;
+}
+
+.home-main {
+  min-width: 0;
+  max-width: 760px;
+}
+
+.home-main .hero,
+.home-main .why-built,
+.home-main .tool-strip,
+.home-main .mental-model,
+.home-main .public-build {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.home-rail {
+  min-width: 0;
+  position: sticky;
+  top: 5.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (max-width: 1000px) {
+  .home-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .home-rail {
+    position: static;
+    max-width: 480px;
+  }
+}
+
+/* --- Live demo card (homepage rail) --- */
+.demo-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  background: var(--bg-elevated);
+  scroll-margin-top: 5.5rem;
+}
+
+.demo-card-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin: 0 0 0.5rem;
+}
+
+.demo-card h2 {
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem;
+}
+
+.demo-card-copy {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin: 0 0 1.25rem;
+}
+
+.demo-card-copy code {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.05rem 0.3rem;
+  font-size: 0.85em;
+}
+
+.demo-card .form-field {
+  margin-bottom: 0.85rem;
+}
+
+.demo-card .form-actions {
+  margin-top: 0.25rem;
+}
+
+.demo-card .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.applicant-toggle-compact {
+  margin: 0 0 1rem;
+}
+
+.applicant-toggle-compact .applicant-toggle-option {
+  padding: 0.6rem 0.5rem;
+  font-size: 0.82rem;
+}
+
+.demo-card-footnote {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin: 1rem 0 0;
+  text-align: center;
+}
+
+/* --- AdSense placeholder --- */
+.ad-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 250px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  text-align: center;
+  padding: 1rem;
+}
+
+.ad-slot-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ad-slot-placeholder {
+  font-size: 0.78rem;
+  max-width: 20ch;
+}
+
+/* ==========================================================================
+   Site search
+   ========================================================================== */
+
+.site-search {
+  position: relative;
+}
+
+.search-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-elevated);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.search-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.search-panel {
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  right: 0;
+  width: min(360px, 90vw);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px var(--shadow-soft);
+  padding: 0.85rem;
+  z-index: 60;
+}
+
+.site-search.is-open .search-panel {
+  display: block;
+}
+
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  color: var(--ink-soft);
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.search-results {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.search-results li + li {
+  border-top: 1px solid var(--border);
+}
+
+.search-results a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.6rem 0.3rem;
+}
+
+.search-results a:hover {
+  background: var(--surface);
+  text-decoration: none;
+}
+
+.search-result-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.search-result-section {
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+}
+
+.search-empty {
+  padding: 0.75rem 0.3rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
 }

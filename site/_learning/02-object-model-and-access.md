@@ -1,6 +1,6 @@
 ---
-section: "Foundations"
-order: 3
+section: "Data Modeling & Security"
+order: 2
 title: "The data model, and the permissions gotchas that came with it"
 ---
 

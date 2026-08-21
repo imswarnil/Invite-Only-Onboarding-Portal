@@ -23,9 +23,11 @@
       </div>
 
       <div class="footer-col">
-        <p class="footer-heading">Learn</p>
+        <p class="footer-heading">Learn in Public</p>
         <a href="{{ '/learn/' | relative_url }}"
-          >{% include icon.html name="learn" size=15 %}<span>Build log</span></a
+          >{% include icon.html name="learn" size=15 %}<span
+            >All lessons</span
+          ></a
         >
         <a href="{{ '/invite/' | relative_url }}"
           >{% include icon.html name="signup" size=15 %}<span
@@ -35,27 +37,10 @@
       </div>
 
       <div class="footer-col">
-        <p class="footer-heading">Teach</p>
-        <a href="{{ '/teach/' | relative_url }}"
-          >{% include icon.html name="teach" size=15 %}<span
-            >Curriculum</span
-          ></a
-        >
-        {% assign first_section = site.teach_sections | sort: "order" | first %}
-        {% if first_section %}
-        <a href="{{ first_section.url | relative_url }}"
-          >{% include icon.html name="compass" size=15 %}<span
-            >Start learning</span
-          ></a
-        >
-        {% endif %}
-      </div>
-
-      <div class="footer-col">
         <p class="footer-heading">Author</p>
-        <a href="{{ '/about/' | relative_url }}"
-          >{% include icon.html name="info" size=15 %}<span
-            >About &amp; hire me</span
+        <a href="{{ '/#hire' | relative_url }}"
+          >{% include icon.html name="briefcase" size=15 %}<span
+            >Hire me</span
           ></a
         >
         <a href="{{ site.hire_me_url }}" target="_blank" rel="noopener"

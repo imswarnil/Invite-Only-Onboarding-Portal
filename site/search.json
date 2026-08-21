@@ -1,0 +1,15 @@
+---
+layout: null
+permalink: /search.json
+---
+[
+  {% assign lessons = site.learning | sort: "order" %}
+  {% for lesson in lessons %}
+  {
+    "title": {{ lesson.title | jsonify }},
+    "section": {{ lesson.section | jsonify }},
+    "url": {{ lesson.url | relative_url | jsonify }},
+    "excerpt": {{ lesson.content | strip_html | strip_newlines | strip | truncate: 180 | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]

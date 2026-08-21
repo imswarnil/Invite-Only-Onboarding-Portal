@@ -11,6 +11,111 @@
     });
   }
 
+  // --- Site search ---
+  var searchWrap = document.querySelector(".site-search");
+  if (searchWrap) {
+    var searchToggle = searchWrap.querySelector(".search-toggle");
+    var searchPanel = searchWrap.querySelector(".search-panel");
+    var searchInput = searchWrap.querySelector(".search-input");
+    var searchResults = searchWrap.querySelector(".search-results");
+    var searchIndex = null;
+    var searchIndexPromise = null;
+
+    function loadSearchIndex() {
+      if (!searchIndexPromise) {
+        var searchUrl =
+          searchWrap.getAttribute("data-search-url") || "/search.json";
+        searchIndexPromise = fetch(searchUrl)
+          .then(function (res) {
+            return res.ok ? res.json() : [];
+          })
+          .then(function (data) {
+            searchIndex = data;
+            return data;
+          })
+          .catch(function () {
+            searchIndex = [];
+            return [];
+          });
+      }
+      return searchIndexPromise;
+    }
+
+    function openSearch() {
+      searchWrap.classList.add("is-open");
+      searchToggle.setAttribute("aria-expanded", "true");
+      loadSearchIndex().then(function () {
+        searchInput.focus();
+      });
+    }
+
+    function closeSearch() {
+      searchWrap.classList.remove("is-open");
+      searchToggle.setAttribute("aria-expanded", "false");
+    }
+
+    searchToggle.addEventListener("click", function () {
+      if (searchWrap.classList.contains("is-open")) {
+        closeSearch();
+      } else {
+        openSearch();
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeSearch();
+      if ((event.metaKey || event.ctrlKey) && event.key === "k") {
+        event.preventDefault();
+        openSearch();
+      }
+    });
+
+    document.addEventListener("click", function (event) {
+      if (!searchWrap.contains(event.target)) closeSearch();
+    });
+
+    function renderResults(matches, query) {
+      searchResults.innerHTML = "";
+      if (!query) return;
+      if (!matches.length) {
+        var empty = document.createElement("li");
+        empty.className = "search-empty";
+        empty.textContent = "No lessons match “" + query + "”.";
+        searchResults.appendChild(empty);
+        return;
+      }
+      matches.slice(0, 8).forEach(function (item) {
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        a.href = item.url;
+        a.innerHTML =
+          '<span class="search-result-title"></span><span class="search-result-section"></span>';
+        a.querySelector(".search-result-title").textContent = item.title;
+        a.querySelector(".search-result-section").textContent = item.section;
+        li.appendChild(a);
+        searchResults.appendChild(li);
+      });
+    }
+
+    searchInput.addEventListener("input", function () {
+      var query = searchInput.value.trim().toLowerCase();
+      if (!query) {
+        searchResults.innerHTML = "";
+        return;
+      }
+      loadSearchIndex().then(function (index) {
+        var matches = index.filter(function (item) {
+          return (
+            item.title.toLowerCase().indexOf(query) !== -1 ||
+            item.section.toLowerCase().indexOf(query) !== -1 ||
+            item.excerpt.toLowerCase().indexOf(query) !== -1
+          );
+        });
+        renderResults(matches, query);
+      });
+    });
+  }
+
   // --- Dark mode toggle ---
   var themeToggle = document.querySelector(".theme-toggle");
   if (themeToggle) {

@@ -9,3 +9,6 @@
 .vscode
 
 coverage/
+
+# Liquid-templated, not valid JSON — Jekyll renders this at build time
+site/search.json

@@ -2,19 +2,16 @@
 layout: default
 ---
 
-{% assign is_teach = false %} {% if page.collection == "teach" %}{% assign
-is_teach = true %}{% endif %} {% assign lessons = site[page.collection] | sort:
-"order" %} {% assign current_index = -1 %} {% for lesson in lessons %}{% if
-lesson.url == page.url %}{% assign current_index = forloop.index0 %}{% endif
-%}{% endfor %} {% assign prev_lesson = nil %} {% assign next_lesson = nil %} {%
-assign prev_index = current_index | minus: 1 %} {% assign next_index =
-current_index | plus: 1 %} {% if current_index > 0 %}{% assign prev_lesson =
-lessons[prev_index] %}{% endif %} {% assign lessons_size = lessons | size %} {%
-assign last_index = lessons_size | minus: 1 %} {% if current_index < last_index
-%}{% assign next_lesson = lessons[next_index] %}{% endif %} {% if is_teach %} {%
-assign teach_sections = site.teach_sections | sort: "order" %} {% assign
-current_section = teach_sections | where: "name", page.section | first %} {%
-else %} {% assign learn_sections = lessons | group_by: "section" %} {% endif %}
+{% assign lessons = site.learning | sort: "order" %} {% assign current_index =
+-1 %} {% for lesson in lessons %}{% if lesson.url == page.url %}{% assign
+current_index = forloop.index0 %}{% endif %}{% endfor %} {% assign prev_lesson =
+nil %} {% assign next_lesson = nil %} {% assign prev_index = current_index |
+minus: 1 %} {% assign next_index = current_index | plus: 1 %} {% if
+current_index > 0 %}{% assign prev_lesson = lessons[prev_index] %}{% endif %} {%
+assign lessons_size = lessons | size %} {% assign last_index = lessons_size |
+minus: 1 %} {% if current_index < last_index %}{% assign next_lesson =
+lessons[next_index] %}{% endif %} {% assign sections = lessons | group_by:
+"section" %}
 
 <div class="doc-shell">
   <button
@@ -23,56 +20,15 @@ else %} {% assign learn_sections = lessons | group_by: "section" %} {% endif %}
     aria-expanded="false"
     aria-controls="doc-toc"
   >
-    {% include icon.html name="menu" size=16 %}<span
-      >{% if is_teach %}Curriculum{% else %}Lessons{% endif %}</span
-    >
+    {% include icon.html name="menu" size=16 %}<span>Lessons</span>
   </button>
 
   <aside class="doc-sidebar">
-    <nav
-      class="learn-toc"
-      id="doc-toc"
-      aria-label="{% if is_teach %}Curriculum{% else %}Lessons{% endif %}"
-    >
-      {% if is_teach %}
-      <a class="doc-toc-home" href="{{ '/teach/' | relative_url }}">
-        {% include icon.html name="teach" size=16 %}<span>Full curriculum</span>
-      </a>
-      {% for section in teach_sections %} {% assign section_lessons = lessons |
-      where: "section", section.name %}
-      <div class="learn-toc-section">
-        <p class="learn-toc-heading">
-          {% include icon.html name=section.icon class="toc-thumb" size=17 %}{{
-          section.title }}
-        </p>
-        <ul>
-          {% for lesson in section_lessons %}
-          <li>
-            <a
-              href="{{ lesson.url | relative_url }}"
-              class="{% if lesson.url == page.url %}is-active{% endif %}"
-            >
-              <span class="learn-toc-link-label">
-                {% include icon.html name=section.icon size=14 %}{{ lesson.title
-                }}
-              </span>
-              {% if lesson.url == page.url %}{% include icon.html
-              name="caret-right" size=13 class="toc-active-mark" %}{% endif %}
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endfor %}
-      <a class="learn-toc-cta" href="{{ '/learn/' | relative_url }}">
-        {% include icon.html name="learn" size=16 %}
-        <span>Prefer the raw version? Read the <strong>build log</strong></span>
-      </a>
-      {% else %}
+    <nav class="learn-toc" id="doc-toc" aria-label="Lessons">
       <p class="learn-toc-progress">
         Lesson {{ current_index | plus: 1 }} of {{ lessons_size }}
       </p>
-      {% for section in learn_sections %}
+      {% for section in sections %}
       <div class="learn-toc-section">
         <p class="learn-toc-heading">
           {% include lesson-thumb.html section=section.name %}{{ section.name }}
@@ -96,23 +52,13 @@ else %} {% assign learn_sections = lessons | group_by: "section" %} {% endif %}
         </ul>
       </div>
       {% endfor %}
-      <a class="learn-toc-cta" href="{{ '/teach/' | relative_url }}">
-        {% include icon.html name="teach" size=16 %}
-        <span>Prefer the structured course? Go to <strong>Teach</strong></span>
-      </a>
-      {% endif %}
     </nav>
   </aside>
 
   <main class="doc-main">
     <article>
       <p class="lesson-eyebrow">
-        {% if is_teach %} {% if current_section %}{% include icon.html
-        name=current_section.icon size=15 %}<a
-          href="{{ current_section.url | relative_url }}"
-          >{{ current_section.title }}</a
-        >{% else %}{{ page.section }}{% endif %} {% else %} {% include
-        lesson-thumb.html section=page.section %}{{ page.section }} {% endif %}
+        {% include lesson-thumb.html section=page.section %}{{ page.section }}
       </p>
       <div class="lesson-content" id="lesson-content">{{ content }}</div>
     </article>
@@ -153,5 +99,6 @@ else %} {% assign learn_sections = lessons | group_by: "section" %} {% endif %}
       <p class="learn-toc-heading">On this page</p>
       <ol class="on-this-page-list" aria-live="polite"></ol>
     </nav>
+    {% include ad-slot.html slot="lesson-aside" %}
   </aside>
 </div>

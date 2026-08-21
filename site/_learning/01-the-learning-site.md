@@ -1,6 +1,6 @@
 ---
-section: "Foundations"
-order: 2
+section: "Front-End & Branding"
+order: 4
 title: "How this learning site works"
 ---
 
@@ -34,8 +34,8 @@ Every lesson starts with a YAML block:
 
 ```yaml
 ---
-section: "Foundations"
-order: 2
+section: "Front-End & Branding"
+order: 4
 title: "How this learning site works"
 ---
 ```

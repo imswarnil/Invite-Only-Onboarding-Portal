@@ -25,12 +25,6 @@ collections:
   learning:
     output: true
     permalink: /learn/:name/
-  teach:
-    output: true
-    permalink: /teach/lessons/:name/
-  teach_sections:
-    output: true
-    permalink: /teach/:name/
 
 defaults:
   - scope:
@@ -38,16 +32,6 @@ defaults:
       type: learning
     values:
       layout: doc
-  - scope:
-      path: ""
-      type: teach
-    values:
-      layout: doc
-  - scope:
-      path: ""
-      type: teach_sections
-    values:
-      layout: teach-section
 
 plugins:
   - jekyll-sitemap

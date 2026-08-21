@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Learn
+title: Learn in Public
 description: >-
-  The raw build log of an invite-only onboarding back office built to learn Salesforce's AI
-  stack, n8n automation, and a Stripe-styled front end — in public, mistakes included.
+  The build log of an invite-only onboarding back office built to learn Salesforce's AI stack,
+  n8n automation, and a Stripe-styled front end — in public, mistakes included.
 permalink: /learn/
 ---
 
@@ -41,23 +41,18 @@ lessons | group_by: "section" %} {% assign first_lesson = lessons | first %}
         </ul>
       </div>
       {% endfor %}
-      <a class="learn-toc-cta" href="{{ '/teach/' | relative_url }}">
-        {% include icon.html name="teach" size=16 %}
-        <span>Prefer the structured course? Go to <strong>Teach</strong></span>
-      </a>
     </nav>
   </aside>
 
   <main class="learn-main">
-    <p class="lesson-eyebrow">Build log &middot; learning in public</p>
+    <p class="lesson-eyebrow">Learn in Public &middot; the build log</p>
     <div class="lesson-content">
       <h1>How this got built, phase by phase</h1>
       <p>
         This is the raw log: dated entries from the actual build, written as it
         happened — including the parts that didn't work on the first try. That's
-        most of the value. If you want the tidy, reorganized version of the same
-        knowledge,
-        <a href="{{ '/teach/' | relative_url }}">go to Teach</a> instead.
+        most of the value. No separate tidied-up version exists — this log
+        <em>is</em> the documentation.
       </p>
 
       {% if first_lesson %}
@@ -78,7 +73,9 @@ lessons | group_by: "section" %} {% assign first_lesson = lessons | first %}
         businesses get provisioned and supported &rarr; the invited cohort's
         performance gets tracked over time (cancel vs. upsell). It's not a real
         product — it's a realistic-enough scenario to force every Salesforce
-        concept a real onboarding system would actually need.
+        concept a real onboarding system would actually need. There's a working
+        demo of the applicant form
+        <a href="{{ '/#demo' | relative_url }}">on the homepage</a>.
       </p>
 
       <h2>The problem it's solving (for me, as the builder)</h2>
@@ -104,23 +101,17 @@ lessons | group_by: "section" %} {% assign first_lesson = lessons | first %}
         <li class="is-done">
           {% include icon.html name="data" size=18 %}
           <div>
-            <strong>Data modeling</strong
+            <strong>Data modeling &amp; security</strong
             ><span
-              >Custom objects, record types, Master-Detail vs. Lookup.</span
+              >Custom objects, record types, permission sets, Guest User
+              access.</span
             >
-          </div>
-        </li>
-        <li class="is-done">
-          {% include icon.html name="shield" size=18 %}
-          <div>
-            <strong>Permissions &amp; security</strong
-            ><span>Permission sets, FLS gotchas, Guest User access.</span>
           </div>
         </li>
         <li class="is-done">
           {% include icon.html name="gear" size=18 %}
           <div>
-            <strong>Actions &amp; layouts</strong
+            <strong>Process &amp; UI</strong
             ><span
               >Action bars, quick actions, the layout-assignment trap.</span
             >
@@ -142,24 +133,18 @@ lessons | group_by: "section" %} {% assign first_lesson = lessons | first %}
             >
           </div>
         </li>
-        <li class="is-next">
+        <li class="is-done">
           {% include icon.html name="chat" size=18 %}
           <div>
             <strong>Prompt Builder &amp; Agentforce</strong
-            ><span
-              >Scoring applicants, a conversational reviewer agent. Up
-              next.</span
-            >
+            ><span>Scoring applicants, a conversational reviewer agent.</span>
           </div>
         </li>
-        <li class="is-next">
+        <li class="is-done">
           {% include icon.html name="swap" size=18 %}
           <div>
             <strong>Data Cloud</strong
-            ><span
-              >Unifying the applicant's data for the AI layer to ground on.
-              Planned.</span
-            >
+            ><span>Why it's not needed yet — and what would change that.</span>
           </div>
         </li>
       </ol>
@@ -200,16 +185,13 @@ lessons | group_by: "section" %} {% assign first_lesson = lessons | first %}
           Guest Users</span
         >
         <span class="concept-tag"
-          >{% include icon.html name="chat" size=13 %}Prompt Builder
-          <em>(in progress)</em></span
+          >{% include icon.html name="chat" size=13 %}Prompt Builder</span
         >
         <span class="concept-tag"
-          >{% include icon.html name="agent" size=13 %}Agentforce
-          <em>(in progress)</em></span
+          >{% include icon.html name="agent" size=13 %}Agentforce</span
         >
         <span class="concept-tag"
-          >{% include icon.html name="swap" size=13 %}Data Cloud
-          <em>(planned)</em></span
+          >{% include icon.html name="swap" size=13 %}Data Cloud</span
         >
       </div>
 
@@ -256,8 +238,13 @@ lessons | group_by: "section" %} {% assign first_lesson = lessons | first %}
           documented the whole way.
         </p>
       </div>
-      <a class="btn btn-primary" href="{{ '/about/' | relative_url }}">
-        {% include icon.html name="resume" size=16 %}<span
+      <a
+        class="btn btn-primary"
+        href="{{ site.hire_me_url }}"
+        target="_blank"
+        rel="noopener"
+      >
+        {% include icon.html name="external" size=16 %}<span
           >Resume &amp; other projects</span
         >
       </a>

@@ -71,7 +71,7 @@
         }
       }
     </script>
-    {% if page.collection == "learning" or page.collection == "teach" %}
+    {% if page.collection == "learning" %}
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -81,8 +81,8 @@
         "url": {{ page.url | absolute_url | jsonify }},
         "isPartOf": {
           "@type": "CreativeWorkSeries",
-          "name": {% if page.collection == "teach" %}"Teach"{% else %}"Learn"{% endif %},
-          "url": {% if page.collection == "teach" %}{{ '/teach/' | absolute_url | jsonify }}{% else %}{{ '/learn/' | absolute_url | jsonify }}{% endif %}
+          "name": "Learn in Public",
+          "url": {{ '/learn/' | absolute_url | jsonify }}
         },
         "author": {
           "@type": "Person",
