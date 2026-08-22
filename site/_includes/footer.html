@@ -11,21 +11,20 @@
           crawler, and a Stripe-styled front end, documented lesson by lesson.
         </p>
         <a
-          class="gh-star-button footer-gh"
+          class="btn-github footer-gh"
           href="https://github.com/{{ site.github_repo }}"
           target="_blank"
           rel="noopener"
         >
-          {% include icon.html name="code" size=14 %}<span
-            >View the source</span
+          {% include icon.html name="github-logo" size=16 %}<span
+            >View on GitHub</span
           >
         </a>
       </div>
 
       <div class="footer-col">
         <p class="footer-heading">Learn in Public</p>
-        {% assign first_lesson = site.learning | sort: "order" | first %}
-        <a href="{{ first_lesson.url | relative_url }}"
+        <a href="{{ '/learn/' | relative_url }}"
           >{% include icon.html name="learn" size=15 %}<span
             >All lessons</span
           ></a
@@ -34,6 +33,9 @@
           >{% include icon.html name="compass" size=15 %}<span
             >Project overview</span
           ></a
+        >
+        <a href="{{ '/roadmap/' | relative_url }}"
+          >{% include icon.html name="flow" size=15 %}<span>Roadmap</span></a
         >
       </div>
 

@@ -1,4 +1,3 @@
-{% assign first_lesson = site.learning | sort: "order" | first %}
 <header class="site-header">
   <div class="nav-fluid">
     <a href="{{ '/' | relative_url }}" class="site-brand">
@@ -16,11 +15,19 @@
         >
       </a>
       <a
-        href="{{ first_lesson.url | relative_url }}"
-        class="{% if page.collection == 'learning' %}is-active{% endif %}"
+        href="{{ '/learn/' | relative_url }}"
+        class="{% if page.collection == 'learning' or page.url == '/learn/' %}is-active{% endif %}"
       >
         {% include icon.html name="learn" class="nav-icon" size=17 %}<span
           >Learn in Public</span
+        >
+      </a>
+      <a
+        href="{{ '/roadmap/' | relative_url }}"
+        class="{% if page.url == '/roadmap/' %}is-active{% endif %}"
+      >
+        {% include icon.html name="flow" class="nav-icon" size=17 %}<span
+          >Roadmap</span
         >
       </a>
     </nav>
@@ -53,6 +60,15 @@
           <ul class="search-results" role="listbox"></ul>
         </div>
       </div>
+      <button
+        type="button"
+        class="about-toggle"
+        aria-label="About this project"
+        aria-haspopup="dialog"
+        aria-controls="about-modal"
+      >
+        {% include icon.html name="info" size=18 %}
+      </button>
       <a class="btn-hire" href="{{ '/#hire' | relative_url }}">
         {% include icon.html name="briefcase" size=15 %}<span>Hire me</span>
       </a>
@@ -83,10 +99,13 @@
     <a href="{{ '/' | relative_url }}"
       >{% include icon.html name="home" size=18 %}<span>Home</span></a
     >
-    <a href="{{ first_lesson.url | relative_url }}"
+    <a href="{{ '/learn/' | relative_url }}"
       >{% include icon.html name="learn" size=18 %}<span
         >Learn in Public</span
       ></a
+    >
+    <a href="{{ '/roadmap/' | relative_url }}"
+      >{% include icon.html name="flow" size=18 %}<span>Roadmap</span></a
     >
     <a href="{{ '/#hire' | relative_url }}"
       >{% include icon.html name="briefcase" size=18 %}<span>Hire me</span></a

@@ -37,6 +37,7 @@ lessons[next_index] %}{% endif %}
         {% include lesson-thumb.html section=page.section %}{{ page.section }}
       </p>
       <div class="lesson-content" id="lesson-content">{{ content }}</div>
+      {% include ad-slot.html slot="in-article" %}
     </article>
 
     <nav class="lesson-pager" aria-label="Pagination">
@@ -75,6 +76,8 @@ lessons[next_index] %}{% endif %}
       <p class="learn-toc-heading">On this page</p>
       <ol class="on-this-page-list" aria-live="polite"></ol>
     </nav>
-    {% include ad-slot.html slot="lesson-aside" %}
+    <div class="doc-aside-ad">
+      {% include ad-slot.html slot="lesson-aside" %}
+    </div>
   </aside>
 </div>

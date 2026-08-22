@@ -1,0 +1,77 @@
+{%- comment -%} Global "about this project" overlay, opened from the header's
+"?" button. One place that explains what the project does, who it's for, and how
+n8n fits in, without leaving the page. Usage: {% include about-modal.html %} {%-
+endcomment -%}
+<div
+  class="about-modal"
+  id="about-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="about-modal-title"
+>
+  <div class="about-modal-panel">
+    <div class="about-modal-header">
+      <p class="lesson-eyebrow" style="margin: 0">
+        {% include icon.html name="info" size=14 %}About this project
+      </p>
+      <button type="button" class="about-modal-close" aria-label="Close">
+        {% include icon.html name="close" size=18 %}
+      </button>
+    </div>
+
+    <h2 id="about-modal-title" style="margin: 0 0 0.6rem">
+      Invite Only Portal, in one page
+    </h2>
+    <p>
+      A person applies &rarr; an AI plus a web crawler researches and scores
+      them &rarr; a human reviewer decides &rarr; approved businesses get
+      provisioned and supported &rarr; their performance gets tracked over time.
+      It's a learning project, built to force every Salesforce concept a real
+      onboarding system would actually need &mdash; not a real product.
+    </p>
+
+    <h3 style="margin: 1.5rem 0 0.75rem">Who this is built for</h3>
+    <div class="about-persona-grid">
+      <div class="about-persona-card">
+        <p class="about-persona-role">
+          {% include icon.html name="users" size=15 %}Reviewer &mdash; Ravi
+        </p>
+        <p>
+          A GTM reviewer at a payments company, drowning in unqualified invite
+          requests. Needs a fast, trustworthy way to see who's worth a look.
+        </p>
+      </div>
+      <div class="about-persona-card">
+        <p class="about-persona-role">
+          {% include icon.html name="users" size=15 %}Applicant
+        </p>
+        <p>
+          A small business or individual in India applying for early access
+          &mdash; wants a simple form and a clear status on what's missing.
+        </p>
+      </div>
+    </div>
+
+    <h3 style="margin: 1.5rem 0 0.75rem">How n8n fits in</h3>
+    <p>
+      Salesforce's AI reasons over data it's <em>given</em>; it does not fetch
+      the web. <strong>n8n</strong> is the only thing in this project that
+      touches the open web &mdash; it scrapes what an applicant put on their own
+      website and hands back clean text. <strong>Prompt Builder</strong> and
+      <strong>Agentforce</strong> then reason over that text and write results
+      back onto the record. Brain vs. hands.
+    </p>
+
+    <div class="about-modal-links">
+      <a href="{{ '/roadmap/' | relative_url }}">
+        {% include icon.html name="flow" size=14 %}<span>Roadmap</span>
+      </a>
+      <a href="{{ '/learn/' | relative_url }}">
+        {% include icon.html name="learn" size=14 %}<span>Learn in Public</span>
+      </a>
+      <a href="{{ '/#hire' | relative_url }}">
+        {% include icon.html name="briefcase" size=14 %}<span>Hire me</span>
+      </a>
+    </div>
+  </div>
+</div>

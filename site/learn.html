@@ -1,0 +1,63 @@
+---
+layout: default
+title: Learn in Public
+permalink: /learn/
+description: >-
+  The dated build log behind the Invite Only Portal — every phase, gotcha, and decision,
+  written down as it happened, laid out as a short course.
+---
+
+{% assign lessons = site.learning | sort: "order" %} {% assign first_lesson =
+lessons | first %} {% capture newline %} {% endcapture %}
+
+<div class="home-shell">
+  <p class="lesson-eyebrow">
+    {% include icon.html name="learn" size=15 %}Learn in Public
+  </p>
+  <h1 style="font-size: 1.8rem; margin: 0 0 0.75rem">
+    The build log, phase by phase
+  </h1>
+  <p style="color: var(--ink-soft); max-width: 680px; margin: 0 0 1.5rem">
+    {{ lessons.size }} dated lessons, written the moment each gotcha happened,
+    not cleaned up in hindsight. Each one ends with "Concepts you now own"
+    &mdash; the actual Salesforce vocabulary that lesson earned. See
+    <a href="{{ '/roadmap/' | relative_url }}">Roadmap</a> for the higher-level
+    implemented / in progress / planned view this log feeds into.
+  </p>
+
+  <a
+    class="btn btn-primary"
+    href="{{ first_lesson.url | relative_url }}"
+    style="margin-bottom: 2.5rem; display: inline-flex"
+  >
+    {% include icon.html name="caret-right" size=14 %}<span
+      >Start from lesson 1</span
+    >
+  </a>
+
+  <div class="course-grid">
+    {% for lesson in lessons %}
+    <a class="course-card" href="{{ lesson.url | relative_url }}">
+      <span class="course-card-node">{{ forloop.index }}</span>
+      <span class="course-card-icon">
+        {% include lesson-thumb.html section=lesson.section %}
+      </span>
+      <p class="course-card-section">{{ lesson.section }}</p>
+      <h3>{{ lesson.title }}</h3>
+      {%- comment -%} Drop the first line (the lesson's own H1) so the card
+      blurb starts at the body copy. Split on a newline rather than a literal
+      closing tag — a raw tag in an attribute-less Liquid filter breaks
+      prettier. {%- endcomment -%} {% assign body_lines = lesson.content |
+      strip_html | strip | split: newline %}
+      <p>
+        {{ body_lines | slice: 1, 400 | join: " " | strip | truncate: 110 }}
+      </p>
+      <span class="btn btn-secondary">
+        {% include icon.html name="caret-right" size=13 %}<span
+          >Start lesson</span
+        >
+      </span>
+    </a>
+    {% endfor %}
+  </div>
+</div>

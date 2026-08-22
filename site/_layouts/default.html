@@ -13,6 +13,11 @@
     <meta name="author" content="{{ site.author }}" />
     <meta name="theme-color" content="#635bff" />
     <link rel="canonical" href="{{ page.url | absolute_url }}" />
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1291242080282540"
+      crossorigin="anonymous"
+    ></script>
     <script>
       (function () {
         try {
@@ -98,7 +103,7 @@
     <a class="skip-link" href="#main-content">Skip to content</a>
     {% include header.html %}
     <main id="main-content">{{ content }}</main>
-    {% include footer.html %}
+    {% include footer.html %} {% include about-modal.html %}
     <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
   </body>
 </html>

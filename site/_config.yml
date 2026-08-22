@@ -25,6 +25,10 @@ collections:
   learning:
     output: true
     permalink: /learn/:name/
+  roadmap:
+    output: false
+  changelog:
+    output: false
 
 defaults:
   - scope:

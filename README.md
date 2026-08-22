@@ -8,7 +8,7 @@ health is tracked over time (cancel vs upsell).
 Built to learn Salesforce's AI stack (Prompt Builder, Flow, Agentforce, Data Cloud) end to end —
 and to document the journey as a public learning site and a resume-ready case study.
 
-**[stripe.imswarnil.com](https://stripe.imswarnil.com)** — project overview · **[/learn](https://stripe.imswarnil.com/learn)** — the build log, phase by phase · **[/invite](https://stripe.imswarnil.com/invite)** — where to actually apply (a Salesforce Experience Cloud site, not this static site)
+**[stripe.imswarnil.com](https://stripe.imswarnil.com)** — project overview · **[/learn](https://stripe.imswarnil.com/learn)** — the build log, phase by phase · **[/roadmap](https://stripe.imswarnil.com/roadmap)** — what's implemented, in progress, and planned
 
 **The mental model:** Salesforce AI reasons over data it is _given_; it does not fetch the web.
 n8n fetches (scrapes) → hands clean text to Salesforce → Prompt Builder / Agentforce reason and
@@ -16,26 +16,25 @@ write results back. **Brain vs hands.**
 
 ## Tech stack
 
-| Layer                    | Tech                                                                                                               |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| Public site              | Jekyll (Ruby), GitHub Pages — homepage, `/learn`, `/invite` redirect                                               |
-| Public intake form       | Salesforce Experience Cloud (LWR site) + Guest User + a 4-step Flow                                                |
-| Reviewer UI              | Native Lightning Web Components — a full-width homepage, record editor, sidebar widgets, all Stripe-palette styled |
-| Data layer               | 4 custom objects + an `Account` record type, Field History Tracking on the fields that matter                      |
-| Automation               | Record-triggered Flow (stage routing, Account provisioning on approval)                                            |
-| Server-side logic        | One Apex class (`InviteHomeController`) for the aggregate queries LWC wire adapters can't do alone                 |
-| AI (planned/in progress) | Prompt Builder, Agentforce, Data Cloud — see [`agentforce.md`](./agentforce.md)                                    |
-| Crawling (planned)       | n8n — see [Integration architecture](#integration-architecture) below                                              |
-| Docs site                | Markdown collection, frontmatter-driven TOC + pagination via Liquid                                                |
-| Hosting/CI               | GitHub Pages, GitHub Actions                                                                                       |
+| Layer                    | Tech                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Public site              | Jekyll (Ruby), GitHub Pages — homepage, `/learn`, `/roadmap` (case study/portfolio site, no live form)                                                                                                                                                                                                                                                                                                             |
+| Public intake            | A Salesforce Experience Cloud (LWR) site with a Guest User profile and a 4-step Screen Flow — the public site used to also carry a `/invite` form that `fetch()`'d a Guest Apex REST endpoint directly, since removed to keep the Jekyll site a documentation/portfolio site rather than a live intake channel; the REST endpoint (`InviteRequestApi.cls`) still exists and is directly testable (see `doc.md` §2) |
+| Reviewer UI              | Native Lightning Web Components — a full-width homepage, record editor, sidebar widgets, all Stripe-palette styled                                                                                                                                                                                                                                                                                                 |
+| Data layer               | 4 custom objects (no standard Account/Contact) end to end, Field History Tracking on the fields that matter                                                                                                                                                                                                                                                                                                        |
+| Automation               | Record-triggered Flow (stage routing, Provisioned Account creation on approval)                                                                                                                                                                                                                                                                                                                                    |
+| Server-side logic        | One Apex class (`InviteHomeController`) for the aggregate queries LWC wire adapters can't do alone                                                                                                                                                                                                                                                                                                                 |
+| AI (planned/in progress) | Prompt Builder, Agentforce, Data Cloud — see [`agentforce.md`](./agentforce.md)                                                                                                                                                                                                                                                                                                                                    |
+| Crawling (planned)       | n8n — see [Integration architecture](#integration-architecture) below                                                                                                                                                                                                                                                                                                                                              |
+| Docs site                | Markdown collection, frontmatter-driven TOC + pagination via Liquid                                                                                                                                                                                                                                                                                                                                                |
+| Hosting/CI               | GitHub Pages, GitHub Actions                                                                                                                                                                                                                                                                                                                                                                                       |
 
 ## Data model
 
 ```mermaid
 erDiagram
-    Account ||--o{ Provisioned_Account__c : "Account__c"
-    Invite_Request__c }o--|| Account : "Converted_Account__c"
     Invite_Request__c ||--o{ Crawler_Finding__c : "Master-Detail"
+    Invite_Request__c ||--o{ Provisioned_Account__c : "Invite_Request__c"
     Provisioned_Account__c ||--o{ Usage_Snapshot__c : "Provisioned_Account__c"
 
     Invite_Request__c {
@@ -47,10 +46,6 @@ erDiagram
     Crawler_Finding__c {
         picklist Severity__c
         checkbox Fixable__c
-    }
-    Account {
-        recordtype Invite_Only_Customer "Type = Invite Only"
-        text Record_POC__c "backend tag, not on any layout"
     }
     Provisioned_Account__c {
         autonumber Inlet_Id__c
@@ -69,12 +64,12 @@ lives on the **Profile** (`layoutAssignments`), not the record type itself — m
 silently falls back to a minimal default layout even though the real one exists. See
 [`/learn`](https://stripe.imswarnil.com/learn) for the write-up of the day that bit us.
 
-`Account` reuses the standard object rather than a new custom one, since a provisioned customer
-_is_ an Account in every other sense (Opportunities, Contacts, the standard sales model all still
-apply). But this org hosts other unrelated POCs that also touch Account — so provisioned Accounts
-get their own **record type** (`Invite_Only_Customer`, defaulting `Type` to `Invite Only`) and a
-hidden **`Record_POC__c`** tag, so this app's data stays identifiable and filterable without
-colliding with anyone else's.
+The pipeline is three purpose-built custom objects end to end — no standard Account/Contact
+involved. Early builds provisioned a standard `Account` on approval, since a customer "is" an
+Account in the standard sales model — but this dev org hosts other unrelated POCs that also touch
+Account, and keeping this app's data 100% on its own objects turned out simpler than tagging and
+filtering around shared standard-object data. `Provisioned_Account__c` now looks straight back up
+to the `Invite_Request__c` it came from.
 
 ## Automation
 
@@ -87,9 +82,10 @@ standard record automation:
   a score, but testable by hand-editing the field today.
 - **`Fixable_Finding_Routes_Stage`** — a Crawler Finding marked `Fixable` + `Open` moves its
   _parent_ Invite Request to `Action Needed` automatically.
-- **`Provision_On_Approval`** — `Decision__c = Approved` creates the `Account` (tagged as above),
-  links it back via `Converted_Account__c`, and moves `Stage__c` to `Onboarding`. One click on the
-  reviewer's Decision Bar is the entire "approve and provision" path.
+- **`Provision_On_Approval`** — `Decision__c = Approved` creates a `Provisioned_Account__c` linked
+  back to the `Invite_Request__c` it came from, and moves `Stage__c` to `Onboarding`. One click on
+  the reviewer's Decision Bar is the entire "approve and provision" path — no standard Account
+  object involved anywhere in it.
 
 ## Integration architecture (n8n)
 
@@ -114,7 +110,7 @@ demoed against ~12 seeded sample records with zero paid calls or live scraping.
 - `force-app/` — Salesforce metadata for this app only (plain names, no prefix), scoped via
   `manifest/package.xml` — see [`instruction.md`](./instruction.md) §16. This org hosts other
   POCs (Coral Cloud, etc.); never retrieve with wildcards.
-- `site/` — the public Jekyll site (homepage, `/learn`, `/invite` redirect page). Deployed to
+- `site/` — the public Jekyll site (homepage, `/learn`, `/roadmap`). Deployed to
   GitHub Pages via `.github/workflows/pages.yml`.
 - `learning/` — markdown lessons, the single source of truth copied into `site/_learning/` at
   build time. Frontmatter-driven section grouping, sidebar TOC, and prev/next pagination.

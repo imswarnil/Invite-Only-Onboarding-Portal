@@ -1,6 +1,27 @@
 (function () {
   "use strict";
 
+  // --- Roadmap page: Board / Screenshots tabs ---
+  var tabs = document.querySelectorAll(".roadmap-tab");
+  if (tabs.length) {
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        var target = tab.getAttribute("data-tab");
+        document.querySelectorAll(".roadmap-tab").forEach(function (t) {
+          var isActive = t === tab;
+          t.classList.toggle("is-active", isActive);
+          t.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+        document.querySelectorAll(".roadmap-panel").forEach(function (panel) {
+          panel.classList.toggle(
+            "is-active",
+            panel.getAttribute("data-panel") === target
+          );
+        });
+      });
+    });
+  }
+
   // --- Primary nav: mobile hamburger toggle ---
   var header = document.querySelector(".site-header");
   var navToggle = header && header.querySelector(".nav-toggle");
@@ -8,6 +29,36 @@
     navToggle.addEventListener("click", function () {
       var isOpen = header.classList.toggle("is-open");
       navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+  }
+
+  // --- About modal: "?" button opens a global overlay ---
+  var aboutToggle = document.querySelector(".about-toggle");
+  var aboutModal = document.getElementById("about-modal");
+  if (aboutToggle && aboutModal) {
+    var aboutClose = aboutModal.querySelector(".about-modal-close");
+
+    function openAbout() {
+      aboutModal.classList.add("is-open");
+      if (aboutClose) aboutClose.focus();
+    }
+
+    function closeAbout() {
+      aboutModal.classList.remove("is-open");
+      aboutToggle.focus();
+    }
+
+    aboutToggle.addEventListener("click", openAbout);
+    if (aboutClose) aboutClose.addEventListener("click", closeAbout);
+
+    aboutModal.addEventListener("click", function (event) {
+      if (event.target === aboutModal) closeAbout();
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && aboutModal.classList.contains("is-open")) {
+        closeAbout();
+      }
     });
   }
 

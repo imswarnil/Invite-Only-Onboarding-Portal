@@ -2,310 +2,408 @@
 layout: default
 title: Project Overview
 description: >-
-  An invite-only onboarding back office built to learn Salesforce's AI stack, n8n automation,
-  and a Stripe-styled front end — project overview and docs.
+  An invite-only onboarding back office built on Salesforce — AI-assisted applicant scoring,
+  a reviewer console, and automated provisioning. Built and documented in the open.
 ---
 
-{% assign lessons = site.learning | sort: "order" %} {% assign first_lesson =
-lessons | first %}
+{% assign lessons = site.learning | sort: "order" %} {% assign implemented_count
+= site.roadmap | where: "status", "implemented" | size %} {% assign
+in_progress_count = site.roadmap | where: "status", "in-progress" | size %} {%
+assign planned_count = site.roadmap | where: "status", "planned" | size %} {%
+assign latest_changelog = site.changelog | sort: "date" | reverse %} {% capture
+newline %} {% endcapture %}
 
-<div class="doc-shell">
-  <button
-    type="button"
-    class="toc-toggle"
-    aria-expanded="false"
-    aria-controls="doc-toc"
-  >
-    {% include icon.html name="menu" size=16 %}<span>Lessons</span>
-  </button>
+<div class="landing">
+  <!-- ============================ HERO ============================ -->
+  <section class="landing-hero">
+    <p class="landing-eyebrow">
+      {% include icon.html name="sparkle" size=13 %}Built &amp; documented in
+      the open
+    </p>
+    <h1>An onboarding back office that decides who gets in</h1>
+    <p class="landing-hero-sub">
+      Someone applies. AI and a web crawler research and score them. A human
+      reviewer decides. Approved businesses get provisioned automatically — then
+      tracked month over month. Built solo on Salesforce, end to end.
+    </p>
+    <div class="landing-hero-actions">
+      <a class="btn btn-primary" href="{{ '/roadmap/' | relative_url }}">
+        {% include icon.html name="flow" size=16 %}<span>See what's built</span>
+      </a>
+      <a class="btn btn-secondary" href="{{ '/learn/' | relative_url }}">
+        {% include icon.html name="learn" size=16 %}<span
+          >Read the build log</span
+        >
+      </a>
+    </div>
 
-  <aside class="doc-sidebar">
-    <nav class="learn-toc" id="doc-toc" aria-label="Site">
-      {% include sidebar-nav.html %}
-    </nav>
-  </aside>
-
-  <main class="doc-main">
-    <article>
-      <p class="lesson-eyebrow">
-        {% include icon.html name="compass" size=15 %}Project Overview
-      </p>
-      <div class="lesson-content" id="lesson-content">
-        <h1>Invite Only Portal</h1>
-        <p>
-          An invite-only onboarding back office modeled on Stripe India's real
-          application flow, built to learn Salesforce's AI stack (Prompt
-          Builder, Flow, Agentforce, Data Cloud) end to end. This page is the
-          reference doc;
-          <a href="{{ first_lesson.url | relative_url }}">Learn in Public</a>
-          in the sidebar is the dated build log behind it.
-        </p>
-
-        <div class="stat-strip">
-          <div class="stat-strip-item">
-            <span class="stat-strip-num">4</span
-            ><span class="stat-strip-label">Custom objects</span>
-          </div>
-          <div class="stat-strip-item">
-            <span class="stat-strip-num">63</span
-            ><span class="stat-strip-label">Custom fields</span>
-          </div>
-          <div class="stat-strip-item">
-            <span class="stat-strip-num">4</span
-            ><span class="stat-strip-label">Flows</span>
-          </div>
-          <div class="stat-strip-item">
-            <span class="stat-strip-num">4</span
-            ><span class="stat-strip-label">Permission sets</span>
-          </div>
-          <div class="stat-strip-item">
-            <span class="stat-strip-num">27</span
-            ><span class="stat-strip-label">LWC components</span>
-          </div>
-          <div class="stat-strip-item">
-            <span class="stat-strip-num">{{ lessons.size }}</span
-            ><span class="stat-strip-label">Lessons logged</span>
-          </div>
-        </div>
-
-        <h2>What it does</h2>
-        <p>
-          A person applies &rarr; an AI plus a web crawler researches and scores
-          them &rarr; a human reviewer decides &rarr; approved businesses get
-          provisioned and supported &rarr; the invited cohort's performance gets
-          tracked over time (cancel vs. upsell). It's not a real product — it's
-          a realistic-enough scenario to force every Salesforce concept a real
-          onboarding system would actually need.
-        </p>
-
-        <h2>Architecture: the full flow</h2>
-        <p>
-          Salesforce AI reasons over data it is <em>given</em>; it does not
-          fetch the web. <strong>n8n</strong> fetches (scrapes) &rarr; hands
-          clean text to Salesforce &rarr; <strong>Prompt Builder</strong> /
-          <strong>Agentforce</strong> reason and write results back &rarr; an
-          approved applicant becomes a provisioned account.
-        </p>
-        <p class="hero-illustration">
-          <img
-            src="{{ '/assets/images/site-flow.svg' | relative_url }}"
-            alt="Sign up and stand up the org, model the data, secure it with permissions, crawl with n8n, reason with the AI layer, ground with Data Cloud, then provision the account"
-            width="1080"
-            height="260"
-          />
-        </p>
-
-        <h2>Tools in this build</h2>
-        <div class="tool-strip">
-          <div class="tool-strip-icons">
-            <span class="tool-strip-item tool-strip-item--salesforce"
-              >{% include icon.html name="salesforce-logo" size=32 %}<span
-                >Salesforce</span
-              ></span
-            >
-            <span class="tool-strip-item tool-strip-item--salesforce"
-              >{% include icon.html name="chat" size=20 %}<span
-                >Prompt Builder</span
-              ></span
-            >
-            <span class="tool-strip-item tool-strip-item--salesforce"
-              >{% include icon.html name="agent" size=20 %}<span
-                >Agentforce</span
-              ></span
-            >
-            <span class="tool-strip-item tool-strip-item--salesforce"
-              >{% include icon.html name="swap" size=20 %}<span
-                >Data Cloud</span
-              ></span
-            >
-            <span class="tool-strip-item tool-strip-item--n8n"
-              >{% include icon.html name="n8n-logo" size=28 %}<span
-                >n8n</span
-              ></span
-            >
-            <span class="tool-strip-item tool-strip-item--jekyll"
-              >{% include icon.html name="theme" size=20 %}<span
-                >Jekyll</span
-              ></span
-            >
-            <span class="tool-strip-item tool-strip-item--github"
-              >{% include icon.html name="github-logo" size=20 %}<span
-                >GitHub Pages</span
-              ></span
-            >
-          </div>
-        </div>
-
-        <h2>The journey, start to finish</h2>
-        <ol class="journey-timeline">
-          <li class="is-done">
-            {% include icon.html name="signup" size=18 %}
-            <div>
-              <strong>Sign up &amp; stand up the org</strong
-              ><span>Free Developer Edition org, Agentforce enabled.</span>
-            </div>
-          </li>
-          <li class="is-done">
-            {% include icon.html name="data" size=18 %}
-            <div>
-              <strong>Data modeling &amp; security</strong
-              ><span
-                >Custom objects, record types, permission sets, Guest User
-                access.</span
-              >
-            </div>
-          </li>
-          <li class="is-done">
-            {% include icon.html name="gear" size=18 %}
-            <div>
-              <strong>Process &amp; UI</strong
-              ><span
-                >Action bars, quick actions, the layout-assignment trap.</span
-              >
-            </div>
-          </li>
-          <li class="is-done">
-            {% include icon.html name="theme" size=18 %}
-            <div>
-              <strong>Front-end &amp; Stripe-styled theme</strong
-              ><span>This Jekyll site: tokens, type, components.</span>
-            </div>
-          </li>
-          <li class="is-done">
-            {% include icon.html name="flow" size=18 %}
-            <div>
-              <strong>Connecting n8n</strong
-              ><span
-                >The "hands" that fetch the web for Salesforce's "brain."</span
-              >
-            </div>
-          </li>
-          <li class="is-done">
-            {% include icon.html name="chat" size=18 %}
-            <div>
-              <strong>Prompt Builder &amp; Agentforce</strong
-              ><span>Scoring applicants, a conversational reviewer agent.</span>
-            </div>
-          </li>
-          <li class="is-done">
-            {% include icon.html name="swap" size=18 %}
-            <div>
-              <strong>Data Cloud</strong
-              ><span
-                >Why it's not needed yet — and what would change that.</span
-              >
-            </div>
-          </li>
-        </ol>
-
-        <h2>Salesforce concepts learned building this</h2>
-        <div class="concept-tags">
-          <span class="concept-tag"
-            >{% include icon.html name="data" size=13 %}Custom objects &amp;
-            record types</span
-          >
-          <span class="concept-tag"
-            >{% include icon.html name="swap" size=13 %}Master-Detail vs.
-            Lookup</span
-          >
-          <span class="concept-tag"
-            >{% include icon.html name="gear" size=13 %}Dependent
-            picklists</span
-          >
-          <span class="concept-tag"
-            >{% include icon.html name="shield" size=13 %}Permission sets &amp;
-            FLS</span
-          >
-          <span class="concept-tag"
-            >{% include icon.html name="shield" size=13 %}Secure Guest User
-            Record Access</span
-          >
-          <span class="concept-tag"
-            >{% include icon.html name="gear" size=13 %}platformActionList &amp;
-            Quick Actions</span
-          >
-          <span class="concept-tag"
-            >{% include icon.html name="gear" size=13 %}Layout assignments</span
-          >
-          <span class="concept-tag"
-            >{% include icon.html name="flow" size=13 %}Flow
-            (multi-screen)</span
-          >
-          <span class="concept-tag"
-            >{% include icon.html name="org" size=13 %}Experience Cloud &amp;
-            Guest Users</span
-          >
-          <span class="concept-tag"
-            >{% include icon.html name="chat" size=13 %}Prompt Builder</span
-          >
-          <span class="concept-tag"
-            >{% include icon.html name="agent" size=13 %}Agentforce</span
-          >
-          <span class="concept-tag"
-            >{% include icon.html name="swap" size=13 %}Data Cloud</span
-          >
-        </div>
-
-        <h2>Why I built this</h2>
-        <p>
-          I wanted to learn Salesforce's AI stack the way I'd actually use it on
-          the job — not through isolated Trailhead modules, but by shipping one
-          real, opinionated product end to end. Modeling it on Stripe India's
-          public invite-only flow gave the build real constraints (a form, a
-          review step, provisioning, retention) instead of a toy CRUD app.
-        </p>
-        <p>
-          Reading docs teaches vocabulary. It doesn't teach the fifteen small
-          decisions — record type vs. object, Master-Detail vs. Lookup,
-          permission set vs. profile edit — that only show up once you're
-          modeling something with real constraints. Writing every gotcha down
-          the moment it happened, in
-          <a href="{{ first_lesson.url | relative_url }}">Learn in Public</a>,
-          was the fastest way to actually retain the platform instead of just
-          recognizing the terms.
-        </p>
-
-        <h2 id="hire">Hiring a GTM engineer?</h2>
-        <div class="hire-banner hire-banner-standalone">
-          <div class="hire-banner-icon">
-            {% include icon.html name="briefcase" size=24 %}
-          </div>
-          <div>
-            <p style="margin: 0">
-              I'm the person who built everything on this site &mdash; the data
-              model, the AI layer, the automation, and the front end you're
-              reading right now &mdash; solo, end to end. GTM engineering is
-              exactly this: modeling the funnel in a CRM, wiring the automation
-              that moves a record through it, and putting AI where it actually
-              helps. Full resume and other projects live on my main site.
-            </p>
-          </div>
-          <a
-            class="btn btn-primary"
-            href="{{ site.hire_me_url }}"
-            target="_blank"
-            rel="noopener"
-          >
-            {% include icon.html name="external" size=16 %}<span
-              >imswarnil.com/about</span
-            >
-          </a>
-        </div>
-
-        <p class="disclaimer">{{ site.disclaimer }}</p>
+    <div class="browser-frame">
+      <div class="browser-frame-bar" aria-hidden="true">
+        <span class="browser-frame-dot"></span>
+        <span class="browser-frame-dot"></span>
+        <span class="browser-frame-dot"></span>
+        <span class="browser-frame-url"
+          >Invite Only Onboarding — Reviewer dashboard</span
+        >
       </div>
-    </article>
-  </main>
+      <img
+        src="{{ '/assets/images/app-mockup.svg' | relative_url }}"
+        alt="The reviewer dashboard: pipeline stat tiles, a stage funnel chart, an applicant-type breakdown, and a list of requests ready to provision"
+        width="1000"
+        height="600"
+      />
+    </div>
+  </section>
 
-  <aside class="doc-aside">
-    <nav
-      class="on-this-page"
-      aria-label="On this page"
-      data-target="lesson-content"
-    >
-      <p class="learn-toc-heading">On this page</p>
-      <ol class="on-this-page-list" aria-live="polite"></ol>
-    </nav>
-    {% include ad-slot.html slot="home-aside" %}
-  </aside>
+  <!-- ============================ STATS ============================ -->
+  <section class="landing-band landing-band--tint">
+    <div class="landing-inner">
+      <ul class="landing-stats">
+        <li class="landing-stat"><b>4</b> custom objects</li>
+        <li class="landing-stat"><b>63</b> custom fields</li>
+        <li class="landing-stat"><b>4</b> Flows</li>
+        <li class="landing-stat"><b>4</b> permission sets</li>
+        <li class="landing-stat"><b>27</b> LWC components</li>
+        <li class="landing-stat"><b>{{ lessons.size }}</b> lessons logged</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================ HOW IT WORKS ============================ -->
+  <section class="landing-band">
+    <div class="landing-inner">
+      <div class="landing-head">
+        <p class="lesson-eyebrow" style="justify-content: center">
+          {% include icon.html name="target" size=14 %}How it works
+        </p>
+        <h2>Four stages, one record moving through them</h2>
+        <p>
+          Not a real product — a realistic-enough scenario to force every
+          Salesforce concept a real onboarding system would actually need.
+        </p>
+      </div>
+
+      <div class="step-grid">
+        <div class="step-card">
+          <span class="step-card-num">1</span>
+          <p class="step-card-title">
+            {% include icon.html name="signup" size=16 %}Apply
+          </p>
+          <p>
+            Someone requests an invite — no login, no account. The submission
+            lands as an Invite Request.
+          </p>
+        </div>
+        <div class="step-card">
+          <span class="step-card-num">2</span>
+          <p class="step-card-title">
+            {% include icon.html name="sparkle" size=16 %}Research &amp; score
+          </p>
+          <p>
+            A crawler fetches what they published; the AI layer reads it and
+            writes a fit score and a short brief.
+          </p>
+        </div>
+        <div class="step-card">
+          <span class="step-card-num">3</span>
+          <p class="step-card-title">
+            {% include icon.html name="check" size=16 %}Decide
+          </p>
+          <p>
+            A human reviewer approves, waitlists, or rejects. The AI recommends
+            — it never decides.
+          </p>
+        </div>
+        <div class="step-card">
+          <span class="step-card-num">4</span>
+          <p class="step-card-title">
+            {% include icon.html name="trend" size=16 %}Provision &amp; track
+          </p>
+          <p>
+            Approval auto-creates the account, then monthly usage tells you if
+            they grew or churned.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ SCREENSHOTS ============================ -->
+  <section class="landing-band landing-band--tint">
+    <div class="landing-inner">
+      <div class="landing-head">
+        <p class="lesson-eyebrow" style="justify-content: center">
+          {% include icon.html name="article" size=14 %}Inside the build
+        </p>
+        <h2>What it actually looks like</h2>
+        <p>
+          Native Lightning Web Components for the reviewer, a public Jekyll site
+          for everything else.
+        </p>
+      </div>
+
+      <div class="shot-grid">
+        <figure class="shot-card" style="margin: 0">
+          <div class="shot-card-canvas">
+            {% include icon.html name="gauge" size=30 %}
+            <span class="shot-card-path">screenshots/dashboard.png</span>
+          </div>
+          <figcaption class="shot-card-body">
+            <strong>Reviewer dashboard</strong>
+            <span
+              >Bento grid: stat tiles, Chart.js funnel, pipeline aging.</span
+            >
+          </figcaption>
+        </figure>
+        <figure class="shot-card" style="margin: 0">
+          <div class="shot-card-canvas">
+            {% include icon.html name="stack" size=30 %}
+            <span class="shot-card-path">screenshots/record-page.png</span>
+          </div>
+          <figcaption class="shot-card-body">
+            <strong>Invite Request record</strong>
+            <span>3-column workspace: editor, timeline, quick actions.</span>
+          </figcaption>
+        </figure>
+        <figure class="shot-card" style="margin: 0">
+          <div class="shot-card-canvas">
+            {% include icon.html name="chat" size=30 %}
+            <span class="shot-card-path">screenshots/prompt-builder.png</span>
+          </div>
+          <figcaption class="shot-card-body">
+            <strong>Prompt Builder brief</strong>
+            <span>A grounded template writing a decision-ready summary.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ ARCHITECTURE ============================ -->
+  <section class="landing-band">
+    <div class="landing-inner">
+      <div class="landing-head">
+        <p class="lesson-eyebrow" style="justify-content: center">
+          {% include icon.html name="flow" size=14 %}Architecture
+        </p>
+        <h2>Brain vs. hands</h2>
+        <p>
+          Salesforce's AI reasons over data it is <em>given</em> — it never
+          fetches the web. n8n does the fetching, hands back clean text, and the
+          AI layer writes results onto the record.
+        </p>
+      </div>
+      <img
+        class="home-section-diagram"
+        src="{{ '/assets/images/site-flow.svg' | relative_url }}"
+        alt="Sign up and stand up the org, model the data, secure it with permissions, crawl with n8n, reason with the AI layer, ground with Data Cloud, then provision the account"
+        width="1080"
+        height="260"
+      />
+
+      <div
+        class="tool-strip"
+        style="text-align: center; border-top: none; padding-bottom: 0"
+      >
+        <div class="tool-strip-icons" style="justify-content: center">
+          <span class="tool-strip-item tool-strip-item--salesforce"
+            >{% include icon.html name="salesforce-logo" size=32 %}<span
+              >Salesforce</span
+            ></span
+          >
+          <span class="tool-strip-item tool-strip-item--salesforce"
+            >{% include icon.html name="chat" size=20 %}<span
+              >Prompt Builder</span
+            ></span
+          >
+          <span class="tool-strip-item tool-strip-item--salesforce"
+            >{% include icon.html name="agent" size=20 %}<span
+              >Agentforce</span
+            ></span
+          >
+          <span class="tool-strip-item tool-strip-item--salesforce"
+            >{% include icon.html name="swap" size=20 %}<span
+              >Data Cloud</span
+            ></span
+          >
+          <span class="tool-strip-item tool-strip-item--n8n"
+            >{% include icon.html name="n8n-logo" size=28 %}<span
+              >n8n</span
+            ></span
+          >
+          <span class="tool-strip-item tool-strip-item--jekyll"
+            >{% include icon.html name="theme" size=20 %}<span
+              >Jekyll</span
+            ></span
+          >
+          <span class="tool-strip-item tool-strip-item--github"
+            >{% include icon.html name="github-logo" size=20 %}<span
+              >GitHub Pages</span
+            ></span
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ STATUS ============================ -->
+  <section class="landing-band landing-band--tint" id="roadmap">
+    <div class="landing-inner">
+      <div class="landing-head">
+        <p class="lesson-eyebrow" style="justify-content: center">
+          {% include icon.html name="flow" size=14 %}Status
+        </p>
+        <h2>Kept honest, not a highlight reel</h2>
+        <p>
+          What's still a plan, what's half-done, and what actually ships today.
+        </p>
+      </div>
+
+      <div class="home-roadmap-counts">
+        <a
+          class="home-roadmap-count home-roadmap-count--planned"
+          href="{{ '/roadmap/' | relative_url }}"
+        >
+          <span class="home-roadmap-count-head">
+            {% include icon.html name="rocket" size=14 %}<span>Planned</span>
+          </span>
+          <span class="home-roadmap-count-num">{{ planned_count }}</span>
+        </a>
+        <a
+          class="home-roadmap-count home-roadmap-count--in-progress"
+          href="{{ '/roadmap/' | relative_url }}"
+        >
+          <span class="home-roadmap-count-head">
+            {% include icon.html name="gear" size=14 %}<span>In progress</span>
+          </span>
+          <span class="home-roadmap-count-num">{{ in_progress_count }}</span>
+        </a>
+        <a
+          class="home-roadmap-count home-roadmap-count--implemented"
+          href="{{ '/roadmap/' | relative_url }}"
+        >
+          <span class="home-roadmap-count-head">
+            {% include icon.html name="check" size=14 %}<span>Implemented</span>
+          </span>
+          <span class="home-roadmap-count-num">{{ implemented_count }}</span>
+        </a>
+      </div>
+
+      <ol class="roadmap-changelog" style="margin-top: 2rem">
+        {% for entry in latest_changelog limit: 2 %}
+        <li>
+          <p class="roadmap-changelog-date">
+            {{ entry.date | date: "%B %-d, %Y" }}
+          </p>
+          <h3>{{ entry.title }}</h3>
+          <p class="roadmap-changelog-body">{{ entry.summary }}</p>
+        </li>
+        {% endfor %}
+      </ol>
+
+      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap">
+        <a class="btn btn-secondary" href="{{ '/roadmap/' | relative_url }}">
+          {% include icon.html name="caret-right" size=14 %}<span
+            >Full roadmap</span
+          >
+        </a>
+        <a
+          class="btn btn-secondary"
+          href="{{ '/roadmap/#changelog' | relative_url }}"
+        >
+          {% include icon.html name="caret-right" size=14 %}<span
+            >Full changelog</span
+          >
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ LEARN ============================ -->
+  <section class="landing-band" id="learn">
+    <div class="landing-inner">
+      <div class="landing-head">
+        <p class="lesson-eyebrow" style="justify-content: center">
+          {% include icon.html name="learn" size=14 %}Learn in Public
+        </p>
+        <h2>Every gotcha, written down the day it happened</h2>
+        <p>
+          {{ lessons.size }} lessons, each ending in the Salesforce vocabulary
+          it actually earned.
+        </p>
+      </div>
+
+      <div class="course-grid">
+        {% for lesson in lessons limit: 6 %}
+        <a class="course-card" href="{{ lesson.url | relative_url }}">
+          <span class="course-card-node">{{ forloop.index }}</span>
+          <span class="course-card-icon">
+            {% include lesson-thumb.html section=lesson.section %}
+          </span>
+          <p class="course-card-section">{{ lesson.section }}</p>
+          <h3>{{ lesson.title }}</h3>
+          {%- comment -%} Drop the first line (the lesson's own H1) so the card
+          blurb starts at the body copy. Split on a newline rather than a
+          literal closing tag — a raw tag in an attribute-less Liquid filter
+          breaks prettier. {%- endcomment -%} {% assign body_lines =
+          lesson.content | strip_html | strip | split: newline %}
+          <p>
+            {{ body_lines | slice: 1, 400 | join: " " | strip | truncate: 90 }}
+          </p>
+          <span class="btn btn-secondary">
+            {% include icon.html name="caret-right" size=13 %}<span
+              >Start lesson</span
+            >
+          </span>
+        </a>
+        {% endfor %}
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem">
+        <a class="btn btn-secondary" href="{{ '/learn/' | relative_url }}">
+          {% include icon.html name="learn" size=14 %}<span
+            >All {{ lessons.size }} lessons</span
+          >
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CTA ============================ -->
+  <section class="landing-band landing-cta" id="hire">
+    <div class="landing-inner landing-inner--narrow">
+      <p class="landing-eyebrow">
+        {% include icon.html name="briefcase" size=13 %}Hiring a GTM engineer?
+      </p>
+      <h2 style="margin-top: 1rem">I built every layer of this, solo</h2>
+      <p>
+        The data model, the AI layer, the automation, and the front end you're
+        reading right now. GTM engineering is exactly this: modeling the funnel
+        in a CRM, wiring the automation that moves a record through it, and
+        putting AI where it actually helps.
+      </p>
+      <div class="landing-hero-actions">
+        <a
+          class="btn btn-primary"
+          href="{{ site.hire_me_url }}"
+          target="_blank"
+          rel="noopener"
+        >
+          {% include icon.html name="external" size=16 %}<span
+            >imswarnil.com/about</span
+          >
+        </a>
+        <a
+          class="btn-github"
+          href="https://github.com/{{ site.github_repo }}"
+          target="_blank"
+          rel="noopener"
+        >
+          {% include icon.html name="github-logo" size=16 %}<span
+            >View on GitHub</span
+          >
+        </a>
+      </div>
+    </div>
+  </section>
 </div>

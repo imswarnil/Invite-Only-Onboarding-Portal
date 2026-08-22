@@ -1,0 +1,201 @@
+---
+layout: default
+title: Roadmap
+permalink: /roadmap/
+description: >-
+  What's implemented, what's in progress, and what's still planned in the Invite Only Portal —
+  plus a running changelog. Written for anyone skimming this as a case study, not just other
+  engineers.
+---
+
+{% assign roadmap = site.roadmap | sort: "order" %} {% assign implemented =
+roadmap | where: "status", "implemented" %} {% assign in_progress = roadmap |
+where: "status", "in-progress" %} {% assign planned = roadmap | where: "status",
+"planned" %} {% assign changelog = site.changelog | sort: "date" | reverse %}
+
+<div class="container roadmap-shell">
+  <p class="lesson-eyebrow">
+    {% include icon.html name="flow" size=14 %}Roadmap
+  </p>
+  <h1 style="font-size: 1.6rem; margin: 0 0 0.5rem">
+    What's built, what's in progress, what's planned
+  </h1>
+  <p style="color: var(--ink-soft); max-width: 680px; margin: 0 0 1.5rem">
+    This project is being built and documented in the open while I learn
+    Salesforce's AI stack and move toward GTM engineering — modeling a funnel in
+    a CRM, wiring the automation that moves a record through it, and putting AI
+    where it actually helps. This page is the honest status of that build:
+    what's real and working today, what's half-done, and what's still just a
+    plan. See
+    <a href="{{ '/' | relative_url }}">Project Overview</a> for the
+    architecture, and
+    <a href="{{ '/learn/' | relative_url }}">Learn in Public</a>
+    for the dated log of how each piece got built.
+  </p>
+
+  <div class="roadmap-tabs" role="tablist">
+    <button
+      type="button"
+      class="roadmap-tab is-active"
+      data-tab="board"
+      role="tab"
+      aria-selected="true"
+    >
+      {% include icon.html name="flow" size=15 %}<span>Board</span>
+    </button>
+    <button
+      type="button"
+      class="roadmap-tab"
+      data-tab="screenshots"
+      role="tab"
+      aria-selected="false"
+    >
+      {% include icon.html name="article" size=15 %}<span>Screenshots</span>
+    </button>
+  </div>
+
+  <div class="roadmap-panel is-active" data-panel="board">
+    <div class="roadmap-board">
+      <div class="roadmap-col">
+        <h2 class="roadmap-col-heading roadmap-col-heading--planned">
+          {% include icon.html name="rocket" size=16 %}Planned
+          <span class="roadmap-col-count">{{ planned.size }}</span>
+        </h2>
+        {% for item in planned %}
+        <article class="roadmap-card roadmap-card--planned">
+          <span class="roadmap-card-badge"
+            >{% include icon.html name="rocket" size=13 %}</span
+          >
+          <p class="roadmap-card-area">{{ item.area }}</p>
+          <h3>{{ item.title }}</h3>
+          <p class="roadmap-card-summary">{{ item.summary }}</p>
+        </article>
+        {% endfor %}
+      </div>
+
+      <div class="roadmap-col">
+        <h2 class="roadmap-col-heading roadmap-col-heading--in-progress">
+          {% include icon.html name="gear" size=16 %}In progress
+          <span class="roadmap-col-count">{{ in_progress.size }}</span>
+        </h2>
+        {% for item in in_progress %}
+        <article class="roadmap-card roadmap-card--in-progress">
+          <span class="roadmap-card-badge"
+            >{% include icon.html name="gear" size=13 %}</span
+          >
+          <p class="roadmap-card-area">{{ item.area }}</p>
+          <h3>{{ item.title }}</h3>
+          <p class="roadmap-card-summary">{{ item.summary }}</p>
+        </article>
+        {% endfor %}
+      </div>
+
+      <div class="roadmap-col">
+        <h2 class="roadmap-col-heading roadmap-col-heading--implemented">
+          {% include icon.html name="check" size=16 %}Implemented
+          <span class="roadmap-col-count">{{ implemented.size }}</span>
+        </h2>
+        {% for item in implemented %}
+        <article class="roadmap-card roadmap-card--implemented">
+          <span class="roadmap-card-badge"
+            >{% include icon.html name="check" size=13 %}</span
+          >
+          <p class="roadmap-card-area">{{ item.area }}</p>
+          <h3>{{ item.title }}</h3>
+          <p class="roadmap-card-summary">{{ item.summary }}</p>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+
+    <h2 id="changelog" style="margin-top: 3rem">Changelog</h2>
+    <p style="color: var(--ink-soft); margin: 0 0 1.5rem">
+      Grouped by day, newest first.
+    </p>
+    <ol class="roadmap-changelog">
+      {% for entry in changelog %}
+      <li>
+        <p class="roadmap-changelog-date">
+          {{ entry.date | date: "%B %-d, %Y" }}
+        </p>
+        <h3>{{ entry.title }}</h3>
+        <p class="roadmap-changelog-body">{{ entry.summary }}</p>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+
+  <div class="roadmap-panel" data-panel="screenshots">
+    <p style="color: var(--ink-soft); margin: 0 0 1.5rem">
+      Real screenshots go in <code>site/assets/images/screenshots/</code> — drop
+      a file in and point the <code>src</code> below at it. Placeholders for
+      now.
+    </p>
+    <div class="screenshot-grid">
+      <div class="screenshot-placeholder">
+        {% include icon.html name="compass" size=28 %}
+        <span class="screenshot-placeholder-label">Homepage</span>
+        <span class="screenshot-placeholder-path"
+          >screenshots/homepage.png</span
+        >
+      </div>
+      <div class="screenshot-placeholder">
+        {% include icon.html name="gauge" size=28 %}
+        <span class="screenshot-placeholder-label">Reviewer dashboard</span>
+        <span class="screenshot-placeholder-path"
+          >screenshots/dashboard.png</span
+        >
+      </div>
+      <div class="screenshot-placeholder">
+        {% include icon.html name="article" size=28 %}
+        <span class="screenshot-placeholder-label"
+          >Invite Request record page</span
+        >
+        <span class="screenshot-placeholder-path"
+          >screenshots/record-page.png</span
+        >
+      </div>
+      <div class="screenshot-placeholder">
+        {% include icon.html name="chat" size=28 %}
+        <span class="screenshot-placeholder-label">Prompt Builder brief</span>
+        <span class="screenshot-placeholder-path"
+          >screenshots/prompt-builder.png</span
+        >
+      </div>
+      <div class="screenshot-placeholder">
+        {% include icon.html name="flow" size=28 %}
+        <span class="screenshot-placeholder-label">Roadmap page</span>
+        <span class="screenshot-placeholder-path">screenshots/roadmap.png</span>
+      </div>
+      <div class="screenshot-placeholder">
+        {% include icon.html name="learn" size=28 %}
+        <span class="screenshot-placeholder-label">Learn in Public</span>
+        <span class="screenshot-placeholder-path">screenshots/learn.png</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hire-banner hire-banner-standalone">
+    <div class="hire-banner-icon">
+      {% include icon.html name="briefcase" size=24 %}
+    </div>
+    <div>
+      <p style="margin: 0">
+        If this build reads like the way you'd want a GTM engineer to think
+        about your funnel — model it in the CRM, automate the handoffs, put AI
+        where it earns its keep — the full resume and other projects are on my
+        main site.
+      </p>
+    </div>
+    <a
+      class="btn btn-primary"
+      href="{{ site.hire_me_url }}"
+      target="_blank"
+      rel="noopener"
+    >
+      {% include icon.html name="external" size=16 %}<span
+        >imswarnil.com/about</span
+      >
+    </a>
+  </div>
+</div>

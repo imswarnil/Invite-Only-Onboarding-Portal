@@ -1,12 +1,33 @@
-{%- comment -%} AdSense placeholder only — no publisher/slot ID wired up yet.
-Usage: {% include ad-slot.html slot="home-aside" %} {%- endcomment -%}
-<div
-  class="ad-slot"
-  data-ad-slot="{{ include.slot | default: 'default' }}"
-  aria-label="Advertisement placeholder"
->
-  <span class="ad-slot-label">Advertisement</span>
-  <span class="ad-slot-placeholder"
-    >Ad space reserved &mdash; AdSense not yet connected</span
-  >
+{%- comment -%} Real AdSense units (client ca-pub-1291242080282540). Usage: {%
+include ad-slot.html slot="sidebar" %} -> Small Skyscraper 160x600, for a narrow
+rail {% include ad-slot.html slot="in-article" %} -> In-article responsive unit,
+inside content {%- endcomment -%} {%- assign ad_client =
+"ca-pub-1291242080282540" -%} {%- if include.slot == "in-article" -%}
+<div class="in-article-ad">
+  <span class="in-article-ad-label">Advertisement</span>
+  <ins
+    class="adsbygoogle"
+    style="display: block; text-align: center"
+    data-ad-layout="in-article"
+    data-ad-format="fluid"
+    data-ad-client="{{ ad_client }}"
+    data-ad-slot="6501428979"
+  ></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
 </div>
+{%- else -%}
+<div class="ad-slot-wrap">
+  <span class="ad-slot-label">Advertisement</span>
+  <ins
+    class="adsbygoogle"
+    style="display: inline-block; width: 160px; height: 600px"
+    data-ad-client="{{ ad_client }}"
+    data-ad-slot="9488965956"
+  ></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+{%- endif -%}
