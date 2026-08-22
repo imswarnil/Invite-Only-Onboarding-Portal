@@ -1,0 +1,96 @@
+.stage-progress-bar {
+  padding: 0.85rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid #e3e8ee;
+}
+
+.stage-track {
+  display: flex;
+  align-items: flex-start;
+  overflow-x: auto;
+}
+
+.stage-step-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 90px;
+}
+
+.stage-step-wrap:not(.is-first)::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: -50%;
+  width: 100%;
+  height: 2px;
+  background: #e3e8ee;
+  z-index: 0;
+}
+
+.stage-step {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.stage-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e3e8ee;
+  border: 2px solid #e3e8ee;
+}
+
+.stage-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #a8a8a8;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.stage-step.is-complete .stage-dot {
+  background: #635bff;
+  border-color: #635bff;
+}
+
+.stage-step.is-complete .stage-label {
+  color: #635bff;
+}
+
+.stage-step-wrap:has(.is-complete) + .stage-step-wrap::before {
+  background: #635bff;
+}
+
+.stage-step.is-current .stage-dot {
+  background: #fff;
+  border-color: #635bff;
+  box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.2);
+}
+
+.stage-step.is-current .stage-label {
+  color: #0a2540;
+  font-weight: 700;
+}
+
+.off-ramp-banner {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.off-ramp-banner.is-waitlisted {
+  background: #fff4e5;
+  color: #b95000;
+}
+
+.off-ramp-banner.is-rejected {
+  background: #fef3f2;
+  color: #b42318;
+}

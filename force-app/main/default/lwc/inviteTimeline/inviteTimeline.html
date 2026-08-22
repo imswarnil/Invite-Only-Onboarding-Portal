@@ -15,9 +15,11 @@
           <span class="timeline-dot"></span>
           <div class="timeline-body">
             <p class="timeline-field">{entry.fieldLabel}</p>
-            <p class="timeline-change">
-              {entry.oldValue} &rarr; {entry.newValue}
-            </p>
+            <template if:false={entry.isCreated}>
+              <p class="timeline-change">
+                {entry.oldValue} &rarr; {entry.newValue}
+              </p>
+            </template>
             <p class="timeline-meta">
               <lightning-formatted-date-time
                 value={entry.changedDate}

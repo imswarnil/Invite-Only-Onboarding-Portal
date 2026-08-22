@@ -1,0 +1,17 @@
+<template>
+  <div class="slds-box slds-box_x-small usage-trend-sparkline">
+    <h3 class="slds-text-heading_small slds-m-bottom_small">Volume Trend</h3>
+    <template if:true={errorMessage}>
+      <p class="slds-text-color_error slds-text-body_small">{errorMessage}</p>
+    </template>
+    <template if:false={hasData}>
+      <p class="slds-text-color_weak slds-text-body_small">No usage snapshots yet.</p>
+    </template>
+    <template if:true={hasData}>
+      <svg viewBox="0 0 160 48" class="sparkline-svg" preserveAspectRatio="none">
+        <polyline points={points} class="sparkline-line"></polyline>
+      </svg>
+      <p class="sparkline-value">₹{latestVolume} <span>latest month</span></p>
+    </template>
+  </div>
+</template>

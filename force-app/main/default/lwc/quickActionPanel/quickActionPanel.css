@@ -1,0 +1,90 @@
+.quick-action-panel {
+  background: #fff;
+  border: 1px solid #e3e8ee;
+  border-radius: 12px;
+  padding: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.panel-heading {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0a2540;
+}
+
+.current-decision {
+  margin: -0.2rem 0 0.4rem;
+  font-size: 0.78rem;
+  color: #425466;
+}
+
+.action-tile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid #e3e8ee;
+  border-radius: 10px;
+  background: #fff;
+  padding: 0.75rem;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.action-tile:hover {
+  border-color: #635bff;
+}
+
+.action-tile:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.tile-icon-wrap {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tile-icon-success {
+  background: #eaf8ee;
+  --slds-c-icon-color-foreground-default: #04844b;
+}
+
+.tile-icon-warning {
+  background: #fff4e5;
+  --slds-c-icon-color-foreground-default: #b95000;
+}
+
+.tile-icon-error {
+  background: #fef3f2;
+  --slds-c-icon-color-foreground-default: #b42318;
+}
+
+.tile-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.tile-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0a2540;
+}
+
+.tile-caption {
+  font-size: 0.72rem;
+  color: #706e6b;
+}
+
+.action-tile.is-active {
+  background: #f5f4ff;
+  border-color: #635bff;
+}

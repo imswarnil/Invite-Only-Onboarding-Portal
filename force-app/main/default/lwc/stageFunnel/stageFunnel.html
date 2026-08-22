@@ -6,14 +6,8 @@
     <template if:true={errorMessage}>
       <p class="slds-text-color_error slds-text-body_small">{errorMessage}</p>
     </template>
-    <template for:each={stageData} for:item="row">
-      <div class="funnel-row" key={row.stage}>
-        <span class="funnel-label">{row.stage}</span>
-        <div class="funnel-track">
-          <div class="funnel-bar" style={row.widthStyle}></div>
-        </div>
-        <span class="funnel-value">{row.total}</span>
-      </div>
-    </template>
+    <div class="chart-container">
+      <canvas></canvas>
+    </div>
   </div>
 </template>

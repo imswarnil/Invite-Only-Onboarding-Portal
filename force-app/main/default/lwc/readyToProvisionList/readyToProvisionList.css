@@ -1,0 +1,49 @@
+.ready-to-provision-list {
+  padding: 1rem 1.25rem;
+}
+
+.widget-title-icon {
+  margin-right: 0.35rem;
+  vertical-align: -3px;
+}
+
+.request-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid #f3f3f3;
+  cursor: pointer;
+  font-size: 0.82rem;
+}
+
+.request-row:last-child {
+  border-bottom: none;
+}
+
+.verdict-icon {
+  --slds-c-icon-color-foreground-default: #c9c9c9;
+}
+
+.verdict-icon.is-verified {
+  --slds-c-icon-color-foreground-default: #04844b;
+}
+
+.request-name {
+  flex: 1;
+  color: #0a2540;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.request-type {
+  font-size: 0.72rem;
+  color: #706e6b;
+}
+
+.request-score {
+  font-weight: 700;
+  color: #635bff;
+}

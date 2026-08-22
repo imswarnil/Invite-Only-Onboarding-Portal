@@ -3,50 +3,62 @@
     <fullName>Stage__c</fullName>
     <label>Stage</label>
     <required>true</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
         <valueSetDefinition>
             <sorted>false</sorted>
-        <value>
-            <fullName>Received</fullName>
-            <default>true</default>
-        </value>
-        <value>
-            <fullName>AI Validation</fullName>
-            <default>false</default>
-        </value>
-        <value>
-            <fullName>Action Needed</fullName>
-            <default>false</default>
-        </value>
-        <value>
-            <fullName>In Review</fullName>
-            <default>false</default>
-        </value>
-        <value>
-            <fullName>Approved</fullName>
-            <default>false</default>
-        </value>
-        <value>
-            <fullName>Onboarding</fullName>
-            <default>false</default>
-        </value>
-        <value>
-            <fullName>Activated</fullName>
-            <default>false</default>
-        </value>
-        <value>
-            <fullName>Won</fullName>
-            <default>false</default>
-        </value>
-        <value>
-            <fullName>Waitlisted</fullName>
-            <default>false</default>
-        </value>
-        <value>
-            <fullName>Rejected</fullName>
-            <default>false</default>
-        </value>
+            <value>
+                <fullName>Received</fullName>
+                <default>true</default>
+                <label>Received</label>
+            </value>
+            <value>
+                <fullName>AI Validation</fullName>
+                <default>false</default>
+                <label>AI Validation</label>
+            </value>
+            <value>
+                <fullName>Action Needed</fullName>
+                <default>false</default>
+                <label>Action Needed</label>
+            </value>
+            <value>
+                <fullName>In Review</fullName>
+                <default>false</default>
+                <label>In Review</label>
+            </value>
+            <value>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <label>Approved</label>
+            </value>
+            <value>
+                <fullName>Onboarding</fullName>
+                <default>false</default>
+                <label>Onboarding</label>
+            </value>
+            <value>
+                <fullName>Activated</fullName>
+                <default>false</default>
+                <label>Activated</label>
+            </value>
+            <value>
+                <fullName>Won</fullName>
+                <default>false</default>
+                <label>Won</label>
+            </value>
+            <value>
+                <fullName>Waitlisted</fullName>
+                <default>false</default>
+                <label>Waitlisted</label>
+            </value>
+            <value>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+                <label>Rejected</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

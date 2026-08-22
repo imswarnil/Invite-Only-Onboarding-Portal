@@ -1,0 +1,27 @@
+.products-live-checklist {
+  padding: 1rem 1.25rem;
+}
+
+.product-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.product-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0;
+  font-size: 0.85rem;
+  color: #a8a8a8;
+}
+
+.product-row.is-live {
+  color: #0a2540;
+  font-weight: 600;
+}
+
+.product-row.is-live .product-icon {
+  --slds-c-icon-color-foreground-default: #04844b;
+}

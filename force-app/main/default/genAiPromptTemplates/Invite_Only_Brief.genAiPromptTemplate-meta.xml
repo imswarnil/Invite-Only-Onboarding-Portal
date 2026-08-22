@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Generates a decision-ready brief for the reviewer deciding whether an Invite Only application should be approved, based only on what the applicant provided on the form.</description>
+    <developerName>Invite_Only_Brief</developerName>
+    <masterLabel>Invite Only Brief</masterLabel>
+    <overridable>false</overridable>
+    <templateVersions>
+        <content>You are helping a reviewer on the Invite Only Onboarding team decide whether to approve, waitlist, or reject a new application. Using only the information the applicant provided below, write a short decision-ready brief a reviewer can read in under a minute. Do not invent facts that are not present below -- if a field is blank, say so plainly instead of guessing.
+
+Applicant type: {!$Input:inviteRequest.Applicant_Type__c}
+Name: {!$Input:inviteRequest.First_Name__c} {!$Input:inviteRequest.Last_Name__c}
+Work email: {!$Input:inviteRequest.Work_Email__c}
+Phone: {!$Input:inviteRequest.Phone__c}
+Location: {!$Input:inviteRequest.City__c}, {!$Input:inviteRequest.State__c}, {!$Input:inviteRequest.Country__c}
+What they sell: {!$Input:inviteRequest.Sells__c}
+Company website: {!$Input:inviteRequest.Company_Website__c}
+Company registration number: {!$Input:inviteRequest.Company_Registration_Number__c}
+PAN: {!$Input:inviteRequest.PAN_Number__c}
+GST number: {!$Input:inviteRequest.GST_Number__c}
+MCA CIN: {!$Input:inviteRequest.MCA_CIN__c}
+Annual revenue band: {!$Input:inviteRequest.Annual_Revenue_Band__c}
+Expected annual revenue (INR): {!$Input:inviteRequest.Expected_Revenue_INR__c}
+Job level: {!$Input:inviteRequest.Job_Level__c}
+Job function: {!$Input:inviteRequest.Job_Function__c}
+Has an overseas entity: {!$Input:inviteRequest.Has_Overseas_Entity__c}
+Seeking overseas expansion: {!$Input:inviteRequest.Seeking_Overseas_Expansion__c}
+Applicant&apos;s own notes: {!$Input:inviteRequest.Notes__c}
+
+Structure the brief as exactly four short parts:
+1. One line: who is applying and what they sell.
+2. The strongest signal in their favor, if any is present in the information above.
+3. The biggest open question or risk a reviewer should check before approving.
+4. A plain recommendation -- Approve, Ask for more info, or Decline -- with one reason tied directly to the information above.</content>
+        <inputs>
+            <apiName>inviteRequest</apiName>
+            <definition>SOBJECT://Invite_Request__c</definition>
+            <masterLabel>Invite Request</masterLabel>
+            <referenceName>Input:inviteRequest</referenceName>
+            <required>true</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <status>Draft</status>
+        <versionIdentifier>InviteOnlyBrief_1</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

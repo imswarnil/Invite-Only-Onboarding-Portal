@@ -1,0 +1,31 @@
+<template>
+  <div class="slds-box slds-box_x-small usage-snapshot-summary">
+    <h3 class="slds-text-heading_small slds-m-bottom_small">
+      Usage Summary
+    </h3>
+    <template if:true={errorMessage}>
+      <p class="slds-text-color_error slds-text-body_small">{errorMessage}</p>
+    </template>
+    <div class="summary-row">
+      <span class="summary-label">Usage Snapshots</span>
+      <span class="summary-value">{snapshotCount}</span>
+    </div>
+    <div class="summary-row">
+      <span class="summary-label">Total Volume (INR)</span>
+      <span class="summary-value">{totalVolumeInr}</span>
+    </div>
+    <div class="summary-row">
+      <span class="summary-label">Total Revenue (INR)</span>
+      <span class="summary-value">{totalRevenueInr}</span>
+    </div>
+    <template if:true={hasSource}>
+      <button
+        type="button"
+        class="slds-button slds-button_reset source-link"
+        onclick={handleSourceClick}
+      >
+        View originating Invite Request ({sourceInviteRequestName})
+      </button>
+    </template>
+  </div>
+</template>

@@ -1,5 +1,12 @@
 <template>
   <div class={tileClass}>
+    <template if:true={hasIcon}>
+      <lightning-icon
+        icon-name={iconName}
+        size="x-small"
+        class="stat-tile-icon"
+      ></lightning-icon>
+    </template>
     <p class="stat-tile-label">{label}</p>
     <p class="stat-tile-value">{value}</p>
     <template if:true={sublabel}>

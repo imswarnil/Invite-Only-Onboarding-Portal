@@ -24,6 +24,11 @@
   border-top-color: #ea001e;
 }
 
+.stat-tile-icon {
+  float: right;
+  --slds-c-icon-color-foreground-default: #635bff;
+}
+
 .stat-tile-label {
   font-size: 0.72rem;
   text-transform: uppercase;

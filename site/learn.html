@@ -36,21 +36,7 @@ lessons | first %}
   </a>
 
   <div class="course-grid">
-    {% for lesson in lessons %}
-    <a class="course-card" href="{{ lesson.url | relative_url }}">
-      <span class="course-card-node">{{ forloop.index }}</span>
-      <span class="course-card-icon">
-        {% include lesson-thumb.html section=lesson.section %}
-      </span>
-      <p class="course-card-section">{{ lesson.section }}</p>
-      <h3>{{ lesson.title }}</h3>
-      <p>{{ lesson.summary }}</p>
-      <span class="btn btn-secondary">
-        {% include icon.html name="caret-right" size=13 %}<span
-          >Start lesson</span
-        >
-      </span>
-    </a>
-    {% endfor %}
+    {% for lesson in lessons %} {% include course-card.html lesson=lesson
+    index=forloop.index %} {% endfor %}
   </div>
 </div>

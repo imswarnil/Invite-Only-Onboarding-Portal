@@ -1,0 +1,27 @@
+.welcome-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.25rem 0 0.75rem;
+}
+
+.welcome-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #e3e8ee;
+}
+
+.welcome-greeting {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0a2540;
+}
+
+.welcome-date {
+  margin: 0.1rem 0 0;
+  font-size: 0.8rem;
+  color: #706e6b;
+}

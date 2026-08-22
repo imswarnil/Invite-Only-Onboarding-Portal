@@ -1,0 +1,23 @@
+.month-over-month-delta {
+  padding: 1rem 1.25rem;
+}
+
+.delta-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.delta-value.is-up {
+  color: #04844b;
+}
+
+.delta-value.is-down {
+  color: #ea001e;
+}
+
+.delta-caption {
+  font-size: 0.72rem;
+  color: #706e6b;
+  margin: 0.2rem 0 0;
+}

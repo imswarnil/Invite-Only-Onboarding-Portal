@@ -1,0 +1,47 @@
+<template>
+  <div class="workspace-header">
+    <button type="button" class="header-back" onclick={handleBackClick}>
+      <lightning-icon icon-name="utility:back" size="xx-small"></lightning-icon>
+      Invite Requests
+    </button>
+    <div class="header-main">
+      <div class="header-identity">
+        <p class="header-name">{applicantName}</p>
+        <p class="header-record-name">{recordName}</p>
+      </div>
+      <div class="header-badges">
+        <span class="header-badge">{applicantType}</span>
+        <span class="header-badge">{stage}</span>
+        <span class={decisionBadgeClass}>{decision}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="workspace-progress">
+    <c-stage-progress-bar record-id={recordId}></c-stage-progress-bar>
+  </div>
+
+  <div class="workspace-grid">
+    <div class="workspace-main">
+      <c-invite-request-editor record-id={recordId}></c-invite-request-editor>
+    </div>
+    <div class="workspace-sidebar">
+      <c-quick-action-panel record-id={recordId}></c-quick-action-panel>
+      <div class="workspace-panel">
+        <p class="workspace-panel-heading">Timeline</p>
+        <c-invite-timeline record-id={recordId}></c-invite-timeline>
+      </div>
+    </div>
+  </div>
+
+  <div class="workspace-extra">
+    <c-score-gauge record-id={recordId}></c-score-gauge>
+    <c-legitimacy-badge record-id={recordId}></c-legitimacy-badge>
+    <c-days-in-stage-tile record-id={recordId}></c-days-in-stage-tile>
+    <c-related-provisioned-account-card
+      record-id={recordId}
+    ></c-related-provisioned-account-card>
+    <c-compliance-checklist record-id={recordId}></c-compliance-checklist>
+    <c-findings-list record-id={recordId}></c-findings-list>
+  </div>
+</template>

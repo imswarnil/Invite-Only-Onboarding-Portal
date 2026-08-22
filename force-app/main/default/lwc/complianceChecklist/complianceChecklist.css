@@ -1,0 +1,27 @@
+.compliance-checklist {
+  padding: 1rem 1.25rem;
+}
+
+.checklist-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.checklist-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0;
+  font-size: 0.82rem;
+  color: #a8a8a8;
+}
+
+.checklist-row.is-complete {
+  color: #0a2540;
+  font-weight: 600;
+}
+
+.checklist-row.is-complete .checklist-icon {
+  --slds-c-icon-color-foreground-default: #04844b;
+}

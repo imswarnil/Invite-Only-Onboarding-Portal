@@ -12,37 +12,266 @@
   width: 100%;
 }
 
-.homepage-stats-section {
+.bento-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas:
+    "welcome welcome welcome welcome"
+    "cta cta stat1 stat2"
+    "cta cta stat3 stat4"
+    "trend trend trend trend"
+    "funnel funnel split provisioned"
+    "region region owned owned"
+    "top top ready ready"
+    "table table table table"
+    "recent recent recent aging";
   gap: 1rem;
 }
 
-.homepage-main-section {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 1rem;
-  align-items: start;
+.bento-welcome {
+  grid-area: welcome;
 }
 
-.homepage-col {
+.bento-cell {
+  min-width: 0;
+}
+
+.bento-cta {
+  grid-area: cta;
+  border-radius: 16px;
+  padding: 1.75rem;
+  background: linear-gradient(135deg, #635bff 0%, #4b45c6 100%);
+  color: #fff;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  justify-content: center;
 }
 
-.homepage-list-section {
-  width: 100%;
+.bento-cta-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.8;
+  margin: 0 0 0.5rem;
+}
+
+.bento-cta-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0 0 0.6rem;
+  line-height: 1.2;
+}
+
+.bento-cta-copy {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin: 0 0 1.25rem;
+  max-width: 32ch;
+}
+
+.bento-cta-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.bento-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.1rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.bento-btn-primary {
+  background: #fff;
+  color: #4b45c6;
+}
+
+.bento-btn-secondary {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.bento-btn-secondary-light {
+  background: #fff;
+  color: #0a2540;
+  border: 1px solid #e3e8ee;
+}
+
+.bento-trend {
+  grid-area: trend;
+}
+
+.bento-funnel {
+  grid-area: funnel;
+}
+
+.bento-split {
+  grid-area: split;
+}
+
+.bento-provisioned {
+  grid-area: provisioned;
+}
+
+.bento-region {
+  grid-area: region;
+}
+
+.bento-owned {
+  grid-area: owned;
+}
+
+.bento-top {
+  grid-area: top;
+}
+
+.bento-ready {
+  grid-area: ready;
+}
+
+.bento-table {
+  grid-area: table;
+}
+
+.bento-recent {
+  grid-area: recent;
+}
+
+.bento-aging {
+  grid-area: aging;
+}
+
+.bento-stat-1 {
+  grid-area: stat1;
+}
+.bento-stat-2 {
+  grid-area: stat2;
+}
+.bento-stat-3 {
+  grid-area: stat3;
+}
+.bento-stat-4 {
+  grid-area: stat4;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 37, 64, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9000;
+}
+
+.modal-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 480px;
+  max-width: 92vw;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.modal-header h2 {
+  font-size: 1.1rem;
+  margin: 0;
+  color: #0a2540;
+}
+
+.modal-close {
+  border: none;
+  background: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #706e6b;
+}
+
+.modal-toggle {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.modal-toggle-option {
+  flex: 1;
+  border: 1px solid #e3e8ee;
+  border-radius: 8px;
+  padding: 0.5rem;
+  background: #fff;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #706e6b;
+  cursor: pointer;
+}
+
+.modal-toggle-option.is-selected {
+  border-color: #635bff;
+  color: #635bff;
+  background: #f5f4ff;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
 }
 
 @media (max-width: 1100px) {
-  .homepage-main-section {
-    grid-template-columns: 1fr 1fr;
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "welcome welcome"
+      "cta cta"
+      "stat1 stat2"
+      "stat3 stat4"
+      "trend trend"
+      "funnel funnel"
+      "split provisioned"
+      "region region"
+      "owned owned"
+      "top top"
+      "ready ready"
+      "table table"
+      "recent recent"
+      "aging aging";
   }
 }
 
 @media (max-width: 700px) {
-  .homepage-main-section {
+  .bento-grid {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "welcome"
+      "cta"
+      "stat1"
+      "stat2"
+      "stat3"
+      "stat4"
+      "trend"
+      "funnel"
+      "split"
+      "provisioned"
+      "region"
+      "owned"
+      "top"
+      "ready"
+      "table"
+      "recent"
+      "aging";
   }
 }

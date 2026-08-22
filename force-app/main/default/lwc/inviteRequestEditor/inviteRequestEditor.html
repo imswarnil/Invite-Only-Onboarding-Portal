@@ -1,159 +1,172 @@
 <template>
-  <lightning-record-edit-form
-    object-api-name="Invite_Request__c"
-    record-id={recordId}
-    onsuccess={handleSuccess}
-    onerror={handleError}
-  >
-    <div class="slds-box editor-box">
-      <template if:true={errorMessage}>
-        <p
-          class="slds-text-color_error slds-text-body_small slds-m-bottom_small"
-        >
-          {errorMessage}
-        </p>
-      </template>
-
-      <div class="editor-section">
-        <h3 class="slds-text-heading_small">Applicant Details</h3>
-        <div class="editor-grid">
-          <lightning-input-field
-            field-name="Applicant_Type__c"
-          ></lightning-input-field>
-          <lightning-input-field
-            field-name="First_Name__c"
-          ></lightning-input-field>
-          <lightning-input-field
-            field-name="Last_Name__c"
-          ></lightning-input-field>
-          <lightning-input-field
-            field-name="Work_Email__c"
-          ></lightning-input-field>
-          <lightning-input-field field-name="Phone__c"></lightning-input-field>
-          <lightning-input-field
-            field-name="Phone_Verified__c"
-          ></lightning-input-field>
-          <lightning-input-field
-            field-name="Country__c"
-          ></lightning-input-field>
-          <lightning-input-field field-name="State__c"></lightning-input-field>
-          <lightning-input-field field-name="City__c"></lightning-input-field>
-        </div>
-      </div>
-
-      <div class="editor-section">
-        <h3 class="slds-text-heading_small">Business Details</h3>
-        <div class="editor-grid">
-          <lightning-input-field
-            field-name="Company_Website__c"
-          ></lightning-input-field>
-          <lightning-input-field
-            field-name="Job_Level__c"
-          ></lightning-input-field>
-          <lightning-input-field
-            field-name="Job_Function__c"
-          ></lightning-input-field>
-          <lightning-input-field field-name="Sells__c"></lightning-input-field>
-          <lightning-input-field
-            field-name="Annual_Revenue_Band__c"
-          ></lightning-input-field>
-          <lightning-input-field
-            field-name="Expected_Revenue_INR__c"
-          ></lightning-input-field>
-          <lightning-input-field
-            field-name="Has_Overseas_Entity__c"
-          ></lightning-input-field>
-          <lightning-input-field
-            field-name="Seeking_Overseas_Expansion__c"
-          ></lightning-input-field>
-          <lightning-input-field
-            field-name="GST_Number__c"
-          ></lightning-input-field>
-          <template if:true={isCompany}>
-            <lightning-input-field
-              field-name="Company_Registration_Number__c"
-            ></lightning-input-field>
+  <div class="editor-card">
+    <lightning-record-edit-form
+      object-api-name="Invite_Request__c"
+      record-id={recordId}
+      onsuccess={handleSuccess}
+      onerror={handleError}
+    >
+      <div class="editor-shell">
+        <div class="editor-nav">
+          <p class="editor-title">Record Details</p>
+          <lightning-button
+            variant="brand"
+            type="submit"
+            label="Save"
+            class="save-button"
+          ></lightning-button>
+          <template if:true={errorMessage}>
+            <p class="editor-error">{errorMessage}</p>
           </template>
-          <template if:true={isIndividual}>
+
+          <div class="editor-tabs">
+            <template for:each={tabButtons} for:item="tab">
+              <button
+                key={tab.key}
+                type="button"
+                class={tab.buttonClass}
+                data-tab={tab.key}
+                onclick={handleTabClick}
+              >
+                <lightning-icon
+                  icon-name={tab.icon}
+                  size="x-small"
+                  class="tab-icon"
+                ></lightning-icon>
+                <span>{tab.label}</span>
+              </button>
+            </template>
+          </div>
+        </div>
+
+        <div class="editor-panels">
+        <div class={contactPanelClass}>
+          <div class="editor-grid">
             <lightning-input-field
-              field-name="PAN_Number__c"
+              field-name="Applicant_Type__c"
             ></lightning-input-field>
-          </template>
+            <lightning-input-field
+              field-name="First_Name__c"
+            ></lightning-input-field>
+            <lightning-input-field
+              field-name="Last_Name__c"
+            ></lightning-input-field>
+            <lightning-input-field
+              field-name="Work_Email__c"
+            ></lightning-input-field>
+            <lightning-input-field field-name="Phone__c"></lightning-input-field>
+            <lightning-input-field
+              field-name="Phone_Verified__c"
+            ></lightning-input-field>
+            <lightning-input-field
+              field-name="Country__c"
+            ></lightning-input-field>
+            <lightning-input-field field-name="State__c"></lightning-input-field>
+            <lightning-input-field field-name="City__c"></lightning-input-field>
+          </div>
+        </div>
+
+        <div class={businessPanelClass}>
+          <div class="editor-grid">
+            <lightning-input-field
+              field-name="Company_Website__c"
+            ></lightning-input-field>
+            <lightning-input-field
+              field-name="Job_Level__c"
+            ></lightning-input-field>
+            <lightning-input-field
+              field-name="Job_Function__c"
+            ></lightning-input-field>
+            <lightning-input-field field-name="Sells__c"></lightning-input-field>
+            <lightning-input-field
+              field-name="Annual_Revenue_Band__c"
+            ></lightning-input-field>
+            <lightning-input-field
+              field-name="Expected_Revenue_INR__c"
+            ></lightning-input-field>
+            <lightning-input-field
+              field-name="Has_Overseas_Entity__c"
+            ></lightning-input-field>
+            <lightning-input-field
+              field-name="Seeking_Overseas_Expansion__c"
+            ></lightning-input-field>
+            <lightning-input-field
+              field-name="GST_Number__c"
+            ></lightning-input-field>
+            <template if:true={isCompany}>
+              <lightning-input-field
+                field-name="Company_Registration_Number__c"
+              ></lightning-input-field>
+            </template>
+            <template if:true={isIndividual}>
+              <lightning-input-field
+                field-name="PAN_Number__c"
+              ></lightning-input-field>
+            </template>
+          </div>
+        </div>
+
+        <div class={researchPanelClass}>
+          <p class="panel-readonly-note">
+            Written by AI research (Prompt Builder / n8n) -- not editable here.
+          </p>
+          <div class="editor-grid">
+            <lightning-output-field
+              field-name="Registered_Entity_Type__c"
+            ></lightning-output-field>
+            <lightning-output-field
+              field-name="Has_IEC__c"
+            ></lightning-output-field>
+            <lightning-output-field
+              field-name="MCA_CIN__c"
+            ></lightning-output-field>
+            <lightning-output-field
+              field-name="Blog_Count__c"
+            ></lightning-output-field>
+            <lightning-output-field
+              field-name="Content_Depth__c"
+            ></lightning-output-field>
+            <lightning-output-field
+              field-name="Fit_Score__c"
+            ></lightning-output-field>
+            <lightning-output-field
+              field-name="Legitimacy_Verdict__c"
+            ></lightning-output-field>
+            <lightning-output-field
+              field-name="Expansion_Signal__c"
+            ></lightning-output-field>
+            <lightning-output-field
+              field-name="Persona__c"
+            ></lightning-output-field>
+          </div>
+          <lightning-output-field
+            field-name="Dossier__c"
+          ></lightning-output-field>
+          <lightning-output-field
+            field-name="Score_Rationale__c"
+          ></lightning-output-field>
+        </div>
+
+        <div class={pipelinePanelClass}>
+          <div class="editor-grid">
+            <lightning-input-field field-name="Stage__c"></lightning-input-field>
+            <lightning-input-field
+              field-name="Sub_Status__c"
+            ></lightning-input-field>
+            <lightning-input-field
+              field-name="Decision__c"
+            ></lightning-input-field>
+          </div>
+        </div>
+
+        <div class={notesPanelClass}>
+          <lightning-input-field field-name="Notes__c"></lightning-input-field>
+          <lightning-input-field
+            field-name="Marketing_Consent__c"
+          ></lightning-input-field>
+        </div>
         </div>
       </div>
-
-      <div class="editor-section">
-        <h3 class="slds-text-heading_small">
-          Research &amp; Scoring <span class="readonly-tag">read-only</span>
-        </h3>
-        <div class="editor-grid">
-          <lightning-output-field
-            field-name="Registered_Entity_Type__c"
-          ></lightning-output-field>
-          <lightning-output-field
-            field-name="Has_IEC__c"
-          ></lightning-output-field>
-          <lightning-output-field
-            field-name="MCA_CIN__c"
-          ></lightning-output-field>
-          <lightning-output-field
-            field-name="Blog_Count__c"
-          ></lightning-output-field>
-          <lightning-output-field
-            field-name="Content_Depth__c"
-          ></lightning-output-field>
-          <lightning-output-field
-            field-name="Fit_Score__c"
-          ></lightning-output-field>
-          <lightning-output-field
-            field-name="Legitimacy_Verdict__c"
-          ></lightning-output-field>
-          <lightning-output-field
-            field-name="Expansion_Signal__c"
-          ></lightning-output-field>
-          <lightning-output-field
-            field-name="Persona__c"
-          ></lightning-output-field>
-        </div>
-        <lightning-output-field
-          field-name="Dossier__c"
-        ></lightning-output-field>
-        <lightning-output-field
-          field-name="Score_Rationale__c"
-        ></lightning-output-field>
-      </div>
-
-      <div class="editor-section">
-        <h3 class="slds-text-heading_small">Pipeline</h3>
-        <div class="editor-grid">
-          <lightning-input-field field-name="Stage__c"></lightning-input-field>
-          <lightning-input-field
-            field-name="Sub_Status__c"
-          ></lightning-input-field>
-          <lightning-input-field
-            field-name="Decision__c"
-          ></lightning-input-field>
-          <lightning-input-field
-            field-name="Converted_Account__c"
-          ></lightning-input-field>
-        </div>
-      </div>
-
-      <div class="editor-section">
-        <h3 class="slds-text-heading_small">Additional Information</h3>
-        <lightning-input-field field-name="Notes__c"></lightning-input-field>
-        <lightning-input-field
-          field-name="Marketing_Consent__c"
-        ></lightning-input-field>
-      </div>
-
-      <div class="editor-footer">
-        <lightning-button
-          variant="brand"
-          type="submit"
-          label="Save"
-        ></lightning-button>
-      </div>
-    </div>
-  </lightning-record-edit-form>
+    </lightning-record-edit-form>
+  </div>
 </template>

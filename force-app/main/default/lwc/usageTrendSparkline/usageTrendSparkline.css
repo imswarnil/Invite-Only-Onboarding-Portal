@@ -1,0 +1,29 @@
+.usage-trend-sparkline {
+  padding: 1rem 1.25rem;
+}
+
+.sparkline-svg {
+  width: 100%;
+  height: 48px;
+}
+
+.sparkline-line {
+  fill: none;
+  stroke: #635bff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sparkline-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0a2540;
+  margin: 0.5rem 0 0;
+}
+
+.sparkline-value span {
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: #706e6b;
+}

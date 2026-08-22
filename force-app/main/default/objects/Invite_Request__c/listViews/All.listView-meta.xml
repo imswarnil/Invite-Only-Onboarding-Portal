@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <filterScope>Everything</filterScope>
+    <label>All Invite Requests</label>
+    <columns>NAME</columns>
+    <columns>Applicant_Type__c</columns>
+    <columns>Stage__c</columns>
+    <columns>Sub_Status__c</columns>
+    <columns>Fit_Score__c</columns>
+    <columns>Decision__c</columns>
+    <columns>Country__c</columns>
+    <columns>CREATED_DATE</columns>
+</ListView>

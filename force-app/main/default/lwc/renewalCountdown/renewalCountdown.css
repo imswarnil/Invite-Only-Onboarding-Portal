@@ -1,0 +1,33 @@
+.renewal-countdown {
+  padding: 1rem;
+}
+
+.renewal-days {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #04844b;
+  margin: 0;
+}
+
+.renewal-days.is-soon {
+  color: #fe9339;
+}
+
+.renewal-days.is-overdue {
+  color: #ea001e;
+}
+
+.renewal-caption {
+  font-size: 0.8rem;
+  color: #706e6b;
+  margin: 0.15rem 0 0;
+}
+
+.renewal-tier {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #635bff;
+  margin: 0.4rem 0 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}

@@ -1,0 +1,33 @@
+<template>
+  <div class="slds-box slds-box_x-small top-performing-accounts">
+    <h3 class="slds-text-heading_small slds-m-bottom_small">
+      <lightning-icon
+        icon-name="utility:trending"
+        size="x-small"
+        class="widget-title-icon"
+      ></lightning-icon>
+      Top Performing Accounts
+    </h3>
+    <template if:true={errorMessage}>
+      <p class="slds-text-color_error slds-text-body_small">{errorMessage}</p>
+    </template>
+    <template if:false={hasAccounts}>
+      <p class="slds-text-color_weak slds-text-body_small">
+        No usage data yet.
+      </p>
+    </template>
+    <template for:each={accounts} for:item="acct">
+      <div
+        key={acct.recordId}
+        class="account-row"
+        data-id={acct.recordId}
+        onclick={handleRowClick}
+      >
+        <span class="account-rank">{acct.rank}</span>
+        <span class="account-name">{acct.name}</span>
+        <span class="account-tier">{acct.planTier}</span>
+        <span class="account-volume">{acct.displayVolume}</span>
+      </div>
+    </template>
+  </div>
+</template>

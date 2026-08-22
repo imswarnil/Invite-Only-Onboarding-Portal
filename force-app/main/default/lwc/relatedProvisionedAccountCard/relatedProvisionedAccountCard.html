@@ -1,0 +1,36 @@
+<template>
+  <div class="slds-box slds-box_x-small related-provisioned-account-card">
+    <h3 class="slds-text-heading_small slds-m-bottom_small">
+      Provisioned Account
+    </h3>
+    <template if:true={errorMessage}>
+      <p class="slds-text-color_error slds-text-body_small">{errorMessage}</p>
+    </template>
+    <template if:false={hasAccount}>
+      <p class="slds-text-color_weak slds-text-body_small">
+        Not provisioned yet -- approve this request to create one.
+      </p>
+    </template>
+    <template if:true={hasAccount}>
+      <button type="button" class="account-link" onclick={handleClick}>
+        {account.name}
+      </button>
+      <div class="summary-row">
+        <span class="summary-label">Status</span>
+        <span class="summary-value">{account.status}</span>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">Plan Tier</span>
+        <span class="summary-value">{account.planTier}</span>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">Risk Level</span>
+        <span class="summary-value">{account.riskLevel}</span>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">Contract Value</span>
+        <span class="summary-value">{account.displayContractValue}</span>
+      </div>
+    </template>
+  </div>
+</template>

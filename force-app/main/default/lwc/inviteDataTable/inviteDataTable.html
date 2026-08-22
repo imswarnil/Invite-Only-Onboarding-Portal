@@ -1,0 +1,41 @@
+<template>
+  <div class="table-card">
+    <div class="table-toolbar">
+      <p class="table-title">All Invite Requests</p>
+      <div class="table-controls">
+        <lightning-input
+          type="search"
+          label="Search"
+          variant="label-hidden"
+          placeholder="Search name, country, owner..."
+          onchange={handleSearchChange}
+          class="table-search"
+        ></lightning-input>
+        <lightning-combobox
+          label="Stage"
+          variant="label-hidden"
+          value={stageFilter}
+          options={stageOptions}
+          onchange={handleStageFilterChange}
+          class="table-stage-filter"
+        ></lightning-combobox>
+      </div>
+    </div>
+
+    <template if:true={errorMessage}>
+      <p class="table-error">{errorMessage}</p>
+    </template>
+
+    <p class="table-count">{rowCountLabel}</p>
+
+    <lightning-datatable
+      key-field="recordId"
+      data={filteredRows}
+      columns={columns}
+      sorted-by={sortedBy}
+      sorted-direction={sortDirection}
+      onsort={handleSort}
+      hide-checkbox-column
+    ></lightning-datatable>
+  </div>
+</template>

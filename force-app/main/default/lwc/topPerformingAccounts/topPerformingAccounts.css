@@ -1,0 +1,51 @@
+.top-performing-accounts {
+  padding: 1rem 1.25rem;
+}
+
+.widget-title-icon {
+  margin-right: 0.35rem;
+  vertical-align: -3px;
+}
+
+.account-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid #f3f3f3;
+  cursor: pointer;
+  font-size: 0.82rem;
+}
+
+.account-row:last-child {
+  border-bottom: none;
+}
+
+.account-rank {
+  width: 1.2rem;
+  font-weight: 700;
+  color: #a8a8a8;
+}
+
+.account-name {
+  flex: 1;
+  color: #0a2540;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.account-tier {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: #f5f4ff;
+  color: #635bff;
+}
+
+.account-volume {
+  font-weight: 700;
+  color: #04844b;
+}

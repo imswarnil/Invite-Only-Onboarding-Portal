@@ -1,0 +1,26 @@
+.legitimacy-badge {
+  padding: 1rem 1.25rem;
+}
+
+.chip-list {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.compliance-chip {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: #f3f3f3;
+  color: #706e6b;
+}
+
+.compliance-chip.is-active {
+  background: #eaf8ee;
+  color: #04844b;
+}

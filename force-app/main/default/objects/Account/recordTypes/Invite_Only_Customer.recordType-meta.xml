@@ -4,7 +4,7 @@
     <label>Invite Only Customer</label>
     <active>true</active>
     <description
-  >Accounts provisioned by the Invite Only Onboarding Portal's Provision_On_Approval flow. Distinct record type from other apps' Account data sharing this org (see Account.Record_POC__c).</description>
+  >Deprecated: the portal no longer creates Accounts on approval. Left active -- Salesforce won't deactivate a profile's last record type via API. Remove manually in Setup if needed.</description>
     <picklistValues>
         <picklist>Type</picklist>
         <values><fullName>Prospect</fullName><default>false</default></values>

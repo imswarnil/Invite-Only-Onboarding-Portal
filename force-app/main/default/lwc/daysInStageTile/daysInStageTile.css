@@ -1,0 +1,21 @@
+.days-in-stage-tile {
+  padding: 1rem;
+}
+
+.days-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0a2540;
+  margin: 0;
+}
+
+.days-caption {
+  font-size: 0.8rem;
+  color: #706e6b;
+  margin: 0.15rem 0 0;
+  text-transform: none;
+}
+
+.days-number.is-stale {
+  color: #ea001e;
+}

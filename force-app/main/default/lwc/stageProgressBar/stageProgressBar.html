@@ -1,0 +1,19 @@
+<template>
+  <div class="stage-progress-bar">
+    <template if:true={isOffRamp}>
+      <div class={offRampClass}>{stage}</div>
+    </template>
+    <template if:false={isOffRamp}>
+      <div class="stage-track">
+        <template for:each={steps} for:item="step" for:index="index">
+          <div key={step.key} class={step.wrapClass}>
+            <div class={step.cssClass}>
+              <span class="stage-dot"></span>
+              <span class="stage-label">{step.label}</span>
+            </div>
+          </div>
+        </template>
+      </div>
+    </template>
+  </div>
+</template>

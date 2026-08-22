@@ -4,9 +4,8 @@
     <template if:true={errorMessage}>
       <p class="slds-text-color_error slds-text-body_small">{errorMessage}</p>
     </template>
-    <div class="split-bar">
-      <div class="split-segment split-individual" style={individualStyle}></div>
-      <div class="split-segment split-company" style={companyStyle}></div>
+    <div class="chart-container">
+      <canvas></canvas>
     </div>
     <ul class="split-legend">
       <li>

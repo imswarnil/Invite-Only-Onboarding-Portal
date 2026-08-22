@@ -1,34 +1,160 @@
-.editor-box {
+:host {
+  --stripe-accent: #635bff;
+  --stripe-accent-dark: #4b45c6;
+  --stripe-ink: #0a2540;
+  --stripe-ink-soft: #425466;
+  --stripe-border: #e3e8ee;
+  --stripe-surface: #f6f9fc;
+
+  /* Nudge the base Lightning input/button chrome toward the Stripe palette.
+     These custom properties cross the shadow boundary of lightning-input-field
+     and lightning-button even though regular selectors can't reach in. */
+  --slds-c-input-radius-border: 8px;
+  --slds-c-input-color-border: var(--stripe-border);
+  --slds-c-input-color-border-focus: var(--stripe-accent);
+  --slds-c-input-shadow-focus: 0 0 0 1px var(--stripe-accent);
+  --slds-c-input-text-color: var(--stripe-ink);
+  --slds-c-input-label-text-color: var(--stripe-ink-soft);
+  --slds-c-checkbox-color-background-checked: var(--stripe-accent);
+  --slds-c-checkbox-color-border-checked: var(--stripe-accent);
+  --slds-c-button-brand-color-background: var(--stripe-accent);
+  --slds-c-button-brand-color-background-hover: var(--stripe-accent-dark);
+  --slds-c-button-brand-color-border: var(--stripe-accent);
+  --slds-c-button-radius-border: 8px;
+  --slds-c-textarea-radius-border: 8px;
+  --slds-c-textarea-color-border: var(--stripe-border);
+}
+
+.editor-card {
+  background: #fff;
+  border: 1px solid var(--stripe-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.editor-shell {
+  display: flex;
+  align-items: stretch;
+}
+
+.editor-nav {
+  width: 200px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.1rem 0.75rem;
+  background: var(--stripe-surface);
+  border-right: 1px solid var(--stripe-border);
+}
+
+.editor-title {
+  margin: 0 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--stripe-ink-soft);
+}
+
+.save-button {
+  position: sticky;
+  top: 0.5rem;
+  z-index: 10;
+  margin: 0.25rem 0.1rem 0.5rem;
+}
+
+.editor-error {
+  margin: 0 0.35rem 0.5rem;
+  font-size: 0.75rem;
+  color: #b42318;
+}
+
+.editor-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.tab-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  background: none;
+  width: 100%;
+  padding: 0.6rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--stripe-ink-soft);
+  cursor: pointer;
+  text-align: left;
+}
+
+.tab-button:hover {
+  background: #fff;
+  color: var(--stripe-ink);
+}
+
+.tab-button.is-active {
+  color: var(--stripe-accent);
+  background: #fff;
+  box-shadow: inset 3px 0 0 var(--stripe-accent);
+}
+
+.tab-icon {
+  --slds-c-icon-color-foreground-default: currentColor;
+  flex-shrink: 0;
+}
+
+.editor-panels {
+  flex: 1;
+  min-width: 0;
   padding: 1.25rem 1.5rem;
 }
 
-.editor-section {
-  margin-bottom: 1.5rem;
+.tab-panel {
+  display: none;
 }
 
-.editor-section h3 {
-  color: #0a2540;
-  margin: 0 0 0.75rem;
+.tab-panel.is-active {
+  display: block;
 }
 
-.readonly-tag {
-  font-size: 0.65rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  color: #706e6b;
-  border: 1px solid #dddbda;
-  border-radius: 4px;
-  padding: 0.05rem 0.4rem;
-  margin-left: 0.5rem;
+.panel-readonly-note {
+  font-size: 0.75rem;
+  color: var(--stripe-ink-soft);
+  background: var(--stripe-surface);
+  border: 1px solid var(--stripe-border);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  margin: 0 0 1rem;
 }
 
 .editor-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 0.75rem 1.25rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem 1.25rem;
 }
 
-.editor-footer {
-  padding-top: 0.5rem;
-  border-top: 1px solid #e5e5e5;
+@media (max-width: 640px) {
+  .editor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .editor-shell {
+    flex-direction: column;
+  }
+
+  .editor-nav {
+    width: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--stripe-border);
+  }
+
+  .editor-tabs {
+    flex-direction: row;
+    overflow-x: auto;
+  }
 }

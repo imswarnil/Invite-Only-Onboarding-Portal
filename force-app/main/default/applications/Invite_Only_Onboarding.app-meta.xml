@@ -21,7 +21,6 @@
     <tabs>Invite_Request__c</tabs>
     <tabs>Provisioned_Account__c</tabs>
     <tabs>Usage_Snapshot__c</tabs>
-    <tabs>standard-Account</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Inlet_Invite_Only_Portal_UtilityBar</utilityBar>
 </CustomApplication>

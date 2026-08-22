@@ -38,12 +38,12 @@ flowchart TB
 
 Four custom objects carry the whole pipeline — no standard Account/Contact/Lead anywhere in it:
 
-| Object                   | Created by                                               | Represents                                                         |
-| ------------------------ | -------------------------------------------------------- | ------------------------------------------------------------------ |
-| `Invite_Request__c`      | Experience Cloud Flow submission (or a direct REST call) | One applicant, Company or Individual record type                   |
-| `Crawler_Finding__c`     | (Planned) n8n crawl results                              | One issue/observation found about an applicant's website           |
-| `Provisioned_Account__c` | `Provision_On_Approval` Flow, automatically              | One live, onboarded Stripe-style account                           |
-| `Usage_Snapshot__c`      | Manual/seeded today, (planned) monthly job later         | One month of volume/revenue/dispute data for a Provisioned Account |
+| Object | Created by | Represents |
+| --- | --- | --- |
+| `Invite_Request__c` | Experience Cloud Flow submission (or a direct REST call) | One applicant, Company or Individual record type |
+| `Crawler_Finding__c` | (Planned) n8n crawl results | One issue/observation found about an applicant's website |
+| `Provisioned_Account__c` | `Provision_On_Approval` Flow, automatically | One live, onboarded Stripe-style account |
+| `Usage_Snapshot__c` | Manual/seeded today, (planned) monthly job later | One month of volume/revenue/dispute data for a Provisioned Account |
 
 ## 2. How anyone can submit an invite request (no login)
 
@@ -132,11 +132,11 @@ n8n → Prompt Builder scoring step — see §6.
 Open any `Invite_Request__c` record. The record page (`Invite_Request_Record_Page1`, or its twin
 `Invite_Request_Record_Page` — both kept identical on purpose, see §8) gives you, top to bottom:
 
-1. **`stageProgressBar`** at the very top of the header (it's the _only_ header item now —
+1. **`stageProgressBar`** at the very top of the header (it's the *only* header item now —
    `force:highlightsPanel` was removed on purpose to make room for the workspace below) — a
    Received→Won stepper. If the record is `Waitlisted` or `Rejected` it shows a distinct off-ramp
    banner instead of forcing those into the linear steps.
-2. **`inviteRequestWorkspace`** fills the main region, and is the _entire_ rest of the page — the
+2. **`inviteRequestWorkspace`** fills the main region, and is the *entire* rest of the page — the
    FlexiPage's own sidebar region carries nothing but the standard Activity/Chatter tab now, so
    this one component owns the full width instead of sharing it with Salesforce's separate sidebar
    column. Two parts:
@@ -224,7 +224,7 @@ than the `Dossier_And_Score` template described below, which remains conceptual.
 **The intended flow for the scoring/research side**, once built (`instruction.md` Phase 7):
 
 1. A reviewer (or an automatic trigger on `Stage__c = 'Received'`) fires a "Run Research" action.
-2. That action calls an **n8n webhook**. n8n is the _only_ thing in this design that ever touches
+2. That action calls an **n8n webhook**. n8n is the *only* thing in this design that ever touches
    the open web — it scrapes the applicant's website/registry data (blog count, pricing page,
    tech stack, entity registration) and hands back clean structured text. Salesforce's AI never
    crawls anything itself.
@@ -240,7 +240,7 @@ than the `Dossier_And_Score` template described below, which remains conceptual.
 5. A **Demo Mode** flag is planned so the whole thing can be shown against seeded sample data with
    zero live scraping or paid API calls — also not built yet.
 
-If you want to simulate what n8n _would_ eventually do, just hand-set `Fit_Score__c` and
+If you want to simulate what n8n *would* eventually do, just hand-set `Fit_Score__c` and
 `Legitimacy_Verdict__c` on a `Received`/`AI Validation` record and watch §3's routing fire — that's
 the honest current substitute.
 
@@ -254,7 +254,6 @@ and/or **`CSM_PS`** (edit `Provisioned_Account__c`/`Usage_Snapshot__c`, read-onl
 side — a CSM shouldn't be re-deciding an application, just running the account after it exists).
 
 Validation script:
-
 1. Open the **All Invite Requests** list view (not "Recently Viewed" — remember, they're not the
    Owner). Pick one in `Received` or `AI Validation`.
 2. Nudge `Fit_Score__c` up past 75 by hand (standing in for n8n/Prompt Builder) → confirm
@@ -280,7 +279,6 @@ set — if you want one that's genuinely view-only across all four objects, that
 follow-up: clone `Admin_PS`'s object permissions down to Read-only everywhere, no Create/Edit/Delete).
 
 Validation script:
-
 1. Open the homepage. Confirm the stat tiles match a manual count
    (`SELECT COUNT(Id) FROM Invite_Request__c`, etc. — they should agree).
 2. Use the CTA's **"+ New invite request"** button — confirm the modal opens, saves, and the
@@ -299,14 +297,14 @@ Nothing here is automatic — every grant below had to be added explicitly. Meta
 start every new object/field/tab at **zero** access for every profile and permission set; nothing
 is visible until it's granted somewhere.
 
-| Permission Set    | Who                    | Invite_Request__c                                                                                                                                                                               | Crawler_Finding__c          | Provisioned_Account__c               | Usage_Snapshot__c           |
-| ----------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- | ------------------------------------ | --------------------------- |
-| **`Admin_PS`**    | Admin / leader persona | Full CRUD + View/Modify All                                                                                                                                                                     | Full CRUD + View/Modify All | Full CRUD + View/Modify All          | Full CRUD + View/Modify All |
-| **`Reviewer_PS`** | Reviewer               | Read/Edit (no Create/Delete); AI-written fields (Dossier, Fit Score, verdict, etc.) are **read-only** even here — those are meant to come from Prompt Builder/n8n, not a human typing over them | Read/Edit                   | _(none)_                             | _(none)_                    |
-| **`CSM_PS`**      | Customer Success       | Read-only                                                                                                                                                                                       | Read-only                   | Create/Read/Edit                     | Read/Edit                   |
-| **`TSE_PS`**      | Support                | Read-only                                                                                                                                                                                       | _(none)_                    | Read/Edit (pause/cancel/rotate keys) | Read-only                   |
+| Permission Set | Who | Invite_Request__c | Crawler_Finding__c | Provisioned_Account__c | Usage_Snapshot__c |
+| --- | --- | --- | --- | --- | --- |
+| **`Admin_PS`** | Admin / leader persona | Full CRUD + View/Modify All | Full CRUD + View/Modify All | Full CRUD + View/Modify All | Full CRUD + View/Modify All |
+| **`Reviewer_PS`** | Reviewer | Read/Edit (no Create/Delete); AI-written fields (Dossier, Fit Score, verdict, etc.) are **read-only** even here — those are meant to come from Prompt Builder/n8n, not a human typing over them | Read/Edit | *(none)* | *(none)* |
+| **`CSM_PS`** | Customer Success | Read-only | Read-only | Create/Read/Edit | Read/Edit |
+| **`TSE_PS`** | Support | Read-only | *(none)* | Read/Edit (pause/cancel/rotate keys) | Read-only |
 
-A few design decisions worth knowing if you're validating the _design_, not just the access:
+A few design decisions worth knowing if you're validating the *design*, not just the access:
 
 - These are **Permission Sets**, not Profile edits — deliberately. A Profile-only grant gets
   silently wiped the next time anyone retrieves/deploys that profile for an unrelated reason;
@@ -317,14 +315,14 @@ A few design decisions worth knowing if you're validating the _design_, not just
   themselves, which looks exactly like "I can't view all list views" when you first hit it.
 - `recordTypeVisibilities` for `Invite_Request__c.Company`/`.Individual` are granted identically
   on every one of the four permission sets — record type visibility is a separate mechanism from
-  object/field permissions, and missing it on even one permission set means users with _only_ that
+  object/field permissions, and missing it on even one permission set means users with *only* that
   set can't select or see records of that type, independent of every other grant being correct.
 - The **Guest User** (`invite Profile`, Guest User License) is intentionally the narrowest: Create-only
   on `Invite_Request__c` (no Read/Edit/Delete), read on `RecordType`, and class access to exactly
   one Apex class (`InviteRequestApi`). Create-implies-Read is a platform rule for Guest Users, but
   Salesforce's mandatory "Secure Guest User Record Access" blocks the read-back regardless — see
   §2's note on why the REST endpoint never re-queries what it just inserted.
-- Page **Layout Assignment** (which layout a profile actually sees) is a _different_ mechanism
+- Page **Layout Assignment** (which layout a profile actually sees) is a *different* mechanism
   from FLS/object permissions and is easy to get wrong silently — a field can have perfect FLS and
   still never render if the profile is pointed at the wrong (or no) layout. This bit us twice on
   `Provisioned_Account__c`/`Usage_Snapshot__c` before landing on a minimal, single-purpose

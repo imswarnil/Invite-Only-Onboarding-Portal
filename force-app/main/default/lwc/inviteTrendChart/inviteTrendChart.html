@@ -1,0 +1,43 @@
+<template>
+  <div class="trend-card">
+    <div class="trend-header">
+      <p class="trend-title">Invite Request Trend</p>
+      <div class="toggle-group">
+        <template for:each={rangeOptions} for:item="opt">
+          <button
+            key={opt.key}
+            type="button"
+            class={opt.buttonClass}
+            data-key={opt.key}
+            onclick={handleRangeClick}
+          >
+            {opt.label}
+          </button>
+        </template>
+      </div>
+    </div>
+
+    <div class="toggle-group toggle-group-secondary">
+      <span class="toggle-label">Group by:</span>
+      <template for:each={groupOptions} for:item="opt">
+        <button
+          key={opt.key}
+          type="button"
+          class={opt.buttonClass}
+          data-key={opt.key}
+          onclick={handleGroupClick}
+        >
+          {opt.label}
+        </button>
+      </template>
+    </div>
+
+    <template if:true={errorMessage}>
+      <p class="trend-error">{errorMessage}</p>
+    </template>
+
+    <div class="chart-container">
+      <canvas></canvas>
+    </div>
+  </div>
+</template>

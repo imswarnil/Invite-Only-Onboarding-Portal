@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Public</cacheControl>
+    <contentType>application/javascript</contentType>
+    <description>Chart.js 4.4.4 UMD build (chart.umd.min.js from jsdelivr), used by the homepage's stage funnel and applicant type split widgets.</description>
+</StaticResource>

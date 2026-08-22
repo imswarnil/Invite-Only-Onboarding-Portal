@@ -43,11 +43,6 @@
         <editable>true</editable>
     </fieldPermissions>
     <fieldPermissions>
-        <field>Invite_Request__c.Converted_Account__c</field>
-        <readable>true</readable>
-        <editable>true</editable>
-    </fieldPermissions>
-    <fieldPermissions>
         <field>Invite_Request__c.Country__c</field>
         <readable>true</readable>
         <editable>true</editable>

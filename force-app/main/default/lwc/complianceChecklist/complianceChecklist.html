@@ -1,0 +1,19 @@
+<template>
+  <div class="slds-box slds-box_x-small compliance-checklist">
+    <h3 class="slds-text-heading_small slds-m-bottom_small">
+      Compliance Docs ({completedCount}/{totalCount})
+    </h3>
+    <ul class="checklist-list">
+      <template for:each={items} for:item="item">
+        <li key={item.key} class={item.cssClass}>
+          <lightning-icon
+            icon-name={item.icon}
+            size="xx-small"
+            class="checklist-icon"
+          ></lightning-icon>
+          <span>{item.label}</span>
+        </li>
+      </template>
+    </ul>
+  </div>
+</template>

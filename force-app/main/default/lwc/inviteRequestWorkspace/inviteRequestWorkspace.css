@@ -1,0 +1,143 @@
+:host {
+  display: block;
+  padding: 1.25rem 1.5rem 2rem;
+  background: #f6f9fc;
+  box-sizing: border-box;
+}
+
+.workspace-header {
+  margin-bottom: 1.25rem;
+}
+
+.header-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: none;
+  background: none;
+  padding: 0;
+  margin-bottom: 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #635bff;
+  cursor: pointer;
+}
+
+.header-back:hover {
+  text-decoration: underline;
+}
+
+.header-main {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.header-identity {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-name {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0a2540;
+}
+
+.header-record-name {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  color: #706e6b;
+}
+
+.header-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.header-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: #f5f4ff;
+  color: #635bff;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.header-badge.is-approved {
+  background: #eaf8ee;
+  color: #04844b;
+}
+
+.header-badge.is-waitlisted {
+  background: #fff4e5;
+  color: #b95000;
+}
+
+.header-badge.is-rejected {
+  background: #fef3f2;
+  color: #b42318;
+}
+
+.workspace-progress {
+  border: 1px solid #e3e8ee;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 1rem;
+  align-items: start;
+  width: 100%;
+}
+
+.workspace-main {
+  min-width: 0;
+}
+
+.workspace-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.workspace-panel {
+  background: #fff;
+  border: 1px solid #e3e8ee;
+  border-radius: 12px;
+  padding: 1.1rem 1.25rem;
+}
+
+.workspace-panel-heading {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0a2540;
+}
+
+.workspace-extra {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 900px) {
+  .workspace-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .workspace-sidebar {
+    order: -1;
+  }
+}

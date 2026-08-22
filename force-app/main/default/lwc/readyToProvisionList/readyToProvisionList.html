@@ -1,0 +1,37 @@
+<template>
+  <div class="slds-box slds-box_x-small ready-to-provision-list">
+    <h3 class="slds-text-heading_small slds-m-bottom_small">
+      <lightning-icon
+        icon-name="utility:approval"
+        size="x-small"
+        class="widget-title-icon"
+      ></lightning-icon>
+      Ready to Provision
+    </h3>
+    <template if:true={errorMessage}>
+      <p class="slds-text-color_error slds-text-body_small">{errorMessage}</p>
+    </template>
+    <template if:false={hasRequests}>
+      <p class="slds-text-color_weak slds-text-body_small">
+        Nothing waiting on a decision right now.
+      </p>
+    </template>
+    <template for:each={requests} for:item="req">
+      <div
+        key={req.recordId}
+        class="request-row"
+        data-id={req.recordId}
+        onclick={handleRowClick}
+      >
+        <lightning-icon
+          icon-name="utility:check"
+          size="xx-small"
+          class={req.verdictClass}
+        ></lightning-icon>
+        <span class="request-name">{req.name}</span>
+        <span class="request-type">{req.applicantType}</span>
+        <span class="request-score">{req.fitScore}</span>
+      </div>
+    </template>
+  </div>
+</template>

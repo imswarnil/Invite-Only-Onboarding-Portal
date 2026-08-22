@@ -1,0 +1,14 @@
+<template>
+  <div class="welcome-banner">
+    <img
+      lwc:if={userPhotoUrl}
+      src={userPhotoUrl}
+      alt={userName}
+      class="welcome-avatar"
+    />
+    <div class="welcome-text">
+      <p class="welcome-greeting">{greeting}, {userName}</p>
+      <p class="welcome-date">{todayLabel}</p>
+    </div>
+  </div>
+</template>

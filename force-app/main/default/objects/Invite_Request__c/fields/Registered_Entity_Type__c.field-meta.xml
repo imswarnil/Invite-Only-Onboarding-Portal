@@ -2,26 +2,33 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Registered_Entity_Type__c</fullName>
     <label>Registered Entity Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
         <valueSetDefinition>
             <sorted>false</sorted>
-        <value>
-            <fullName>Sole Proprietorship</fullName>
-            <default>false</default>
-        </value>
-        <value>
-            <fullName>LLP</fullName>
-            <default>false</default>
-        </value>
-        <value>
-            <fullName>Private Limited</fullName>
-            <default>false</default>
-        </value>
-        <value>
-            <fullName>None</fullName>
-            <default>false</default>
-        </value>
+            <value>
+                <fullName>Sole Proprietorship</fullName>
+                <default>false</default>
+                <label>Sole Proprietorship</label>
+            </value>
+            <value>
+                <fullName>LLP</fullName>
+                <default>false</default>
+                <label>LLP</label>
+            </value>
+            <value>
+                <fullName>Private Limited</fullName>
+                <default>false</default>
+                <label>Private Limited</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

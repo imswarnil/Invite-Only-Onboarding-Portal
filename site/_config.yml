@@ -9,6 +9,8 @@ github_repo: "imswarnil/Invite-Only-Onboarding-Portal"
 author: "Swarnil Singhai"
 twitter_card: summary_large_image
 hire_me_url: "https://imswarnil.com/about"
+# Placeholder walkthrough clip — swap for a real screen recording when one exists.
+demo_video_url: "https://file-examples.com/wp-content/storage/2017/04/file_example_MP4_480_1_5MG.mp4"
 disclaimer: >-
   Independent educational project built by one person to learn the Salesforce AI stack. It is not
   affiliated with, endorsed by, or connected to Stripe, Salesforce, Agentforce, n8n, or any other

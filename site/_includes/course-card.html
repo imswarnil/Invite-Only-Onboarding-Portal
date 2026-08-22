@@ -1,0 +1,20 @@
+{%- comment -%} One lesson rendered as a course card: a patterned thumbnail
+keyed off the lesson's section, then title/summary/CTA. Usage: {% include
+course-card.html lesson=lesson index=forloop.index %} {%- endcomment -%} {%-
+assign section_slug = include.lesson.section | slugify -%}
+<a class="course-card" href="{{ include.lesson.url | relative_url }}">
+  <span class="course-thumb course-thumb--{{ section_slug }}">
+    <span class="course-card-node">{{ include.index }}</span>
+    <span class="course-thumb-icon">
+      {% include lesson-thumb.html section=include.lesson.section %}
+    </span>
+  </span>
+  <span class="course-card-body">
+    <span class="course-card-section">{{ include.lesson.section }}</span>
+    <h3>{{ include.lesson.title }}</h3>
+    <p>{{ include.lesson.summary }}</p>
+    <span class="course-card-cta">
+      Start lesson {% include icon.html name="caret-right" size=13 %}
+    </span>
+  </span>
+</a>

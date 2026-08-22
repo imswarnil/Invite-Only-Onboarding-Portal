@@ -1,0 +1,30 @@
+.related-provisioned-account-card {
+  padding: 1rem 1.25rem;
+}
+
+.account-link {
+  display: block;
+  border: none;
+  background: none;
+  padding: 0;
+  margin-bottom: 0.6rem;
+  color: #635bff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  cursor: pointer;
+  text-align: left;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3rem 0;
+  font-size: 0.82rem;
+  color: #444c53;
+}
+
+.summary-value {
+  font-weight: 700;
+  color: #0a2540;
+}

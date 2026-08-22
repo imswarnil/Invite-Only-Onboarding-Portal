@@ -1,0 +1,53 @@
+<template>
+  <div class="quick-action-panel">
+    <p class="panel-heading">Quick Actions</p>
+    <p class="current-decision">
+      Current decision: <strong>{currentDecision}</strong>
+    </p>
+
+    <button
+      type="button"
+      class={approveTileClass}
+      disabled={isDisabled}
+      onclick={handleApprove}
+    >
+      <span class="tile-icon-wrap tile-icon-success">
+        <lightning-icon icon-name="utility:success" size="small"></lightning-icon>
+      </span>
+      <span class="tile-text">
+        <span class="tile-label">Approve</span>
+        <span class="tile-caption">Provision this account</span>
+      </span>
+    </button>
+
+    <button
+      type="button"
+      class={waitlistTileClass}
+      disabled={isDisabled}
+      onclick={handleWaitlist}
+    >
+      <span class="tile-icon-wrap tile-icon-warning">
+        <lightning-icon icon-name="utility:warning" size="small"></lightning-icon>
+      </span>
+      <span class="tile-text">
+        <span class="tile-label">Waitlist</span>
+        <span class="tile-caption">Revisit this one later</span>
+      </span>
+    </button>
+
+    <button
+      type="button"
+      class={rejectTileClass}
+      disabled={isDisabled}
+      onclick={handleReject}
+    >
+      <span class="tile-icon-wrap tile-icon-error">
+        <lightning-icon icon-name="utility:close" size="small"></lightning-icon>
+      </span>
+      <span class="tile-text">
+        <span class="tile-label">Reject</span>
+        <span class="tile-caption">Not a fit right now</span>
+      </span>
+    </button>
+  </div>
+</template>

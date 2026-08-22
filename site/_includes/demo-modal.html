@@ -1,0 +1,27 @@
+{%- comment -%} Demo video overlay, opened by any [data-demo-open] button. The
+source is a placeholder clip until a real walkthrough recording is dropped in.
+Usage: {% include demo-modal.html %} {%- endcomment -%}
+<div
+  class="demo-modal"
+  id="demo-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Product demo video"
+>
+  <div class="demo-modal-panel">
+    <button type="button" class="demo-modal-close" aria-label="Close demo">
+      {% include icon.html name="close" size=18 %}
+    </button>
+    <video
+      class="demo-modal-video"
+      controls
+      playsinline
+      preload="none"
+      poster="{{ '/assets/images/app-mockup.svg' | relative_url }}"
+      src="{{ site.demo_video_url }}"
+    >
+      Your browser can't play embedded video.
+      <a href="{{ site.demo_video_url }}">Open the demo video directly</a>.
+    </video>
+  </div>
+</div>

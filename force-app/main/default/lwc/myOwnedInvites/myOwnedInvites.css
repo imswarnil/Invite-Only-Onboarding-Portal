@@ -1,0 +1,32 @@
+.my-owned-invites {
+  padding: 1rem 1.25rem;
+}
+
+.owned-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #f3f3f3;
+  cursor: pointer;
+  font-size: 0.82rem;
+}
+
+.owned-row:last-child {
+  border-bottom: none;
+}
+
+.owned-name {
+  color: #0a2540;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.owned-stage {
+  font-size: 0.72rem;
+  color: #706e6b;
+  flex-shrink: 0;
+}

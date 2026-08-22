@@ -1,6 +1,42 @@
 (function () {
   "use strict";
 
+  // --- Demo video overlay ---
+  var demoModal = document.getElementById("demo-modal");
+  var demoTriggers = document.querySelectorAll("[data-demo-open]");
+  if (demoModal && demoTriggers.length) {
+    var demoVideo = demoModal.querySelector(".demo-modal-video");
+    var demoClose = demoModal.querySelector(".demo-modal-close");
+
+    function openDemo() {
+      demoModal.classList.add("is-open");
+      if (demoClose) demoClose.focus();
+      if (demoVideo && demoVideo.play) {
+        // Autoplay can be blocked; the controls are there either way.
+        var attempt = demoVideo.play();
+        if (attempt && attempt.catch) attempt.catch(function () {});
+      }
+    }
+
+    function closeDemo() {
+      demoModal.classList.remove("is-open");
+      if (demoVideo && demoVideo.pause) demoVideo.pause();
+    }
+
+    demoTriggers.forEach(function (trigger) {
+      trigger.addEventListener("click", openDemo);
+    });
+    if (demoClose) demoClose.addEventListener("click", closeDemo);
+    demoModal.addEventListener("click", function (event) {
+      if (event.target === demoModal) closeDemo();
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && demoModal.classList.contains("is-open")) {
+        closeDemo();
+      }
+    });
+  }
+
   // --- Roadmap page: Board / Screenshots tabs ---
   var tabs = document.querySelectorAll(".roadmap-tab");
   if (tabs.length) {

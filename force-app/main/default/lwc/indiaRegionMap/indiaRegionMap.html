@@ -1,0 +1,18 @@
+<template>
+  <div class="region-card">
+    <p class="region-title">Requests by State (India)</p>
+    <template if:true={errorMessage}>
+      <p class="region-error">{errorMessage}</p>
+    </template>
+    <template if:false={hasSpots}>
+      <p class="region-empty">No state data yet.</p>
+    </template>
+    <div class="region-canvas">
+      <template for:each={spots} for:item="spot">
+        <div key={spot.key} class="region-spot" style={spot.style} title={spot.title}>
+          <span class="region-spot-count">{spot.total}</span>
+        </div>
+      </template>
+    </div>
+  </div>
+</template>

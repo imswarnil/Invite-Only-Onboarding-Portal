@@ -1,0 +1,17 @@
+<template>
+  <div class="slds-box slds-box_x-small products-live-checklist">
+    <h3 class="slds-text-heading_small slds-m-bottom_small">Products Live</h3>
+    <ul class="product-list">
+      <template for:each={products} for:item="product">
+        <li key={product.name} class={product.cssClass}>
+          <lightning-icon
+            icon-name={product.icon}
+            size="x-small"
+            class="product-icon"
+          ></lightning-icon>
+          <span>{product.name}</span>
+        </li>
+      </template>
+    </ul>
+  </div>
+</template>

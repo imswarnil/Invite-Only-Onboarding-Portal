@@ -4,16 +4,24 @@
 > — Agentforce). Scoped to one question: **what are these two things, and how do you actually
 > build them for this project?**
 
-**Why this is a separate, hand-built-only doc:** everything else in this repo — objects, fields,
+**Why most of this is still Setup-UI-first:** everything else in this repo — objects, fields,
 Flows, Apex, LWC — got built by generating metadata and deploying it with `sf project deploy
 start`, iterating on real deploy errors until it worked. Prompt Builder templates and Agentforce
 agents use some of Salesforce's newest metadata types (`GenAiPromptTemplate`, `Bot`/`BotVersion`,
 `GenAiPlannerBundle`, `GenAiPlugin`), and unlike Layout/Flow/PermissionSet — which have years of
 public examples to check XML against — these are new enough that a wrong guess is more likely to
-silently misconfigure something than to fail loudly at deploy time. So this phase is **Setup UI
-only**, same as Page Layout Assignment and Experience Builder page composition were. Once you've
-built one by hand and (optionally) retrieved the resulting metadata, _that_ becomes a real
-reference worth automating from.
+silently misconfigure something than to fail loudly at deploy time.
+
+**Update:** one simple, record-grounded `GenAiPromptTemplate` (`Invite_Only_Brief`, see §2a) has
+now actually been hand-authored as XML and deployed cleanly on the first real attempt — confirmed
+by retrieving it back and diffing against what was deployed. So "Setup UI only" was a starting
+caution, not a hard rule: a **Flex** template with plain record-field grounding (no Apex data
+provider, no multi-input JSON contract) is safe to author directly once you've seen one real
+example's schema — which is exactly how `Invite_Only_Brief` got built (an early stub template was
+created by hand in Setup first, then retrieved purely to learn the real field names/values before
+writing the real one from scratch). Anything with an Apex `templateDataProviders` grounding, a
+strict-JSON output contract (`Dossier_And_Score`, §2b), or the Agentforce `Bot`/`GenAiPlannerBundle`
+types (§3) is still safer to build by hand first — same reasoning, just not yet proven out.
 
 ---
 
@@ -36,7 +44,48 @@ of past decisions later.
 
 ---
 
-## 2. Prompt Builder: `Dossier_And_Score`
+## 2a. Built: `Invite_Only_Brief`
+
+**What it is:** a small, real, deployed `GenAiPromptTemplate`
+([`force-app/main/default/genAiPromptTemplates/Invite_Only_Brief.genAiPromptTemplate-meta.xml`](./force-app/main/default/genAiPromptTemplates/Invite_Only_Brief.genAiPromptTemplate-meta.xml)).
+It grounds on one `Invite_Request__c` record and writes a short, decision-ready brief for
+whoever is about to approve/waitlist/reject it — built to answer exactly one question: *given
+only what the applicant typed into the form, what would a reviewer want to know in the next 30
+seconds?* Deliberately scoped to the applicant's own inputs, not AI-derived fields
+(`Fit_Score__c`, `Crawler_Finding__c`) — those come from `Dossier_And_Score` (§2b) once that
+exists, and folding them in here would make this brief circular (AI summarizing AI).
+
+**The confirmed-real merge syntax** (`type: einstein_gpt__flex`):
+
+```xml
+<inputs>
+    <apiName>inviteRequest</apiName>
+    <definition>SOBJECT://Invite_Request__c</definition>
+    <masterLabel>Invite Request</masterLabel>
+    <referenceName>Input:inviteRequest</referenceName>
+    <required>true</required>
+</inputs>
+```
+
+and in the prompt `content`, reference any field on that grounded record directly —
+**`{!$Input:inviteRequest.Applicant_Type__c}`** — note the `$` before `Input`, and that the prefix
+before the dot is whatever you named the input's `apiName`, not a generic `Record` keyword. No
+Apex data provider is needed just to read fields off the grounded record; you'd only add
+`templateDataProviders` (see the pre-existing `Generate_Personalized_Schedule` sample template in
+this org, an unrelated Coral Cloud demo, for what that looks like) if you need a *computed* or
+*related-list* value the record's own fields don't have.
+
+**To try it / activate it:** Setup → Prompt Builder → open `Invite Only Brief` → the **Try It**
+panel lets you pick a real `Invite_Request__c` record and see the generated brief before
+committing to anything. It deploys in `Draft` status on purpose — actually publishing a template
+(the **Activate** button) runs Salesforce's own grounding/model validation, which is exactly the
+kind of one-time check that belongs in the UI, not guessed at in XML. Once you're happy with the
+output, hit Activate there; nothing else in this repo depends on this template being active yet
+(no Flow/Apex/LWC calls it — wiring it into the record page as an actual "Generate Brief" button
+is the natural next step, and would reuse the exact same "call a prompt template from
+Flow/Apex/LWC" pattern `Dossier_And_Score` is designed around in §2b).
+
+## 2b. Conceptual: `Dossier_And_Score`
 
 **What it is:** a _Flex_ prompt template — reusable, callable from Flow, Agentforce, or Apex (not
 just a one-off you preview and forget). It takes the `Invite_Request__c` record plus a
@@ -55,8 +104,10 @@ model infers, so it belongs in the prompt text itself, not left to the model's j
    "Field Generation" or "Record Summary" — those are narrower, single-purpose templates; Flex is
    the one that's callable from Flow/Agentforce).
 2. Name it `Dossier_And_Score`.
-3. Add a **Record** input for `Invite_Request__c` — this is how you reference
-   `{!Input:Record.Applicant_Type__c}` etc. in the prompt text.
+3. Add a **Record** input for `Invite_Request__c` (call it e.g. `inviteRequest`) — this is how you
+   reference `{!$Input:inviteRequest.Applicant_Type__c}` etc. in the prompt text (confirmed real
+   syntax, `$Input:<yourInputName>.Field__c` — see §2a for the deployed example this pattern comes
+   from).
 4. Add a plain **Text** input named `CrawlSummary` — this is where n8n's scraped/compressed text
    gets passed in when the real integration exists.
 5. Write the prompt body. Keep the actual wording in

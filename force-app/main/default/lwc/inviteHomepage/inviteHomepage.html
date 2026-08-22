@@ -7,44 +7,173 @@
       ></c-home-header>
     </section>
 
-    <section class="homepage-section homepage-stats-section">
-      <c-stat-tile
-        label="Total Invite Requests"
-        value={totalRequests}
-        accent="purple"
-      ></c-stat-tile>
-      <c-stat-tile
-        label="Avg Fit Score"
-        value={averageFitScore}
-        accent="navy"
-      ></c-stat-tile>
-      <c-stat-tile
-        label="Provisioned Accounts"
-        value={provisionedTotal}
-        accent="green"
-      ></c-stat-tile>
-      <c-stat-tile
-        label="Needs Attention"
-        value={needsAttentionCount}
-        sublabel="Action Needed + Waitlisted"
-        accent="orange"
-      ></c-stat-tile>
-    </section>
+    <div class="bento-grid">
+      <div class="bento-cell bento-welcome">
+        <c-welcome-banner></c-welcome-banner>
+      </div>
 
-    <section class="homepage-section homepage-main-section">
-      <div class="homepage-col homepage-col-primary">
+      <div class="bento-cell bento-cta">
+        <p class="bento-cta-eyebrow">Reviewer workspace</p>
+        <h2 class="bento-cta-title">Keep the pipeline moving</h2>
+        <p class="bento-cta-copy">
+          {totalRequests} invite requests on file. Jump straight into the
+          queue or log a new one by hand.
+        </p>
+        <div class="bento-cta-actions">
+          <button
+            type="button"
+            class="bento-btn bento-btn-primary"
+            onclick={handleViewPipelineClick}
+          >
+            View pipeline
+          </button>
+          <button
+            type="button"
+            class="bento-btn bento-btn-secondary"
+            onclick={handleNewInviteClick}
+          >
+            + New invite request
+          </button>
+        </div>
+      </div>
+
+      <div class="bento-cell bento-stat bento-stat-1">
+        <c-stat-tile
+          label="Total Invite Requests"
+          value={totalRequests}
+          accent="purple"
+          icon-name="utility:form"
+        ></c-stat-tile>
+      </div>
+      <div class="bento-cell bento-stat bento-stat-2">
+        <c-stat-tile
+          label="Avg Fit Score"
+          value={averageFitScore}
+          accent="navy"
+          icon-name="utility:favorite"
+        ></c-stat-tile>
+      </div>
+      <div class="bento-cell bento-stat bento-stat-3">
+        <c-stat-tile
+          label="Provisioned Accounts"
+          value={provisionedTotal}
+          accent="green"
+          icon-name="utility:money"
+        ></c-stat-tile>
+      </div>
+      <div class="bento-cell bento-stat bento-stat-4">
+        <c-stat-tile
+          label="Needs Attention"
+          value={needsAttentionCount}
+          sublabel="Action Needed + Waitlisted"
+          accent="orange"
+          icon-name="utility:warning"
+        ></c-stat-tile>
+      </div>
+
+      <div class="bento-cell bento-trend">
+        <c-invite-trend-chart></c-invite-trend-chart>
+      </div>
+
+      <div class="bento-cell bento-funnel">
         <c-stage-funnel></c-stage-funnel>
       </div>
-      <div class="homepage-col homepage-col-secondary">
+      <div class="bento-cell bento-split">
         <c-applicant-type-split></c-applicant-type-split>
       </div>
-      <div class="homepage-col homepage-col-secondary">
+      <div class="bento-cell bento-provisioned">
         <c-provisioned-accounts-summary></c-provisioned-accounts-summary>
       </div>
-    </section>
 
-    <section class="homepage-section homepage-list-section">
-      <c-recent-invites-list></c-recent-invites-list>
-    </section>
+      <div class="bento-cell bento-region">
+        <c-india-region-map></c-india-region-map>
+      </div>
+      <div class="bento-cell bento-owned">
+        <c-my-owned-invites></c-my-owned-invites>
+      </div>
+
+      <div class="bento-cell bento-top">
+        <c-top-performing-accounts></c-top-performing-accounts>
+      </div>
+      <div class="bento-cell bento-ready">
+        <c-ready-to-provision-list></c-ready-to-provision-list>
+      </div>
+
+      <div class="bento-cell bento-table">
+        <c-invite-data-table></c-invite-data-table>
+      </div>
+
+      <div class="bento-cell bento-recent">
+        <c-recent-invites-list></c-recent-invites-list>
+      </div>
+      <div class="bento-cell bento-aging">
+        <c-pipeline-aging-list></c-pipeline-aging-list>
+      </div>
+    </div>
+
+    <template if:true={showNewModal}>
+      <section class="modal-backdrop" role="dialog">
+        <div class="modal-card">
+          <div class="modal-header">
+            <h2>New Invite Request</h2>
+            <button
+              type="button"
+              class="modal-close"
+              onclick={handleCloseModal}
+            >
+              ✕
+            </button>
+          </div>
+
+          <div class="modal-toggle">
+            <button
+              type="button"
+              class={individualToggleClass}
+              data-type="Individual"
+              onclick={handleApplicantTypeToggle}
+            >
+              Individual
+            </button>
+            <button
+              type="button"
+              class={companyToggleClass}
+              data-type="Company"
+              onclick={handleApplicantTypeToggle}
+            >
+              Company
+            </button>
+          </div>
+
+          <lightning-record-edit-form
+            object-api-name="Invite_Request__c"
+            record-type-id={recordTypeId}
+            onsuccess={handleNewSuccess}
+            onerror={handleNewError}
+          >
+            <lightning-messages></lightning-messages>
+            <lightning-input-field field-name="Applicant_Type__c"></lightning-input-field>
+            <lightning-input-field field-name="First_Name__c"></lightning-input-field>
+            <lightning-input-field field-name="Last_Name__c"></lightning-input-field>
+            <lightning-input-field field-name="Work_Email__c"></lightning-input-field>
+            <lightning-input-field field-name="Phone__c"></lightning-input-field>
+            <lightning-input-field field-name="Country__c"></lightning-input-field>
+            <div class="modal-actions">
+              <button
+                type="button"
+                class="bento-btn bento-btn-secondary-light"
+                onclick={handleCloseModal}
+              >
+                Cancel
+              </button>
+              <lightning-button
+                variant="brand"
+                type="submit"
+                label="Save"
+              ></lightning-button>
+            </div>
+          </lightning-record-edit-form>
+        </div>
+      </section>
+    </template>
   </div>
 </template>

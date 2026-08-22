@@ -1,0 +1,11 @@
+<template>
+  <div class="slds-box slds-box_x-small legitimacy-badge">
+    <h3 class="slds-text-heading_small slds-m-bottom_small">Legitimacy</h3>
+    <span class={verdictClass}>{verdict}</span>
+    <ul class="chip-list">
+      <template for:each={badges} for:item="badge">
+        <li key={badge.key} class={badge.cssClass}>{badge.label}</li>
+      </template>
+    </ul>
+  </div>
+</template>

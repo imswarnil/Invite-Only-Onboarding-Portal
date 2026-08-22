@@ -10,7 +10,7 @@
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Invite Only Home App Page</masterLabel>
+    <masterLabel>Invite Only Overview</masterLabel>
     <template>
         <name>flexipage:defaultAppHomeTemplate</name>
     </template>

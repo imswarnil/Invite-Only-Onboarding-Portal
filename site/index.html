@@ -45,12 +45,20 @@ assign latest_changelog = site.changelog | sort: "date" | reverse %}
           >Invite Only Onboarding — Reviewer dashboard</span
         >
       </div>
-      <img
-        src="{{ '/assets/images/app-mockup.svg' | relative_url }}"
-        alt="The reviewer dashboard: pipeline stat tiles, a stage funnel chart, an applicant-type breakdown, and a list of requests ready to provision"
-        width="1000"
-        height="600"
-      />
+      <div class="browser-frame-canvas">
+        <img
+          src="{{ '/assets/images/app-mockup.svg' | relative_url }}"
+          alt="The reviewer dashboard: pipeline stat tiles, a stage funnel chart, an applicant-type breakdown, and a list of requests ready to provision"
+          width="1000"
+          height="600"
+        />
+        <button type="button" class="demo-play" data-demo-open>
+          <span class="demo-play-icon"
+            >{% include icon.html name="play" size=20 %}</span
+          >
+          <span>View demo</span>
+        </button>
+      </div>
     </div>
   </section>
 
@@ -333,22 +341,8 @@ assign latest_changelog = site.changelog | sort: "date" | reverse %}
       </div>
 
       <div class="course-grid">
-        {% for lesson in lessons limit: 6 %}
-        <a class="course-card" href="{{ lesson.url | relative_url }}">
-          <span class="course-card-node">{{ forloop.index }}</span>
-          <span class="course-card-icon">
-            {% include lesson-thumb.html section=lesson.section %}
-          </span>
-          <p class="course-card-section">{{ lesson.section }}</p>
-          <h3>{{ lesson.title }}</h3>
-          <p>{{ lesson.summary }}</p>
-          <span class="btn btn-secondary">
-            {% include icon.html name="caret-right" size=13 %}<span
-              >Start lesson</span
-            >
-          </span>
-        </a>
-        {% endfor %}
+        {% for lesson in lessons limit: 6 %} {% include course-card.html
+        lesson=lesson index=forloop.index %} {% endfor %}
       </div>
 
       <div style="text-align: center; margin-top: 2rem">

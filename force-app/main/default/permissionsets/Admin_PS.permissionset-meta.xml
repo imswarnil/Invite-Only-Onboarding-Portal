@@ -4,19 +4,18 @@
     <description
   >Full access to the Invite Only Onboarding Portal's custom objects, fields, tabs, and record types. Assign to anyone who needs to administer or fully test this app.</description>
     <hasActivationRequired>false</hasActivationRequired>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>EditPublicFilters</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>CreateCustomizeFilters</name>
+    </userPermissions>
     <classAccesses>
         <apexClass>InviteHomeController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <objectPermissions>
-        <object>Account</object>
-        <allowCreate>true</allowCreate>
-        <allowRead>true</allowRead>
-        <allowEdit>true</allowEdit>
-        <allowDelete>true</allowDelete>
-        <viewAllRecords>true</viewAllRecords>
-        <modifyAllRecords>true</modifyAllRecords>
-    </objectPermissions>
     <objectPermissions>
         <object>Invite_Request__c</object>
         <allowCreate>true</allowCreate>
@@ -80,11 +79,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <field>Invite_Request__c.Content_Depth__c</field>
-        <readable>true</readable>
-        <editable>true</editable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <field>Invite_Request__c.Converted_Account__c</field>
         <readable>true</readable>
         <editable>true</editable>
     </fieldPermissions>
@@ -239,7 +233,7 @@
         <editable>true</editable>
     </fieldPermissions>
     <fieldPermissions>
-        <field>Provisioned_Account__c.Account__c</field>
+        <field>Provisioned_Account__c.Invite_Request__c</field>
         <readable>true</readable>
         <editable>true</editable>
     </fieldPermissions>
@@ -274,6 +268,31 @@
         <editable>true</editable>
     </fieldPermissions>
     <fieldPermissions>
+        <field>Provisioned_Account__c.Plan_Tier__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Provisioned_Account__c.Risk_Level__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Provisioned_Account__c.Go_Live_Date__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Provisioned_Account__c.Renewal_Date__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Provisioned_Account__c.Contract_Value_INR__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <fieldPermissions>
         <field>Usage_Snapshot__c.Provisioned_Account__c</field>
         <readable>true</readable>
         <editable>true</editable>
@@ -304,7 +323,17 @@
         <editable>true</editable>
     </fieldPermissions>
     <fieldPermissions>
-        <field>Account.Record_POC__c</field>
+        <field>Usage_Snapshot__c.Chargeback_Count__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Usage_Snapshot__c.Refund_Rate__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Usage_Snapshot__c.Net_Revenue_INR__c</field>
         <readable>true</readable>
         <editable>true</editable>
     </fieldPermissions>
@@ -330,10 +359,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Invite_Request__c.Individual</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Account.Invite_Only_Customer</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
 </PermissionSet>

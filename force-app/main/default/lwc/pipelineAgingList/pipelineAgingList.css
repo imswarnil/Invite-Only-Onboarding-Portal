@@ -1,0 +1,40 @@
+.pipeline-aging-list {
+  padding: 1rem 1.25rem;
+}
+
+.aging-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid #f3f3f3;
+  cursor: pointer;
+  font-size: 0.82rem;
+}
+
+.aging-row:last-child {
+  border-bottom: none;
+}
+
+.aging-name {
+  flex: 1;
+  color: #0a2540;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.aging-stage {
+  color: #706e6b;
+  font-size: 0.75rem;
+}
+
+.aging-days {
+  font-weight: 700;
+  color: #706e6b;
+}
+
+.aging-row.is-stale .aging-days {
+  color: #ea001e;
+}

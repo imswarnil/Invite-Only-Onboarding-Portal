@@ -61,11 +61,6 @@
         <editable>false</editable>
     </fieldPermissions>
     <fieldPermissions>
-        <field>Invite_Request__c.Converted_Account__c</field>
-        <readable>true</readable>
-        <editable>false</editable>
-    </fieldPermissions>
-    <fieldPermissions>
         <field>Invite_Request__c.Country__c</field>
         <readable>true</readable>
         <editable>false</editable>
@@ -226,7 +221,7 @@
         <editable>false</editable>
     </fieldPermissions>
     <fieldPermissions>
-        <field>Provisioned_Account__c.Account__c</field>
+        <field>Provisioned_Account__c.Invite_Request__c</field>
         <readable>true</readable>
         <editable>true</editable>
     </fieldPermissions>
@@ -261,6 +256,31 @@
         <editable>true</editable>
     </fieldPermissions>
     <fieldPermissions>
+        <field>Provisioned_Account__c.Plan_Tier__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Provisioned_Account__c.Risk_Level__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Provisioned_Account__c.Go_Live_Date__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Provisioned_Account__c.Renewal_Date__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Provisioned_Account__c.Contract_Value_INR__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <fieldPermissions>
         <field>Usage_Snapshot__c.Provisioned_Account__c</field>
         <readable>true</readable>
         <editable>true</editable>
@@ -287,6 +307,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <field>Usage_Snapshot__c.Revenue_INR__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Usage_Snapshot__c.Chargeback_Count__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Usage_Snapshot__c.Refund_Rate__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Usage_Snapshot__c.Net_Revenue_INR__c</field>
         <readable>true</readable>
         <editable>true</editable>
     </fieldPermissions>

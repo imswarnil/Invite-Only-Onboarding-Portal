@@ -1,0 +1,23 @@
+<template>
+  <div class="slds-box slds-box_x-small pipeline-aging-list">
+    <h3 class="slds-text-heading_small slds-m-bottom_small">Sitting Too Long</h3>
+    <template if:true={errorMessage}>
+      <p class="slds-text-color_error slds-text-body_small">{errorMessage}</p>
+    </template>
+    <template if:false={hasRequests}>
+      <p class="slds-text-color_weak slds-text-body_small">Nothing aging right now.</p>
+    </template>
+    <template for:each={requests} for:item="req">
+      <div
+        key={req.recordId}
+        class={req.cssClass}
+        data-id={req.recordId}
+        onclick={handleRowClick}
+      >
+        <span class="aging-name">{req.name}</span>
+        <span class="aging-stage">{req.stage}</span>
+        <span class="aging-days">{req.daysInStage}d</span>
+      </div>
+    </template>
+  </div>
+</template>
