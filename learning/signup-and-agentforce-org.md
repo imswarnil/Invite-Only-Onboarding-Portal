@@ -2,6 +2,7 @@
 section: "Getting Started"
 order: 1
 title: "Signing up and standing up the Agentforce org"
+summary: "Day zero: why a Developer Edition org beat a trial or sandbox, and the one setup step that would have blocked everything later."
 ---
 
 # Signing up and standing up the Agentforce org

@@ -2,6 +2,7 @@
 section: "Process & UI"
 order: 3
 title: "Trimming the record's action bar, and the layout-assignment gotcha"
+summary: "Trimming a noisy record action bar, and the layout-assignment trap that silently hid most of a record's fields."
 ---
 
 # Trimming the record's action bar, and the layout-assignment gotcha

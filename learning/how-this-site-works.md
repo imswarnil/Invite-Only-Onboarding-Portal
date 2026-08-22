@@ -2,6 +2,7 @@
 section: "Front-End & Branding"
 order: 4
 title: "How this learning site works"
+summary: "How a folder of markdown files becomes a routed, sidebar-navigable, paginated site with no JavaScript framework involved."
 ---
 
 # How this learning site works

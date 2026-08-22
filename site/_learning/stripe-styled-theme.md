@@ -2,6 +2,7 @@
 section: "Front-End & Branding"
 order: 5
 title: "Giving the build log a Stripe-styled home"
+summary: "The Salesforce side needed a public face — building it as a static site with a Stripe-inspired token and type system."
 ---
 
 # Giving the build log a Stripe-styled home

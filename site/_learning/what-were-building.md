@@ -2,6 +2,7 @@
 section: "Overview"
 order: 0
 title: "What we're building"
+summary: "A back office for an invite-only onboarding program — and the brain-vs-hands mental model the whole build rests on."
 ---
 
 # What we're building

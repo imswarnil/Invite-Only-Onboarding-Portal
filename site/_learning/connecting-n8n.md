@@ -2,6 +2,7 @@
 section: "Automation"
 order: 6
 title: "Wiring n8n in as the crawler"
+summary: 'Wiring n8n in as the crawler: the "hands" that fetch the open web so Salesforce''s "brain" has something to reason over.'
 ---
 
 # Wiring n8n in as the crawler

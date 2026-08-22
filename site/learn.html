@@ -8,7 +8,7 @@ description: >-
 ---
 
 {% assign lessons = site.learning | sort: "order" %} {% assign first_lesson =
-lessons | first %} {% capture newline %} {% endcapture %}
+lessons | first %}
 
 <div class="home-shell">
   <p class="lesson-eyebrow">
@@ -44,14 +44,7 @@ lessons | first %} {% capture newline %} {% endcapture %}
       </span>
       <p class="course-card-section">{{ lesson.section }}</p>
       <h3>{{ lesson.title }}</h3>
-      {%- comment -%} Drop the first line (the lesson's own H1) so the card
-      blurb starts at the body copy. Split on a newline rather than a literal
-      closing tag — a raw tag in an attribute-less Liquid filter breaks
-      prettier. {%- endcomment -%} {% assign body_lines = lesson.content |
-      strip_html | strip | split: newline %}
-      <p>
-        {{ body_lines | slice: 1, 400 | join: " " | strip | truncate: 110 }}
-      </p>
+      <p>{{ lesson.summary }}</p>
       <span class="btn btn-secondary">
         {% include icon.html name="caret-right" size=13 %}<span
           >Start lesson</span

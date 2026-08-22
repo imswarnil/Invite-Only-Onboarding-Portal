@@ -2,6 +2,7 @@
 section: "Data Modeling & Security"
 order: 2
 title: "The data model, and the permissions gotchas that came with it"
+summary: "Four custom objects and record types — plus the three permission surprises that only showed up once real data started flowing."
 ---
 
 # The data model, and the permissions gotchas that came with it

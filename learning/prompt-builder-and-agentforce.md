@@ -2,6 +2,7 @@
 section: "AI Layer"
 order: 7
 title: "Turning the crawler's findings into a score, and a conversation"
+summary: "Why scoring belongs in Prompt Builder and conversation belongs in Agentforce — and what trying to make one tool do both cost."
 ---
 
 # Turning the crawler's findings into a score, and a conversation

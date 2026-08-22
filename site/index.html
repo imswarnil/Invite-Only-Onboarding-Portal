@@ -10,8 +10,7 @@ description: >-
 = site.roadmap | where: "status", "implemented" | size %} {% assign
 in_progress_count = site.roadmap | where: "status", "in-progress" | size %} {%
 assign planned_count = site.roadmap | where: "status", "planned" | size %} {%
-assign latest_changelog = site.changelog | sort: "date" | reverse %} {% capture
-newline %} {% endcapture %}
+assign latest_changelog = site.changelog | sort: "date" | reverse %}
 
 <div class="landing">
   <!-- ============================ HERO ============================ -->
@@ -342,14 +341,7 @@ newline %} {% endcapture %}
           </span>
           <p class="course-card-section">{{ lesson.section }}</p>
           <h3>{{ lesson.title }}</h3>
-          {%- comment -%} Drop the first line (the lesson's own H1) so the card
-          blurb starts at the body copy. Split on a newline rather than a
-          literal closing tag — a raw tag in an attribute-less Liquid filter
-          breaks prettier. {%- endcomment -%} {% assign body_lines =
-          lesson.content | strip_html | strip | split: newline %}
-          <p>
-            {{ body_lines | slice: 1, 400 | join: " " | strip | truncate: 90 }}
-          </p>
+          <p>{{ lesson.summary }}</p>
           <span class="btn btn-secondary">
             {% include icon.html name="caret-right" size=13 %}<span
               >Start lesson</span

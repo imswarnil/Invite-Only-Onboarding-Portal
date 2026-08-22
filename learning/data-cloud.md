@@ -2,6 +2,7 @@
 section: "Data Cloud"
 order: 8
 title: "Where Data Cloud actually fits (and why it's not step one)"
+summary: "Where Data Cloud actually fits, and the honest reason it isn't step one at this project's current size."
 ---
 
 # Where Data Cloud actually fits (and why it's not step one)
